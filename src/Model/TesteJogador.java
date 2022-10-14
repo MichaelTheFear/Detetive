@@ -69,7 +69,7 @@ public class TesteJogador {
 		for(int i = 0; i<esperado.length;i++) {
 			assertTrue("Checando se Cartas do getCartasIniciais sao iguais",esperado[i].equals(cartasJogador[i]));
 		}
-		
+		//escrever teste para verificar que duas cartas nao sao do mesmo tipo
 	}
 	
 

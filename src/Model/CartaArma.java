@@ -1,5 +1,5 @@
 package Model;
 
-public class CartaArma {
+public class CartaArma{
 
 }

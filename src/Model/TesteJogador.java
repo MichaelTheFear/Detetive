@@ -43,6 +43,7 @@ public class TesteJogador {
 	 * TODO : Teste Acusar e Dar Palpite pois necessitam do Jogo
 	 */
 	
+	/*
 	@Test
 	public void testeMover() {
 		int x = 20, y = 20;
@@ -50,7 +51,7 @@ public class TesteJogador {
 		j.mover(x,y);
 		posicaoHelper(x,y,"Testando Mover de 10,10 para 20,20",j);
 	}
-	
+	*/
 	@Test
 	public void testeAddAndSetCartasVistas() {
 		Jogador j = jogadorGenericoHelper();

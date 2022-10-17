@@ -13,19 +13,18 @@ public class TestePosicao {
 	}
 	
 	@Test
-	public void testeGetSetSPoscicoesProximas() {
+	public void testeGetSetPoscicoesProximas() {
 		Posicao pos = new Quadrado(10,10);
 		Posicao posicoesAdjacentes[] = new Posicao[4];
-		
 		for(int i = 0;i<4;i++) {
-			posicoesAdjacentes[i] = new Posicao(10+i,10+i);
+			posicoesAdjacentes[i] = new Quadrado(10+i,10+i);
 		}
 		pos.setPosicoesProximas(posicoesAdjacentes);
 		Posicao res[] = pos.getPosicoesProximas();
 		assertEquals("Testando se tamnho do getPosicoesProx",res.length,posicoesAdjacentes.length);
 		
 		for(int i = 0; i<4;i++) {
-			assertTrue("Testando se getPosicoesProximas retornam o esperado",posicoesAdjacentes[i].equals(res));
+			assertTrue("Testando se getPosicoesProximas retornam o esperado",posicoesAdjacentes[i].equals(res[i]));
 		}
 	}
 	
@@ -37,9 +36,8 @@ public class TestePosicao {
 		cartas[1] = new CartaLocal("Cozinha");
 		cartas[2] = new CartaSuspeito("Coronel Mustarda");
 		Jogador j = new Jogador("Reverendo Green",cartas,p);
-		assertTrue("Testando se Construtor de jogador muda o estado de jogadorAqui",p.getJogadorAqui());
-	//talvez devesse ficar em jogo em vez de tabuleiro
-	//TODO MUDARRRRR
+		
+		assertTrue("Testando se Construtor de jogador muda o estado de jogadorAqui",j.getPos().getJogadorAqui());
 	}
 	
 	@Test

@@ -8,14 +8,14 @@ public class TesteComodo {
 
 	@Test
 	public void testeConstrutor() {
-		Posicao p = new Comodo("Cozinha");
+		Posicao p = new Comodo(10,10,"Cozinha");
 		assertNotNull("Testando construtor de Comodo",p);
 	}
 	
 	@Test
 	public void testeGetNome() {
-		Posicao p = new Comodo("Cozinha");
-		assertEquals("Testando getNome",p.getComodo(),"Cozinha")e 
+		Comodo p = new Comodo(10,10,"Cozinha");
+		assertEquals("Testando getNome",p.getComodo(),"Cozinha");
 	}
 
 }

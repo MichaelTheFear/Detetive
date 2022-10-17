@@ -1,20 +1,27 @@
 package Model;
 
+import java.util.Objects;
 
 //Esse abstract e somente para forcar as cartas serem de um dos 3 tipos
 public abstract class Carta {
 	private String nome;
 	
-	public Carta(String nome) {
+	protected Carta(String nome) {
 		this.nome = nome;
 	}
 	
-	public String getNome() {
-		
+	protected String getNome() {
+		return nome;
 	}
-	
-	public boolean equals() {
-		
+
+	public boolean equals(Object obj) {
+		Carta other = (Carta) obj;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		return Objects.equals(nome, other.nome);
 	}
+
 	
 }

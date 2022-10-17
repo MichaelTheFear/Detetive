@@ -16,8 +16,8 @@ public class TesteQuadrado {
 	
 	@Test
 	public void testeGetPorta() {
-		Posicao q1 = new Quadrado(10,10,"Biblioteca");
-		Posicao q2 = new Quadrado(10,10);	
+		Quadrado q1 = new Quadrado(10,10,"Biblioteca");
+		Quadrado q2 = new Quadrado(10,10);	
 		assertEquals("Testando get Porta sendo porta",q1.getPorta(),"Biblioteca");
 		assertTrue("Testando get Porta sem ser porta",q2.getPorta()=="nenhum");
 	}

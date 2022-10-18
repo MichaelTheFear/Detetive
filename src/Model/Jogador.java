@@ -1,11 +1,14 @@
 package Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Jogador {
-	private Carta cartasVistas[] = new Carta[15]; //mudar para ArrayList<Carta> se ele deixar usar as data structure
+	private List<Carta> cartasVistas = new ArrayList<Carta>(); //mudar para ArrayList<Carta> se ele deixar usar as data structure
 	private String personagem;
 	private boolean podeDarPalpite;
 	private boolean errouAcusacao;
-	private Carta cartasIniciais[] = new Carta[3];
+	private List<Carta> cartasIniciais = new ArrayList<Carta>();
 	private Posicao pos;
 	private boolean jogando;
 	
@@ -13,21 +16,21 @@ public class Jogador {
 		this.personagem = personagem;
 		this.pos = posInicial;
 		this.pos.setJogadorAqui(true);
-		for(int i = 0; i<3;i++) {
-			this.cartasIniciais[i] = cartasIniciais[i];
-			this.cartasVistas[i] = cartasIniciais[i];
+		for(int i = 0; i<cartasIniciais.length;i++) {
+			this.cartasIniciais.add(cartasIniciais[i]);
+			this.cartasVistas.add(cartasIniciais[i]);
 		}
 		this.podeDarPalpite = true;
 		this.errouAcusacao = false;
 	}
 	
-	protected Jogador(String personagem,Carta cartasInicais[],Posicao posInicial,boolean jogando) {
+	protected Jogador(String personagem,Carta cartasIniciais[],Posicao posInicial,boolean jogando) {
 		this.personagem = personagem;
 		this.pos = posInicial;
 		this.pos.setJogadorAqui(true);
-		for(int i = 0; i<3;i++) {
-			this.cartasIniciais[i] = cartasIniciais[i];
-			this.cartasVistas[i] = cartasIniciais[i];
+		for(int i = 0; i<cartasIniciais.length;i++) {
+			this.cartasIniciais.add(cartasIniciais[i]);
+			this.cartasVistas.add(cartasIniciais[i]);
 		}
 		this.podeDarPalpite = true;
 		this.errouAcusacao = false;
@@ -44,22 +47,14 @@ public class Jogador {
 	}
 
 	protected void addCartasVista(Carta c) {
-		for(int i = 0;i<cartasVistas.length;i++) {
-			
-			if(cartasVistas[i]==null) {
-				cartasVistas[i] = c;
-				break;
-			}
-		}
-		
+		cartasVistas.add(c);
 	}
 
-	protected Carta[] getCartasVistas() {
+	protected List<Carta> getCartasVistas() {
 		return cartasVistas;
 	}
 
-	protected Carta[] getCartasIniciais() {
-
+	protected List<Carta> getCartasIniciais() {
 		return cartasIniciais;
 	}
 

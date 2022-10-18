@@ -7,6 +7,7 @@ public abstract class Posicao {
 	private Posicao[] posicoesProximas = new Posicao[4];
 	private int[] coordenadas;
 	private boolean jogadorAqui;
+	private boolean passouAqui;
 	
 	protected Posicao(int x, int y) {
 		coordenadas = new int[] {x,y};
@@ -31,6 +32,14 @@ public abstract class Posicao {
 
 	protected int[] getCoordenadas() {
 		return this.coordenadas;
+	}
+	
+	protected boolean getPassouAqui() {
+		return passouAqui;
+	}
+	
+	protected void setPassouAqui(boolean p) {
+		passouAqui = p;
 	}
 
 	public boolean equals(Object obj) {

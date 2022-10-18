@@ -15,8 +15,8 @@ public class Tabuleiro {
 		}
 	}
 	
-	protected Posicao[] achaDesitnosFinais() {
-		//modificar
+	protected Posicao[] achaDesitnosFinais(int x,int y,int casas) {
+		Map 
 		return posicoes;
 	}
 	

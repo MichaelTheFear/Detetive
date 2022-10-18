@@ -82,4 +82,14 @@ public class Jogador {
 		errouAcusacao = p;
 	}
 	
+	protected Carta temCarta(Carta c[]) {
+		for(Carta cOut : c) {
+			for(Carta cIn : cartasIniciais) {
+				if(cIn.equals(cOut))
+					return cIn;
+			}
+		}
+		return null;
+	}
+	
 }

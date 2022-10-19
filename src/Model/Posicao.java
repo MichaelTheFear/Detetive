@@ -2,17 +2,27 @@ package Model;
 
 import java.util.Arrays;
 
-public abstract class Posicao {
+public abstract class Posicao{
 	
 	private Posicao[] posicoesProximas = new Posicao[4];
 	private int[] coordenadas;
 	private boolean jogadorAqui;
-	private boolean passouAqui;
+	private int passouAqui = 0;
+	private int mudadoNoTurno = -1;
 	
 	protected Posicao(int x, int y) {
 		coordenadas = new int[] {x,y};
 		jogadorAqui = false;
 	}
+	
+	protected int getMudadoNoTurno() {
+		return mudadoNoTurno;
+	}
+	
+	protected void setMudadoNoTurno(int t) {
+		mudadoNoTurno = t;
+	}
+	
 
 	protected void setPosicoesProximas(Posicao[] posicoesAdjacentes) {
 		this.posicoesProximas = posicoesAdjacentes;
@@ -34,12 +44,16 @@ public abstract class Posicao {
 		return this.coordenadas;
 	}
 	
-	protected boolean getPassouAqui() {
+	protected int getPassouAqui() {
 		return passouAqui;
 	}
 	
-	protected void setPassouAqui(boolean p) {
+	protected void setPassouAqui(int p) {
 		passouAqui = p;
+	}
+	
+	protected void addUmPassouAqui() {
+		passouAqui++;
 	}
 
 	public boolean equals(Object obj) {

@@ -18,17 +18,35 @@ public class Tabuleiro {
 		}
 	}
 	
-	protected List<Posicao> achaDesitnosFinais(int x,int y,int casas) {
-		//ArrayList<Integer> posParaResetar = new ArrayList<Integer>();
+	protected List<Posicao> achaDesitnosFinais(int x,int y,int casas,int turno) {
 		ArrayList<Posicao> res = new ArrayList<Posicao>();
-		res.addAll(__recAchaDestino(getPosEm(x,y)));
+		ArrayList<Posicao> aux = new ArrayList<Posicao>();
+		aux.addAll(__recAchaDestino(getPosEm(x,y),casas));
+		for(Posicao p : aux) {
+			if(p.getMudadoNoTurno()!=turno) {
+				p.setMudadoNoTurno(turno);
+				p.setPassouAqui(0);
+			}else {
+				p.addUmPassouAqui();
+			}
+		}
+		for(Posicao p: aux) {
+			if(p.getPassouAqui()<=3)
+				res.add(p);
+		}
 		return res;
 	}
 	
-	private List<Posicao> __recAchaDestino(Posicao p1) {
-		ArrayList<Posicao> res = new ArrayList<Posicao>();
-		for(Posicao p : p1.getPosicoesProximas()) {
-			res.addAll(__recAchaDestino(p));
+	private List<Posicao> __recAchaDestino(Posicao p1,int casas) {
+		ArrayList<Posicao> res = null;
+		ArrayList<Posicao> prox;
+		if(casas>0) {			
+			res = new ArrayList<Posicao>();
+			for(Posicao p : p1.getPosicoesProximas()) {
+				prox = (ArrayList<Posicao>) __recAchaDestino(p,casas--);
+				if(prox!=null)
+					res.addAll(prox);
+			}
 		}
 		return res;
 	}

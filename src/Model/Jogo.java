@@ -7,9 +7,12 @@ public class Jogo {
 	Tabuleiro t;
 	Carta[] cartasAssassino = new Carta[3];
 	Jogador jogadores[] = new Jogador[10];
-	int vezDe;
+	int vezDe = 0;
+	int numTurno = 0;
 	
-	public Jogo() {}
+	public Jogo() {
+		vezDe = proxTurno(jogadores.length);
+	}
 	
 	static protected int rolarDado() {
 		return 5;
@@ -38,8 +41,8 @@ public class Jogo {
 	}
 	
 	public int acusar(Carta c[]) {
-		TreeSet<Carta> t = new TreeSet<Carta>();
-		
+		TreeSet<Carta> t = new TreeSet<Carta>(); //talez mudar td para treeSet
+		return -1;
 	}
 	
 	public String darPalpite(Carta palpites[]) {

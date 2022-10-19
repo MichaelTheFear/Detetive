@@ -6,6 +6,8 @@ import java.util.Objects;
 abstract class Carta {
 	private String nome;
 	
+	//factory
+	
 	protected Carta(String nome) {
 		this.nome = nome;
 	}

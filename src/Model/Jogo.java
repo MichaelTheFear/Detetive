@@ -20,6 +20,14 @@ class Jogo {
 		dados[1] = 5;
 	}
 	
+	protected int[] getDados() {
+		return dados;
+	}
+	
+	protected void setDados(int[] dados) {
+		this.dados = dados;
+	}
+	
 	protected void jogo() {
 		
 	}

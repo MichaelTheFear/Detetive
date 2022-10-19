@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Tabuleiro {
+	// aquele desgin pattern de unico la
 	private Posicao posicoes[];
 	static int size = 64;
 	static int numPorLinha = 8;

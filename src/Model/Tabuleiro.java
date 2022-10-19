@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tabuleiro {
+class Tabuleiro {
 	private Posicao posicoes[];
 	static int size = 64;
 	static int numPorLinha = 8;

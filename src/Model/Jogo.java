@@ -2,20 +2,22 @@ package Model;
 
 import java.util.TreeSet;
 
-public class Jogo {
+class Jogo {
 	static protected int NUM_MAX_DADO = 6;
 	Tabuleiro t;
 	Carta[] cartasAssassino = new Carta[3];
 	Jogador jogadores[] = new Jogador[10];
 	int vezDe = 0;
 	int numTurno = 0;
+	int dados[] = new int[2];
 	
 	public Jogo() {
 		vezDe = proxTurno(jogadores.length);
 	}
 	
-	static protected int rolarDado() {
-		return 5;
+	protected void rolarDado() {
+		dados[0] = 5;
+		dados[1] = 5;
 	}
 	
 	protected void jogo() {
@@ -39,6 +41,9 @@ public class Jogo {
 	public void mover() {
 		
 	}
+
+	
+	
 	
 	public int acusar(Carta c[]) {
 		TreeSet<Carta> t = new TreeSet<Carta>(); //talez mudar td para treeSet

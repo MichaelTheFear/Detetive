@@ -2,7 +2,7 @@ package Model;
 
 import java.util.Objects;
 
-public class Comodo extends Posicao {
+class Comodo extends Posicao {
 
 	private String comodo;
 	

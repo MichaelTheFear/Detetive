@@ -2,7 +2,7 @@ package Model;
 
 import java.util.Arrays;
 
-public abstract class Posicao{
+abstract class Posicao{
 	
 	private Posicao[] posicoesProximas = new Posicao[4];
 	private int[] coordenadas;

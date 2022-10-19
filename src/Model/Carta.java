@@ -3,7 +3,7 @@ package Model;
 import java.util.Objects;
 
 //Esse abstract e somente para forcar as cartas serem de um dos 3 tipos
-public abstract class Carta {
+abstract class Carta {
 	private String nome;
 	
 	protected Carta(String nome) {

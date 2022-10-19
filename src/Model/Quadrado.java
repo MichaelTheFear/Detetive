@@ -2,7 +2,7 @@ package Model;
 
 import java.util.Objects;
 
-public class Quadrado extends Posicao {
+class Quadrado extends Posicao {
 	
 	private String porta;
 

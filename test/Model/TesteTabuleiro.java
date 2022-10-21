@@ -2,7 +2,7 @@ package Model;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -29,7 +29,8 @@ public class TesteTabuleiro {
 	@Test
 	public void testeAchaDestinoFinal() {
 		Tabuleiro t = Helpers.initCaminhoHelpers();
-		List<Posicao> res = t.achaDesitnosFinais(2, 2, 2, -1);
+		ArrayList<Posicao> res = t.achaDesitnosFinais(2, 2, 2, -1);
+		
 		for(Posicao p: res) {
 			assertNotNull("Testando se elementos do array nao sao nulos",p);
 		}

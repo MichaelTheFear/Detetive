@@ -27,9 +27,10 @@ class Tabuleiro {
 		posicoes = p;
 	}
 	
-	protected List<Posicao> achaDesitnosFinais(int x,int y,int casas,int turno) {
+	protected ArrayList<Posicao> achaDesitnosFinais(int x,int y,int casas,int turno) {
 		ArrayList<Posicao> res = new ArrayList<Posicao>();
 		ArrayList<Posicao> aux = new ArrayList<Posicao>();
+		
 		aux.addAll(__recAchaDestino(getPosEm(x,y),casas));
 		for(Posicao p : aux) {
 			if(p.getMudadoNoTurno()!=turno) {
@@ -46,13 +47,15 @@ class Tabuleiro {
 		return res;
 	}
 	
-	private List<Posicao> __recAchaDestino(Posicao p1,int casas) {
+	private ArrayList<Posicao> __recAchaDestino(Posicao p1,int casas) {
 		ArrayList<Posicao> res = null;
 		ArrayList<Posicao> prox;
+		System.out.println(p1.getCoordenadas().toString());
 		if(casas>0) {			
 			res = new ArrayList<Posicao>();
 			for(Posicao p : p1.getPosicoesProximas()) {
-				prox = (ArrayList<Posicao>) __recAchaDestino(p,casas--);
+				prox = __recAchaDestino(p,casas--);
+				System.out.println(p.getCoordenadas().toString());
 				if(prox!=null)
 					res.addAll(prox);
 			}

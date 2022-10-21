@@ -30,7 +30,6 @@ public class TesteTabuleiro {
 	public void testeAchaDestinoFinal() {
 		Tabuleiro t = Helpers.initCaminhoHelpers();
 		List<Posicao> res = t.achaDesitnosFinais(2, 2, 2, -1);
-		System.out.println(res.toArray().toString());
 		for(Posicao p: res) {
 			assertNotNull("Testando se elementos do array nao sao nulos",p);
 		}

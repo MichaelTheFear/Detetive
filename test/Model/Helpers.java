@@ -24,14 +24,21 @@ public class Helpers {
 		return pos;
 	}
 	
+	private static int mod(int a,int b) {
+		int res = a%b;
+		if(res<0)
+			res += b;
+		return res;
+	}
+	
 	protected static Posicao[][] posicoesArrayProxHelper(){
 		Posicao posicoesAdjacentes[][] = new Posicao[Tabuleiro.size][4];
 		Posicao aux[] = posicoesArrayHelper();
 		for(int i =0;i<Tabuleiro.numPorLinha;i++) {
-			posicoesAdjacentes[i][0] = aux[(i-2)%Tabuleiro.numPorLinha];
-			posicoesAdjacentes[i][1] = aux[(i-1)%Tabuleiro.numPorLinha];
-			posicoesAdjacentes[i][2] = aux[(i+1)%Tabuleiro.numPorLinha];
-			posicoesAdjacentes[i][3] = aux[(i+2)%Tabuleiro.numPorLinha];
+			posicoesAdjacentes[i][0] = aux[mod(i-2,Tabuleiro.size)];
+			posicoesAdjacentes[i][1] = aux[mod(i-1,Tabuleiro.size)];
+			posicoesAdjacentes[i][2] = aux[(i+1)%Tabuleiro.size];
+			posicoesAdjacentes[i][3] = aux[(i+2)%Tabuleiro.size];
 		}
 		return posicoesAdjacentes;
 	}

@@ -19,6 +19,14 @@ class Tabuleiro {
 		}
 	}
 	
+	protected Posicao[] getPosicoes() {
+		return posicoes;
+	}
+	
+	protected void setPosicoes(Posicao p[]) {
+		posicoes = p;
+	}
+	
 	protected List<Posicao> achaDesitnosFinais(int x,int y,int casas,int turno) {
 		ArrayList<Posicao> res = new ArrayList<Posicao>();
 		ArrayList<Posicao> aux = new ArrayList<Posicao>();
@@ -32,7 +40,7 @@ class Tabuleiro {
 			}
 		}
 		for(Posicao p: aux) {
-			if(p.getPassouAqui()<=3)
+			if(p.getPassouAqui()<=3 || p instanceof Comodo)
 				res.add(p);
 		}
 		return res;

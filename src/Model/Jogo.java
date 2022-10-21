@@ -1,6 +1,5 @@
 package Model;
 
-import java.util.TreeSet;
 
 class Jogo {
 	static protected int NUM_MAX_DADO = 6;
@@ -28,9 +27,6 @@ class Jogo {
 		this.dados = dados;
 	}
 	
-	protected void jogo() {
-		
-	}
 	
 	public int proxTurno(int turno) {
 		turno++;
@@ -54,7 +50,7 @@ class Jogo {
 	
 	
 	public int acusar(Carta c[]) {
-		TreeSet<Carta> t = new TreeSet<Carta>(); //talez mudar td para treeSet
+		 //talez mudar td para treeSet
 		return -1;
 	}
 	
@@ -69,6 +65,7 @@ class Jogo {
 		}
 		return "nenhum";
 	}
+	
 	
 	
 }

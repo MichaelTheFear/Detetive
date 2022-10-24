@@ -33,11 +33,14 @@ public class TesteTabuleiro {
 	@Test
 	public void testeAchaDestinoFinal() {
 		Tabuleiro t = Helpers.initCaminhoHelpers();
-		ArrayList<Posicao> res = t.achaDesitnosFinais(2, 2, 2, 1);
+		ArrayList<Posicao> res = t.achaDesitnosFinais(0, 0, 12, -1);
 		
 		for(Posicao p: res) {
+			System.out.println(p.toString());
 			assertNotNull("Testando se elementos do array nao sao nulos",p);
 		}
+		
+		Helpers.printGrafo(t.getPosicoes());
 	}
 
 }

@@ -1,17 +1,15 @@
 package Model;
 
-import java.util.Arrays;
-
 abstract class Posicao{
 	
-	private Posicao[] posicoesProximas = new Posicao[4];
-	private int[] coordenadas;
+	private Coordenadas[] posicoesProximas = new Coordenadas[4];
+	private Coordenadas coordenadas;
 	private boolean jogadorAqui;
 	private int passouAqui = 0;
 	private int mudadoNoTurno = -1;
 	
 	protected Posicao(int x, int y) {
-		coordenadas = new int[] {x,y};
+		coordenadas = new Coordenadas(x,y);
 		jogadorAqui = false;
 	}
 	
@@ -24,11 +22,11 @@ abstract class Posicao{
 	}
 	
 
-	protected void setPosicoesProximas(Posicao[] posicoesAdjacentes) {
+	protected void setPosicoesProximas(Coordenadas[] posicoesAdjacentes) {
 		this.posicoesProximas = posicoesAdjacentes;
 	}
 
-	protected Posicao[] getPosicoesProximas() {
+	protected Coordenadas[] getPosicoesProximas() {
 		return this.posicoesProximas;
 	}
 
@@ -40,7 +38,7 @@ abstract class Posicao{
 		jogadorAqui = b;
 	}
 
-	protected int[] getCoordenadas() {
+	protected Coordenadas getCoordenadas() {
 		return this.coordenadas;
 	}
 	
@@ -61,11 +59,11 @@ abstract class Posicao{
 			return true;
 		}
 		Posicao other = (Posicao) obj;
-		return Arrays.equals(coordenadas, other.coordenadas);
+		return coordenadas.equals(other.coordenadas);
 	}
 
 	public String toString() {
-		return "("+coordenadas[0]+","+coordenadas[1]+")";
+		return "("+coordenadas.getX()+","+coordenadas.getY()+")";
 	}
 
 }

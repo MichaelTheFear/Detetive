@@ -23,7 +23,7 @@ public class TestePosicao {
 		Posicao res[] = pos.getPosicoesProximas();
 		assertEquals("Testando se tamnho do getPosicoesProx",res.length,posicoesAdjacentes.length);
 		
-		for(int i = 0; i<4;i++) {
+		for(int i = 0; i<4;i++) { 
 			assertTrue("Testando se getPosicoesProximas retornam o esperado",posicoesAdjacentes[i].equals(res[i]));
 		}
 	}
@@ -44,10 +44,10 @@ public class TestePosicao {
 	public void testeGetCoordenadas() {
 		Posicao p = new Quadrado(15,15);
 		int coordenadasEsperadas[] = {15,15};
-		int res[] = p.getCoordenadas();
+		Coordenadas c = p.getCoordenadas();
 		assertTrue("Testando getCoordenadas",
-				res[0]==coordenadasEsperadas[0] &&
-				res[1]==coordenadasEsperadas[1]);
+				c.getX()==coordenadasEsperadas[0] &&
+				c.getY()==coordenadasEsperadas[1]);
 	}
 	
 

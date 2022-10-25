@@ -1,6 +1,6 @@
 package Model;
 
-abstract class Posicao{
+class Posicao{
 	
 	private Coordenadas[] posicoesProximas = new Coordenadas[4];
 	private Coordenadas coordenadas;

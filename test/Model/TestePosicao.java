@@ -8,13 +8,13 @@ public class TestePosicao {
 
 	@Test
 	public void testeConstrutorPosicao() {
-		Posicao p = new Quadrado(10,10);
+		Posicao p = new Porta(10,10);
 		assertNotNull("Testando Construtor Posicao ",p);
 	}
 	
 	@Test
 	public void testeGetSetPoscicoesProximas() {
-		Posicao pos = new Quadrado(10,10);
+		Posicao pos = new Porta(10,10);
 		Coordenadas posicoesAdjacentes[] = new Coordenadas[4];
 		for(int i = 0;i<4;i++) {
 			posicoesAdjacentes[i] = new Coordenadas(10+i,10+i);
@@ -31,7 +31,7 @@ public class TestePosicao {
 	
 	@Test
 	public void testeJogadorAqui() {
-		Posicao p = new Quadrado(10,10);
+		Posicao p = new Porta(10,10);
 		Carta cartas[] = new Carta[3];
 		cartas[0] = new CartaArma("Corda");
 		cartas[1] = new CartaLocal("Cozinha");
@@ -43,7 +43,7 @@ public class TestePosicao {
 	
 	@Test
 	public void testeGetCoordenadas() {
-		Posicao p = new Quadrado(15,15);
+		Posicao p = new Porta(15,15);
 		int coordenadasEsperadas[] = {15,15};
 		Coordenadas c = p.getCoordenadas();
 		assertTrue("Testando getCoordenadas",

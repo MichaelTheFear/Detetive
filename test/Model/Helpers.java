@@ -17,7 +17,7 @@ public class Helpers {
 		Posicao pos[][] = new Posicao[Tabuleiro.numPorLinha][Tabuleiro.numPorLinha];
 		for(int i = 0, j;i<Tabuleiro.numPorLinha;i++) {
 			for(j = 0;j<Tabuleiro.numPorLinha;j++) {
-				pos[i][j] = new Quadrado(i,j);
+				pos[i][j] = new Porta(i,j);
 			}
 			
 		}
@@ -47,14 +47,14 @@ public class Helpers {
 	
 	protected static Jogador jogadorGenericoHelper() {
 		Carta cartas[] = cartasGenericasHelper();
-		Posicao p = new Quadrado(10,10);
+		Posicao p = new Porta(10,10);
 		Jogador j = new Jogador("Reverendo Green",cartas,p);
 		return j;
 	}
 	
 	protected static void posicaoHelper(int x, int y, String msg, Jogador j) {
 		Posicao p = j.getPos();
-		Posicao esperado = new Quadrado(x,y);
+		Posicao esperado = new Porta(x,y);
 		assertTrue(msg,esperado.equals(p));
 	}
 	

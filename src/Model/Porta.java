@@ -2,16 +2,16 @@ package Model;
 
 import java.util.Objects;
 
-class Quadrado extends Posicao {
+class Porta extends Posicao {
 	
 	private String porta;
 
-	public Quadrado(int i, int j, String string) {
+	public Porta(int i, int j, String string) {
 		super(i,j);
 		this.porta = string;
 	}
 
-	public Quadrado(int i, int j) {
+	public Porta(int i, int j) {
 		super(i,j);
 		this.porta="nenhum";
 	}
@@ -27,10 +27,10 @@ class Quadrado extends Posicao {
 		if (!super.equals(obj)) {
 			return false;
 		}
-		if (!(obj instanceof Quadrado)) {
+		if (!(obj instanceof Porta)) {
 			return false;
 		}
-		Quadrado other = (Quadrado) obj;
+		Porta other = (Porta) obj;
 		return Objects.equals(porta, other.porta);
 	}
 

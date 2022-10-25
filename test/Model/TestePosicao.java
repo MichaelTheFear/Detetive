@@ -15,12 +15,13 @@ public class TestePosicao {
 	@Test
 	public void testeGetSetPoscicoesProximas() {
 		Posicao pos = new Quadrado(10,10);
-		Posicao posicoesAdjacentes[] = new Posicao[4];
+		Coordenadas posicoesAdjacentes[] = new Coordenadas[4];
 		for(int i = 0;i<4;i++) {
-			posicoesAdjacentes[i] = new Quadrado(10+i,10+i);
+			posicoesAdjacentes[i] = new Coordenadas(10+i,10+i);
 		}
 		pos.setPosicoesProximas(posicoesAdjacentes);
-		Posicao res[] = pos.getPosicoesProximas();
+		
+		Coordenadas res[] = pos.getPosicoesProximas();
 		assertEquals("Testando se tamnho do getPosicoesProx",res.length,posicoesAdjacentes.length);
 		
 		for(int i = 0; i<4;i++) { 

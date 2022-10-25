@@ -13,11 +13,11 @@ public class Helpers {
 		return cartas;
 	}
 	
-	protected static Posicao[] posicoesArrayHelper() {
-		Posicao pos[] = new Posicao[Tabuleiro.size];
+	protected static Posicao[][] posicoesArrayHelper() {
+		Posicao pos[][] = new Posicao[Tabuleiro.numPorLinha][Tabuleiro.numPorLinha];
 		for(int i = 0, j;i<Tabuleiro.numPorLinha;i++) {
 			for(j = 0;j<Tabuleiro.numPorLinha;j++) {
-				pos[j+i*Tabuleiro.numPorLinha] = new Quadrado(i,j);
+				pos[i][j] = new Quadrado(i,j);
 			}
 			
 		}
@@ -32,14 +32,15 @@ public class Helpers {
 		return res;
 	}
 	
-	protected static Posicao[][] posicoesArrayProxHelper(){
-		Posicao posicoesAdjacentes[][] = new Posicao[Tabuleiro.size][4];
-		Posicao aux[] = posicoesArrayHelper();
-		for(int i =0;i<Tabuleiro.size;i++) {
-			posicoesAdjacentes[i][0] = aux[mod(i-2,Tabuleiro.size)];
-			posicoesAdjacentes[i][1] = aux[mod(i-1,Tabuleiro.size)];
-			posicoesAdjacentes[i][2] = aux[(i+1)%Tabuleiro.size];
-			posicoesAdjacentes[i][3] = aux[(i+2)%Tabuleiro.size];
+	protected static Coordenadas[][][] posicoesArrayProxHelper(){
+		Coordenadas posicoesAdjacentes[][][] = new Coordenadas[Tabuleiro.numPorLinha][Tabuleiro.numPorLinha][4];
+		for(int i =0;i<Tabuleiro.numPorLinha;i++) {
+			for(int j = 0 ;j<Tabuleiro.numPorLinha;j++) {
+				posicoesAdjacentes[i][j][0] = new Coordenadas(i,(j+1)%Tabuleiro.numPorLinha);
+				posicoesAdjacentes[i][j][1] = new Coordenadas(i,mod(j-1,Tabuleiro.numPorLinha));
+				posicoesAdjacentes[i][j][2] = new Coordenadas((i+1)%Tabuleiro.numPorLinha,j);
+				posicoesAdjacentes[i][j][3] = new Coordenadas(mod(i-1,Tabuleiro.numPorLinha),j);
+			}
 		}
 		return posicoesAdjacentes;
 	}
@@ -63,18 +64,4 @@ public class Helpers {
 		return t;
 	}
 	
-	
-	protected static void printGrafo(Posicao posicoes[]) {
-		System.out.println("Grafo: ");
-		for(Posicao pos: posicoes) {
-			Posicao posProx[] = pos.getPosicoesProximas();
-			System.out.print("("+pos.getCoordenadas()[0]+ ","+pos.getCoordenadas()[1] + ") = [");
-			if(posProx!=null && posProx[0]!=null) {
-				for(Posicao pOut:posProx) {
-					System.out.print(pOut.toString());
-				}
-			}
-			System.out.println("]");
-		}
-	}
 }

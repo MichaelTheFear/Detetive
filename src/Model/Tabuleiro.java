@@ -106,7 +106,7 @@ class Tabuleiro {
 		}
 		
 		for(Coordenadas c: res) {
-			if((c.getPassouAqui()<=numMagico1 && c.getPassouAqui()>=numMagico2  || c.getX()==x+casas || c.getY()==y+casas || c.getX()==x-casas || c.getY()==y-casas) 
+			if(c.getPassouAqui()<=numMagico1 && c.getPassouAqui()>=numMagico2  || c.getX()==x+casas || c.getY()==y+casas || c.getX()==x-casas || c.getY()==y-casas) 
 				res2.add(c);
 			
 		}

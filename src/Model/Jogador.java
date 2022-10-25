@@ -5,28 +5,82 @@ import java.util.List;
 
 class Jogador {
 	private List<Carta> cartasVistas = new ArrayList<Carta>(); //mudar para ArrayList<Carta> se ele deixar usar as data structure
-	private String personagem;
+	private Personagem personagem;
 	private boolean podeDarPalpite;
 	private boolean errouAcusacao;
 	private List<Carta> cartasIniciais = new ArrayList<Carta>();
 	private Posicao pos;
 	private boolean jogando;
 	
-	protected Jogador(String personagem,Carta cartasIniciais[],Posicao posInicial) {
+	protected Jogador(Personagem personagem) {
 		this.personagem = personagem;
-		this.pos = posInicial;
-		this.pos.setJogadorAqui(true);
-		for(int i = 0; i<cartasIniciais.length;i++) {
-			this.cartasIniciais.add(cartasIniciais[i]);
-			this.cartasVistas.add(cartasIniciais[i]);
+		switch(this.personagem)
+		{
+			case Scarlet:
+				this.pos = new Posicao(0,0);
+				break;
+				
+			case Mostarda:
+				this.pos = new Posicao(0,0);
+				break;
+			
+			case White:
+				this.pos = new Posicao(0,0);
+				break;
+				
+			case Green:
+				this.pos = new Posicao(0,0);
+				break;
+				
+			case Peacock:
+				this.pos = new Posicao(0,0);
+				break;
+				
+			case Plum:
+				this.pos = new Posicao(0,0);
+				break;
+				
+			case Boddy:
+				this.pos = new Posicao(0,0);
+				break;
 		}
-		this.podeDarPalpite = true;
-		this.errouAcusacao = false;
+		this.pos.setJogadorAqui(true);
+		this.jogando = false;
+		this.errouAcusacao = true;
 	}
 	
-	protected Jogador(String personagem,Carta cartasIniciais[],Posicao posInicial,boolean jogando) {
+	protected Jogador(Personagem personagem,Carta cartasIniciais[]) {
 		this.personagem = personagem;
-		this.pos = posInicial;
+		switch(this.personagem)
+		{
+			case Scarlet:
+				this.pos = new Posicao(0,0);
+				break;
+				
+			case Mostarda:
+				this.pos = new Posicao(0,0);
+				break;
+			
+			case White:
+				this.pos = new Posicao(0,0);
+				break;
+				
+			case Green:
+				this.pos = new Posicao(0,0);
+				break;
+				
+			case Peacock:
+				this.pos = new Posicao(0,0);
+				break;
+				
+			case Plum:
+				this.pos = new Posicao(0,0);
+				break;
+				
+			case Boddy:
+				this.pos = new Posicao(0,0);
+				break;
+		}
 		this.pos.setJogadorAqui(true);
 		for(int i = 0; i<cartasIniciais.length;i++) {
 			this.cartasIniciais.add(cartasIniciais[i]);
@@ -34,7 +88,7 @@ class Jogador {
 		}
 		this.podeDarPalpite = true;
 		this.errouAcusacao = false;
-		this.jogando = jogando;
+		this.jogando = false;
 	}
 	
 
@@ -62,7 +116,7 @@ class Jogador {
 		return pos;
 	}
 
-	protected String getPersonagem() {
+	protected Personagem getPersonagem() {
 		return personagem;
 	}
 	

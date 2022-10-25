@@ -19,6 +19,7 @@ class Tabuleiro {
 				posicoes[i][j].setPosicoesProximas(posicoesProx[i][j]);
 			}
 		}
+		//__debugPrintPosicoesGrafo();
 	}
 	
 	protected Posicao[][] getPosicoes() {
@@ -27,6 +28,38 @@ class Tabuleiro {
 	
 	protected void setPosicoes(Posicao p[][]) {
 		posicoes = p;
+	}
+	
+	protected void __debugPrintPosicoesGrafo() {
+		for(Posicao[] posis: posicoes) {
+			for(Posicao pos:posis) {
+				System.out.print(pos.getCoordenadas().toString()+": ");
+				for(Coordenadas c: pos.getPosicoesProximas()) {
+					System.out.print(c.toString()+" ");
+				}
+				System.out.println();
+			}
+		}
+	}
+	
+	
+	protected void printAsMap(ArrayList<Coordenadas> coords) {
+		String mapa[][] = new String[numPorLinha][numPorLinha];
+		for(int i = 0;i<numPorLinha;i++) {
+			for(int j=0; j<numPorLinha;j++) {
+				mapa[i][j] = "_";
+			}
+		}
+		for(Coordenadas c: coords) {
+			mapa[c.getX()][c.getY()] = "0";
+		}
+		
+		for(String linha[] : mapa) {
+			for(String item : linha) {
+				System.out.print(item+" ");
+			}
+			System.out.println();
+		}
 	}
 	
 	/*
@@ -85,51 +118,37 @@ class Tabuleiro {
 	}
 	
 	protected ArrayList<Coordenadas> achaPosFinais(int x, int y, int casas, int turno){
-		ArrayList<Coordenadas> res = new ArrayList<Coordenadas>();
-		ArrayList<Coordenadas> res2 = new ArrayList<Coordenadas>();
+		
 		ArrayList<Coordenadas> aux = new ArrayList<Coordenadas>();
-		int numMagico1, numMagico2;
-		Coordenadas coord;
-		int index;
-		aux.addAll(__recAchaPosFinais(x,y,casas,turno));
-		for(Coordenadas c : aux) {
-			if(c!=null) {
-				index = res.indexOf(c); 
-				if(index==-1) {
-					res.add(c);
-				}else {
-					coord = res.get(res.indexOf(c));
-					coord.addUmPassouAqui();
-					res.set(index, coord);
-				}
-			}
-		}
+
+		aux.addAll(__recAchaPosFinais(x,y,casas+1,turno));
+		//printAsMap(aux);
 		
-		for(Coordenadas c: res) {
-			if(c.getPassouAqui()<=numMagico1 && c.getPassouAqui()>=numMagico2  || c.getX()==x+casas || c.getY()==y+casas || c.getX()==x-casas || c.getY()==y-casas) 
-				res2.add(c);
-			
-		}
-		
-		
-		
-		return res2;
+		return aux;
 	}
 	
 	private ArrayList<Coordenadas> __recAchaPosFinais(int x, int y, int casas, int turno){
 		ArrayList<Coordenadas> res = new ArrayList<Coordenadas>();
 		ArrayList<Coordenadas> prox = new ArrayList<Coordenadas>();
+		Posicao posAtual;
+		Coordenadas coordAtual;
+		posAtual = getPosicao(x,y);
+		coordAtual = posAtual.getCoordenadas();
 		if(casas>0) {
 			res = new ArrayList<Coordenadas>();
-			for(Coordenadas c: this.getPosicao(x,y).getPosicoesProximas()) {
+			res.add(coordAtual);
+			coordAtual.setPassouAqui(true);
+			for(Coordenadas c: posAtual.getPosicoesProximas()) {
 				if(c!=null) {
-					res.add(c);
-					prox = __recAchaPosFinais(c.getX(),c.getY(),casas-1,turno);
-					if(prox!=null) {
-						res.addAll(prox);
+					if(!c.getPassouAqui()) {
+						prox = __recAchaPosFinais(c.getX(),c.getY(),casas-1,turno);
+						if(prox!=null) {
+							res.addAll(prox);
+						}
 					}
 				}
 			}
+			coordAtual.setPassouAqui(false);
 		}
 		return res;
 	}

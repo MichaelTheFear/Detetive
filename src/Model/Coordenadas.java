@@ -1,15 +1,22 @@
 package Model;
 
-import java.util.Objects;
 
 public class Coordenadas {
 	private int x, y;
-	private int passouAqui = 1;
-	private int mudadoNoTurno = -1;
+	private boolean passouAqui = false;
+	private boolean jogadorAqui = false;
 
 	public Coordenadas(int x, int y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	protected boolean getJogadorAqui() {
+		return this.jogadorAqui;
+	}
+	
+	protected void setJogadorAqui(boolean b) {
+		jogadorAqui = b;
 	}
 
 	public int getX() {
@@ -28,35 +35,21 @@ public class Coordenadas {
 		this.y = y;
 	}
 
-	public int getPassouAqui() {
+	public boolean getPassouAqui() {
 		return passouAqui;
 	}
 
-	public void setPassouAqui(int passouAqui) {
+	public void setPassouAqui(boolean passouAqui) {
 		this.passouAqui = passouAqui;
 	}
 
-	public int getMudadoNoTurno() {
-		return mudadoNoTurno;
-	}
 
-	public void setMudadoNoTurno(int mudadoNoTurno) {
-		this.mudadoNoTurno = mudadoNoTurno;
-	}
-
-	public void addUmPassouAqui() {
-		passouAqui++;
-		
-	}
 	
 	public String toString() {
-		return "("+x + "," + y + ") - " +passouAqui;
+		return "("+x + "," + y + ") ";
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(mudadoNoTurno, passouAqui, x, y);
-	}
+	
 
 	@Override
 	public boolean equals(Object obj) {

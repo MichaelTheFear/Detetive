@@ -4,13 +4,11 @@ class Posicao{
 	
 	private Coordenadas[] posicoesProximas = new Coordenadas[4];
 	private Coordenadas coordenadas;
-	private boolean jogadorAqui;
 	private int passouAqui = 0;
 	private int mudadoNoTurno = -1;
 	
 	protected Posicao(int x, int y) {
 		coordenadas = new Coordenadas(x,y);
-		jogadorAqui = false;
 	}
 	
 	protected int getMudadoNoTurno() {
@@ -30,13 +28,6 @@ class Posicao{
 		return this.posicoesProximas;
 	}
 
-	protected boolean getJogadorAqui() {
-		return this.jogadorAqui;
-	}
-	
-	protected void setJogadorAqui(boolean b) {
-		jogadorAqui = b;
-	}
 
 	protected Coordenadas getCoordenadas() {
 		return this.coordenadas;

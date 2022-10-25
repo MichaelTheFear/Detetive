@@ -34,15 +34,12 @@ public class TesteTabuleiro {
 	@Test
 	public void testeAchaDestinoFinal() {
 		Tabuleiro t = Helpers.initCaminhoHelpers();
-		ArrayList<Coordenadas> res = t.achaPosFinais(20, 20, 6, -1);
+		ArrayList<Coordenadas> res = t.achaPosFinais(20, 20, 4, -1);
 		
 		for(Coordenadas p: res) {
-			System.out.println(p.toString());
 			assertNotNull("Testando se elementos do array nao sao nulos",p);
 		}
-		System.out.println(res.size());
 		
-	
 	}
 
 }

@@ -19,13 +19,18 @@ public class TesteTabuleiro {
 		Tabuleiro t = Helpers.initCaminhoHelpers();
 		Posicao posicoes[] = t.getPosicoes();
 		assertTrue("Testando se o tamanho do array nao e zero", posicoes.length > 0);
+		Helpers.printGrafo(posicoes);
+		
 		for(Posicao p : posicoes) {
 			Posicao adjacentes[] = p.getPosicoesProximas();
+			
 			assertNotNull("Verificando se posicao possui array de adjacencia",adjacentes);
 			assertEquals("Verificando que possui numero certo de posicoes",adjacentes.length,4);
 		}
+		
+		return;
 	}
-	
+	/*
 	@Test
 	public void testeAchaDestinoFinal() {
 		Tabuleiro t = Helpers.initCaminhoHelpers();
@@ -35,5 +40,6 @@ public class TesteTabuleiro {
 			assertNotNull("Testando se elementos do array nao sao nulos",p);
 		}
 	}
+	*/
 
 }

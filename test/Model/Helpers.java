@@ -21,6 +21,7 @@ public class Helpers {
 			}
 			
 		}
+		//printGrafo(pos);
 		return pos;
 	}
 	
@@ -60,5 +61,20 @@ public class Helpers {
 		Tabuleiro t = new Tabuleiro(posicoesArrayHelper());
 		t.initCaminhos(posicoesArrayProxHelper());
 		return t;
+	}
+	
+	
+	protected static void printGrafo(Posicao posicoes[]) {
+		System.out.println("Grafo: ");
+		for(Posicao pos: posicoes) {
+			Posicao posProx[] = pos.getPosicoesProximas();
+			System.out.print("("+pos.getCoordenadas()[0]+ ","+pos.getCoordenadas()[1] + ") = [");
+			if(posProx!=null && posProx[0]!=null) {
+				for(Posicao pOut:posProx) {
+					System.out.print("("+pOut.getCoordenadas()[0] +"," + pOut.getCoordenadas()[1]+")" );
+				}
+			}
+			System.out.println("]");
+		}
 	}
 }

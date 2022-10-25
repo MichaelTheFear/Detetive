@@ -50,12 +50,13 @@ class Tabuleiro {
 	private ArrayList<Posicao> __recAchaDestino(Posicao p1,int casas) {
 		ArrayList<Posicao> res = null;
 		ArrayList<Posicao> prox;
-		System.out.println(p1.getCoordenadas().toString());
-		if(casas>0) {			
+		
+		if(casas>0) {
 			res = new ArrayList<Posicao>();
+			System.out.println(" Teste "+casas +" "+p1.getCoordenadas()[0]);
 			for(Posicao p : p1.getPosicoesProximas()) {
-				prox = __recAchaDestino(p,casas--);
-				System.out.println(p.getCoordenadas().toString());
+				System.out.println(p.getCoordenadas()[0] + p.getCoordenadas()[1]);
+				prox = __recAchaDestino(p,casas-1);
 				if(prox!=null)
 					res.addAll(prox);
 			}

@@ -17,7 +17,7 @@ public class Helpers {
 		Posicao pos[] = new Posicao[Tabuleiro.size];
 		for(int i = 0, j;i<Tabuleiro.numPorLinha;i++) {
 			for(j = 0;j<Tabuleiro.numPorLinha;j++) {
-				pos[j+i*Tabuleiro.numPorLinha] = new Quadrado(j,i);
+				pos[j+i*Tabuleiro.numPorLinha] = new Quadrado(i,j);
 			}
 			
 		}
@@ -35,7 +35,7 @@ public class Helpers {
 	protected static Posicao[][] posicoesArrayProxHelper(){
 		Posicao posicoesAdjacentes[][] = new Posicao[Tabuleiro.size][4];
 		Posicao aux[] = posicoesArrayHelper();
-		for(int i =0;i<Tabuleiro.numPorLinha;i++) {
+		for(int i =0;i<Tabuleiro.size;i++) {
 			posicoesAdjacentes[i][0] = aux[mod(i-2,Tabuleiro.size)];
 			posicoesAdjacentes[i][1] = aux[mod(i-1,Tabuleiro.size)];
 			posicoesAdjacentes[i][2] = aux[(i+1)%Tabuleiro.size];
@@ -71,7 +71,7 @@ public class Helpers {
 			System.out.print("("+pos.getCoordenadas()[0]+ ","+pos.getCoordenadas()[1] + ") = [");
 			if(posProx!=null && posProx[0]!=null) {
 				for(Posicao pOut:posProx) {
-					System.out.print("("+pOut.getCoordenadas()[0] +"," + pOut.getCoordenadas()[1]+")" );
+					System.out.print(pOut.toString());
 				}
 			}
 			System.out.println("]");

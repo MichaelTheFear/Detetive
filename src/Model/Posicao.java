@@ -64,6 +64,8 @@ abstract class Posicao{
 		return Arrays.equals(coordenadas, other.coordenadas);
 	}
 
-	
+	public String toString() {
+		return "("+coordenadas[0]+","+coordenadas[1]+")";
+	}
 
 }

@@ -3,6 +3,8 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
+import Util.Personagem;
+
 class Jogador {
 	private List<Carta> cartasVistas = new ArrayList<Carta>(); //mudar para ArrayList<Carta> se ele deixar usar as data structure
 	private Personagem personagem;

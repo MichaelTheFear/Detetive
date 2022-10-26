@@ -22,7 +22,7 @@ class Jogador {
 				this.pos = new Posicao(0,0);
 				break;
 				
-			case Mostarda:
+			case Mustard:
 				this.pos = new Posicao(0,0);
 				break;
 			
@@ -42,9 +42,7 @@ class Jogador {
 				this.pos = new Posicao(0,0);
 				break;
 				
-			case Boddy:
-				this.pos = new Posicao(0,0);
-				break;
+			
 		}
 		this.pos.setJogadorAqui(true);
 		this.jogando = false;
@@ -59,7 +57,7 @@ class Jogador {
 				this.pos = new Posicao(0,0);
 				break;
 				
-			case Mostarda:
+			case Mustard:
 				this.pos = new Posicao(0,0);
 				break;
 			
@@ -79,9 +77,6 @@ class Jogador {
 				this.pos = new Posicao(0,0);
 				break;
 				
-			case Boddy:
-				this.pos = new Posicao(0,0);
-				break;
 		}
 		this.pos.setJogadorAqui(true);
 		for(int i = 0; i<cartasIniciais.length;i++) {

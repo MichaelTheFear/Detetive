@@ -14,9 +14,11 @@ public class Window extends JFrame{
 	
 	Window(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.add(new SelectChar());
+		//this.add(new SelectChar());
 		//this.add(new StartMenu());
 		//this.add(new Cards("Suspeitos",new String[] {"Green","Mustard","Peacock","Plum","Scarlet","White"}));
+		this.add(new Board());
+		
 		this.setSize(Window.SIZE);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);

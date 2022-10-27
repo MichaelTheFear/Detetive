@@ -2,6 +2,8 @@ package Model;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 
 public class TesteJogador {
@@ -14,12 +16,6 @@ public class TesteJogador {
 		assertNotNull("Testando Jogador Null",j);
 	}
 	
-	@Test
-	public void testeGetPos() {
-		Jogador j = Helpers.jogadorGenericoHelper();
-		Helpers.posicaoHelper(10,10,"Testando getPos",j);
-	}
-	
 	/*
 	 * TODO : Teste Acusar e Dar Palpite pois necessitam do Jogo
 	 */
@@ -30,8 +26,8 @@ public class TesteJogador {
 		Jogador j = Helpers.jogadorGenericoHelper();
 		Carta c = new CartaArma("Chave Inglesa");
 		j.addCartasVista(c);
-		//Carta cartas2[] = j.getCartasVistas();
-		//assertTrue("Checando getCartasVistas e addCartasVistas",c.equals(cartas2[3]));
+		List<Carta> cartas = j.getCartasVistas();
+		assertTrue("Checando getCartasVistas e addCartasVistas",c.equals(cartas.get(3)));
 	}
 	
 	@Test

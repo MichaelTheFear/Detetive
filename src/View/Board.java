@@ -34,7 +34,7 @@ public class Board extends JPanel implements MouseListener{
 	public void paint(Graphics g) {
 		Graphics2D g2D = (Graphics2D) g;
 		g2D.drawImage(image,0,0,null);
-		//drawPlayersAt(g2D,Player.players);
+		drawPlayersAt(g2D,Player.players);
 		for(int i = 0;i<sideB;i+=side) {
 			for(int j = 0;j<sideB;j+=side) {
 				g2D.setPaint(Color.BLUE);

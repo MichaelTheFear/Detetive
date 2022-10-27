@@ -21,8 +21,8 @@ public class SideBar extends JPanel{
 		this.add(new Button("Acusar",e -> System.out.println("Passagem Secreta"),where,ratio*5));
 		this.jogador.setBounds(100, 100, where, ratio*6);
 		this.add(this.jogador);
-		this.add(new Button("Usar esses dados", e-> System.out.println("Usar esses dados"),where,ratio));
-		this.add(new Button("Rolar dados", e-> System.out.println("Rolar dados"),where,ratio));
+		this.add(new Button("Usar esses dados", e-> System.out.println("Usar esses dados"),where,ratio*7));
+		this.add(new Button("Rolar dados", e-> System.out.println("Rolar dados"),where,ratio*8));
 		this.setLayout(new BorderLayout());
 		this.setBounds(where,where,200,700);
 	}

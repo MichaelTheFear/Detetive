@@ -2,6 +2,8 @@ package Model;
 
 import static org.junit.Assert.assertTrue;
 
+import Util.Personagem;
+
 public class Helpers {
 	
 	//esta classe foi criada pois havia testes em duas classes de testes que precisavam do mesmo helper
@@ -52,14 +54,13 @@ public class Helpers {
 		return posicoesAdjacentes;
 	}
 	
-	/*
+	
 	protected static Jogador jogadorGenericoHelper() {
 		Carta cartas[] = cartasGenericasHelper();
 		Posicao p = new Porta(10,10);
-		Jogador j = new Jogador("Reverendo Green",cartas,p);
+		Jogador j = new Jogador(Personagem.Green,cartas);
 		return j;
 	}
-	*/
 	protected static void posicaoHelper(int x, int y, String msg, Jogador j) {
 		Posicao p = j.getPos();
 		Posicao esperado = new Porta(x,y);

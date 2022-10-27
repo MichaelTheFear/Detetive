@@ -8,12 +8,12 @@ import javax.swing.JPanel;
 public class SideBar extends JPanel{
 
 	JLabel jogador;
-	int where = 600;
+	int where = 700;
 	int ratio = 50;
 	
-	SideBar(String jogador){
+	SideBar(String jogador, Board b){
 		this.jogador = new JLabel(jogador);
-		this.add(new Button("Passagem Secreta",e -> System.out.println("Passagem Secreta"),where,0));
+		this.add(new Button("Passagem Secreta",e -> b.movePlayerTo("Mustard", 10, 10),where,0));
 		this.add(new Button("Proximo",e -> System.out.println("Passagem Secreta"),where,ratio));
 		this.add(new Button("Mostra Cartas",e -> System.out.println("Passagem Secreta"),where,ratio*2));
 		this.add(new Button("Notas",e -> System.out.println("Passagem Secreta"),where,ratio*3));

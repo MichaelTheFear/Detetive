@@ -15,7 +15,7 @@ public class Board extends JPanel{
 	
 	Board(){
 		try {
-			image = ImageIO.read(new File("images/Tabuleiros/Tabuleiro-Clue-B.jpg"));
+			image = ImageIO.read(new File("images/Tabuleiros/Tabuleiro-Clue-C.jpg"));
 		}catch(IOException e) {
 			System.out.println();
 		}

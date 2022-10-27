@@ -44,7 +44,6 @@ class Jogador {
 				
 			
 		}
-		this.pos.setJogadorAqui(true);
 		this.jogando = false;
 		this.errouAcusacao = true;
 	}
@@ -78,7 +77,6 @@ class Jogador {
 				break;
 				
 		}
-		this.pos.setJogadorAqui(true);
 		for(int i = 0; i<cartasIniciais.length;i++) {
 			this.cartasIniciais.add(cartasIniciais[i]);
 			this.cartasVistas.add(cartasIniciais[i]);

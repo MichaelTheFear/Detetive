@@ -15,6 +15,8 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import View.Window.Canvas;
+
 public class Board extends JPanel implements MouseListener{
 
 	Image image;
@@ -50,7 +52,8 @@ public class Board extends JPanel implements MouseListener{
 		for(Player p: players.values()) {
 			g2D.setPaint(p.c);
 			g2D.fillRect(side*p.getY(),side * p.getX(), side, side);
-			g2D.setStroke(new BasicStroke(1));
+			g2D.setStroke(new BasicStroke(5));
+			g2D.setColor(Color.YELLOW);
 		}
 	}
 	

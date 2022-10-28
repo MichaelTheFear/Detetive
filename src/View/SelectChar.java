@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import Util.Personagem;
+import View.Window.Canvas;
 
 public class SelectChar extends JPanel {
 
@@ -20,6 +21,7 @@ public class SelectChar extends JPanel {
 	SelectChar(){
 		this.setLayout(new BorderLayout());
 		this.setBounds(0,0,1200,700);
+		this.add(new Button("Começar", e-> Canvas.showPanel("Board"),1000,500));
 		this.add(new Cards("Suspeitos",toEnumsStrings()));
 	}
 }

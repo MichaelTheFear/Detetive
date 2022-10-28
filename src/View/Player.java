@@ -18,6 +18,10 @@ public class Player {
 		players.put("Mustard",new Player(Color.orange,19,2));
 	}
 	
+	static Color getColorOf(String p) {
+		return players.get(p).c;
+	}
+	
 	static void setPlayerTo(String name,int x, int y) {
 		Player p= players.get(name); 
 		p.x = x;

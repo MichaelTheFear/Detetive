@@ -7,8 +7,7 @@ import java.util.Objects;
 public class Player {
 	Color c;
 	int x,y; 
-	static HashMap<String,Player> players =  new HashMap<String,Player>();
-	
+	static HashMap<String,Player> players =  new HashMap<String,Player>(); 
 	static {
 		players.put("Green",new Player(Color.green,2,16));
 		players.put("White",new Player(Color.WHITE,2,11));

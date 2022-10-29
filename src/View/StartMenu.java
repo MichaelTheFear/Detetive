@@ -25,12 +25,11 @@ public class StartMenu extends JPanel{
 	
 	StartMenu(){
 		JLabel j = new JLabel("Detetive");
-		j.setBounds(200,200,100,50);
+		j.setBounds(0,0,100,50);
 		this.add(j);
 		this.add(new Button("Continuar",e -> System.out.println("Continuar"),200,300));
 		this.add(new Button("Novo Jogo",e -> Canvas.showPanel("SelectChar"),200,200));
 		this.setLayout(new BorderLayout());
-		this.setBackground(Color.red);
 		this.setBounds(0,0,1200,700);
 	}
 }

@@ -54,6 +54,7 @@ public class Board extends JPanel implements MouseListener{
 			g2D.fillRect(side*p.getY(),side * p.getX(), side, side);
 			g2D.setStroke(new BasicStroke(5));
 			g2D.setColor(Color.YELLOW);
+			g2D.drawRect(side*p.getY(),side * p.getX(), side, side);
 		}
 	}
 	
@@ -67,11 +68,10 @@ public class Board extends JPanel implements MouseListener{
     public void mouseEntered(MouseEvent e) {}
     public void mouseExited(MouseEvent e) {}
 
-    /** Called whenever the mouse clicks.
-      * Could be replaced with setting the value of a JLabel, etc. */
     public void mouseClicked(MouseEvent e) {
-    	System.out.println("X: "+ e.getX()/side+" Y: "+ e.getY()/side);
+    	movePlayerTo("Green",e.getY()/side,e.getX()/side);
     }
 	
+    
 	
 }

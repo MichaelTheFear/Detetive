@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.Random;
 
 class Jogo {
 	static protected int NUM_MAX_DADO = 6;
@@ -10,6 +11,7 @@ class Jogo {
 	int vezDe = 0;
 	int numTurno = 0;
 	int dados[] = new int[2];
+	Random gerador = new Random();
 	
 	public Jogo() {
 		vezDe = proxTurno(jogadores.length);
@@ -22,8 +24,8 @@ class Jogo {
 	}
 	
 	protected void rolarDado() {
-		dados[0] = 5;
-		dados[1] = 5;
+		dados[0] = gerador.nextInt(6) + 1; //Gera-se nums de 0 a 5 e incrementa 1 para ser de 1 a 6
+		dados[1] = gerador.nextInt(6) + 1;
 	}
 	
 	protected int[] getDados() {
@@ -47,10 +49,24 @@ class Jogo {
 	
 	public void passaVez() {
 		vezDe = proxTurno(vezDe);
+		t.houseKeepingTabuleiro();
 	}
 	
-	public void mover(int posicao[][],int idPlayer) {
-		
+	public void mover(Coordenadas escolhida) throws ExceptionLugarNaoPermitido{
+		for(Coordenadas pos :jogadores[vezDe].getPos().getPosicoesProximas())
+		{
+			if(pos.equals(escolhida))
+			{
+				if(pos.getPassouAqui())
+				{
+					throw new ExceptionLugarNaoPermitido("Já passou aqui");
+				}
+				jogadores[vezDe].getPos().getCoordenadas().setPassouAqui(true);
+				jogadores[vezDe].getPos().getCoordenadas().setJogadorAqui(false);
+				pos.setJogadorAqui(true);
+				return;
+			}
+		}
 	}
 
 	

@@ -153,5 +153,11 @@ class Tabuleiro {
 		return res;
 	}
 	
-
+	void houseKeepingTabuleiro() {
+		for(Posicao arrayPos[] : posicoes) {
+			for(Posicao pos : arrayPos) {
+				pos.getCoordenadas().setPassouAqui(false);
+			}
+		}
+	}
 }

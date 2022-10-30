@@ -42,20 +42,20 @@ class Jogo {
 	
 	public void passaVez() {
 		vezDe = proxTurno(vezDe);
+		t.houseKeepingTabuleiro();
 	}
 	
-	public void mover(Coordenadas escolhida) {
+	public void mover(Coordenadas escolhida) throws ExceptionLugarNaoPermitido{
 		for(Coordenadas pos :jogadores[vezDe].getPos().getPosicoesProximas())
 		{
 			if(pos.equals(escolhida))
 			{
 				if(pos.getPassouAqui())
 				{
-					return;
+					throw new ExceptionLugarNaoPermitido("Já passou aqui");
 				}
 				jogadores[vezDe].getPos().getCoordenadas().setPassouAqui(true);
 				jogadores[vezDe].getPos().getCoordenadas().setJogadorAqui(false);
-				pos.setPassouAqui(true);
 				pos.setJogadorAqui(true);
 				return;
 			}

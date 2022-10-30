@@ -44,8 +44,22 @@ class Jogo {
 		vezDe = proxTurno(vezDe);
 	}
 	
-	public void mover() {
-		
+	public void mover(Coordenadas escolhida) {
+		for(Coordenadas pos :jogadores[vezDe].getPos().getPosicoesProximas())
+		{
+			if(pos.equals(escolhida))
+			{
+				if(pos.getPassouAqui())
+				{
+					return;
+				}
+				jogadores[vezDe].getPos().getCoordenadas().setPassouAqui(true);
+				jogadores[vezDe].getPos().getCoordenadas().setJogadorAqui(false);
+				pos.setPassouAqui(true);
+				pos.setJogadorAqui(true);
+				return;
+			}
+		}
 	}
 
 	

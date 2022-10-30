@@ -144,15 +144,5 @@ class Jogador {
 			}
 		}
 		return null;
-	}
-	protected boolean mesmoTipoDeCarta(Carta c[]) {
-		int tam = c.length;
-		for(int i=0; i<tam; i++) {
-			if(!c[0].getClass().equals(c[i].getClass())) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
+	}	
 }

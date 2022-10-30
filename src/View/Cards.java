@@ -34,12 +34,11 @@ public class Cards extends JPanel{
 	
 	public void paint(Graphics g) {
 		Graphics2D g2D = (Graphics2D) g;
-		int i = 0, j=0;
+		int i = 0;
 		for(Image image:images) {
-			g2D.drawImage(image,i,j,null);
+			g2D.drawImage(image,i,0,null);
 			i+=200;
-			if(i>800) {
-				j+=200;
+			if(i>1000) {
 				i=0;
 			}
 		}

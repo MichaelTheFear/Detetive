@@ -7,41 +7,41 @@ class Posicao{
 	private int passouAqui = 0;
 	private int mudadoNoTurno = -1;
 	
-	protected Posicao(int x, int y) {
+	  Posicao(int x, int y) {
 		coordenadas = new Coordenadas(x,y);
 	}
 	
-	protected int getMudadoNoTurno() {
+	  int getMudadoNoTurno() {
 		return mudadoNoTurno;
 	}
 	
-	protected void setMudadoNoTurno(int t) {
+	  void setMudadoNoTurno(int t) {
 		mudadoNoTurno = t;
 	}
 	
 
-	protected void setPosicoesProximas(Coordenadas[] posicoesAdjacentes) {
+	  void setPosicoesProximas(Coordenadas[] posicoesAdjacentes) {
 		this.posicoesProximas = posicoesAdjacentes;
 	}
 
-	protected Coordenadas[] getPosicoesProximas() {
+	  Coordenadas[] getPosicoesProximas() {
 		return this.posicoesProximas;
 	}
 
 
-	protected Coordenadas getCoordenadas() {
+	  Coordenadas getCoordenadas() {
 		return this.coordenadas;
 	}
 	
-	protected int getPassouAqui() {
+	  int getPassouAqui() {
 		return passouAqui;
 	}
 	
-	protected void setPassouAqui(int p) {
+	  void setPassouAqui(int p) {
 		passouAqui = p;
 	}
 	
-	protected void addUmPassouAqui() {
+	  void addUmPassouAqui() {
 		passouAqui++;
 	}
 

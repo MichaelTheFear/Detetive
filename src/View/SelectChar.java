@@ -19,7 +19,7 @@ public class SelectChar extends JPanel {
 		return sus;
 	}
 	
-	public static ArrayList<String> getSuspeitos() {
+	static ArrayList<String> getSuspeitos() {
 		return sus;
 	}
 	

@@ -8,11 +8,11 @@ abstract class Carta {
 	
 	//factory
 	
-	protected Carta(String nome) {
+	  Carta(String nome) {
 		this.nome = nome;
 	}
 	
-	protected String getNome() {
+	  String getNome() {
 		return nome;
 	}
 
@@ -24,15 +24,7 @@ abstract class Carta {
 			return false;
 		return Objects.equals(nome, other.nome);
 	}
-	protected boolean mesmoTipoDeCarta(Carta c[]) {
-		int tam = c.length;
-		for(int i=0; i<tam; i++) {
-			if(!c[0].getClass().equals(c[i].getClass())) {
-				return false;
-			}
-		}
-		return true;
-	}
+	 
 	static boolean mesmoTipoDeCarta(Carta c[]) {
 		int tam = c.length;
 		for(int i=0; i<tam; i++) {

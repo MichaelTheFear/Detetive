@@ -3,8 +3,8 @@ package Model;
 import java.util.Random;
 
 class Jogo {
-	static protected int NUM_MAX_DADO = 6;
-	static protected int NUM_MAX_JOGADOR = 6;
+	static   int NUM_MAX_DADO = 6;
+	static   int NUM_MAX_JOGADOR = 6;
 	Tabuleiro t;
 	Carta[] cartasAssassino = new Carta[3];
 	Jogador jogadores[] = new Jogador[NUM_MAX_JOGADOR];
@@ -13,31 +13,31 @@ class Jogo {
 	int dados[] = new int[2];
 	Random gerador = new Random();
 	
-	public Jogo() {
+	  Jogo() {
 		vezDe = proxTurno(jogadores.length);
 	}
 	
-	public void setCartasAssasino(Carta [] cartas) {
+	  void setCartasAssasino(Carta [] cartas) {
 		for(int index = 0; index<cartas.length;index++) {
 			cartasAssassino[index] = cartas[index];
 		}
 	}
 	
-	protected void rolarDado() {
+	  void rolarDado() {
 		dados[0] = gerador.nextInt(6) + 1; //Gera-se nums de 0 a 5 e incrementa 1 para ser de 1 a 6
 		dados[1] = gerador.nextInt(6) + 1;
 	}
 	
-	protected int[] getDados() {
+	  int[] getDados() {
 		return dados;
 	}
 	
-	protected void setDados(int[] dados) {
+	  void setDados(int[] dados) {
 		this.dados = dados;
 	}
 	
 	
-	public int proxTurno(int turno) {
+	  int proxTurno(int turno) {
 		turno++;
 		if(turno==jogadores.length)
 			turno = 0;
@@ -47,12 +47,12 @@ class Jogo {
 		return turno;
 	}
 	
-	public void passaVez() {
+	  void passaVez() {
 		vezDe = proxTurno(vezDe);
 		t.houseKeepingTabuleiro();
 	}
 	
-	public void mover(Coordenadas escolhida) throws ExceptionLugarNaoPermitido{
+	  void mover(Coordenadas escolhida) throws ExceptionLugarNaoPermitido{
 		for(Coordenadas pos :jogadores[vezDe].getPos().getPosicoesProximas())
 		{
 			if(pos.equals(escolhida))
@@ -72,7 +72,7 @@ class Jogo {
 	
 	
 	
-	public boolean acusar(Carta acusacao[]) {
+	  boolean acusar(Carta acusacao[]) {
 		 //talvez mudar td para treeSet
 		for(int i=0; i<3; i++) {
 			for(int j=0; j<3; j++) {
@@ -85,7 +85,7 @@ class Jogo {
 
 	}
 	
-	public String darPalpite(Carta palpites[]) {
+	  String darPalpite(Carta palpites[]) {
 		int proxJogador = proxTurno(vezDe);	
 		while(proxJogador!=vezDe) {
 			Carta c = jogadores[proxJogador].temCarta(palpites);

@@ -9,11 +9,11 @@ class Tabuleiro {
 	private Posicao posicoes[][];
 	static int numPorLinha = 40;
 	
-	protected Tabuleiro(Posicao[][] posicoes) {
+	  Tabuleiro(Posicao[][] posicoes) {
 		this.posicoes = posicoes;
 	}
 	
-	protected void initCaminhos(Coordenadas[][][] posicoesProx) {
+	  void initCaminhos(Coordenadas[][][] posicoesProx) {
 		for(int i = 0; i<numPorLinha;i++) {
 			for(int j = 0;j<numPorLinha;j++) {
 				posicoes[i][j].setPosicoesProximas(posicoesProx[i][j]);
@@ -21,11 +21,11 @@ class Tabuleiro {
 		}
 	}
 	
-	protected Posicao[][] getPosicoes() {
+	  Posicao[][] getPosicoes() {
 		return posicoes;
 	}
 	
-	protected void setPosicoes(Posicao p[][]) {
+	  void setPosicoes(Posicao p[][]) {
 		posicoes = p;
 	}
 	
@@ -36,7 +36,7 @@ class Tabuleiro {
 	}
 	
 
-	protected ArrayList<Coordenadas> achaPosFinais(int x, int y, int casas, int turno){
+	  ArrayList<Coordenadas> achaPosFinais(int x, int y, int casas, int turno){
 		
 		ArrayList<Coordenadas> aux = new ArrayList<Coordenadas>();
 
@@ -51,7 +51,7 @@ class Tabuleiro {
 		ArrayList<Coordenadas> prox = new ArrayList<Coordenadas>();
 		Posicao posAtual;
 		Coordenadas coordAtual;
-		posAtual = getPosicao(x,y);
+		posAtual = getPosicaoAt(x,y);
 		coordAtual = posAtual.getCoordenadas();
 		if(casas>0) {
 			res = new ArrayList<Coordenadas>();

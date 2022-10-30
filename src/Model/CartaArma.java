@@ -1,11 +1,11 @@
 package Model;
 
 class CartaArma extends Carta{ 
-	public CartaArma(String nome) {
+	 CartaArma(String nome) {
 		super(nome);
 	}
 
-	public boolean equals(Object obj) {
+	 public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}

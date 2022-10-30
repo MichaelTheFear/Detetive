@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import Util.Personagem;
+
 public class TesteJogador {
 
 	
@@ -15,11 +17,7 @@ public class TesteJogador {
 		Jogador j = Helpers.jogadorGenericoHelper();
 		assertNotNull("Testando Jogador Null",j);
 	}
-	
-	/*
-	 * TODO : Teste Acusar e Dar Palpite pois necessitam do Jogo
-	 */
-	
+
 	
 	@Test
 	public void testeAddAndSetCartasVistas() {
@@ -33,7 +31,7 @@ public class TesteJogador {
 	@Test
 	public void testeGetCartasIniciais() {
 		Jogador j = Helpers.jogadorGenericoHelper();
-		Carta esperado[] = Helpers.cartasGenericasHelper();
+		List<Carta> cartas = Helpers.cartasGenericasHelper();
 		/*
 		Carta cartasJogador[] = j.getCartasIniciais();
 		assertEquals("Tamanho de cartas do getCartasIniciais Invalida",esperado.length,cartasJogador.length);
@@ -44,5 +42,13 @@ public class TesteJogador {
 		//escrever teste para verificar que duas cartas nao sao do mesmo tipo
 	}
 	
+	@Test
+	public void testeSetGetJogando() {
+		Jogador j = Helpers.jogadorGenericoHelper();
+		j.setJogando(false);
+		assertTrue("Testando estaJogando",!j.estaJogando());
+	}
+	
+
 
 }

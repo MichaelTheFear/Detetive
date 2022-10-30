@@ -11,10 +11,6 @@ import javax.swing.JPanel;
 public class Window{
 	static Canvas canvas = new Canvas();
 	
-	static void addGameStartListner(ActionListener ac) {
-		SelectChar.setGameStart(ac);
-	}
-	
 	
 	
 	static class Canvas extends JFrame{
@@ -25,7 +21,7 @@ public class Window{
 		private static CardLayout Layout = new CardLayout();
 		private static SelectChar selectChar = new SelectChar();
 		private static StartMenu startMenu = new StartMenu();
-		private static Board board = new Board();
+		private static Game board = new Game();
 		
 		Canvas(){
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,11 +39,42 @@ public class Window{
 			this.setLayout(null);
 		}
 		
+		static void addGameStartListner(ActionListener ac) {
+			SelectChar.setGameStart(ac);
+		}
+		
 		static void showPanel(String id){
 			Layout.show(panelControl, id);
 			canvas.repaint();
 		}
 		
+		static void setActionProximo(ActionListener callback){
+			board.setActionProximo(callback);
+		}
+		
+		static void setActionPalpite(ActionListener callback){
+			board.setActionPalpite(callback);
+		}
+		
+		static void setActionMostrarCartas(ActionListener callback){
+			board.setActionMostrarCartas(callback);
+		}
+		
+		static void setActionNotas(ActionListener callback){
+			board.setActionNotas(callback);
+		}
+		
+		static void setActionAcusar(ActionListener callback){
+			board.setActionAcusar(callback);
+		}
+		
+		static void setActionRolarDados(ActionListener callback){
+			board.setActionRolarDados(callback);
+		}
+		
+		static void setActionUsarDados(ActionListener callback){
+			board.setActionUsarDados(callback);
+		}
 		
 	}
 	

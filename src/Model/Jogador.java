@@ -19,27 +19,27 @@ class Jogador {
 		switch(this.personagem)
 		{
 			case Scarlet:
-				this.pos = new Posicao(0,0);
+				this.pos = new Posicao(26,9);
 				break;
 				
 			case Mustard:
-				this.pos = new Posicao(0,0);
+				this.pos = new Posicao(19,2);
 				break;
 			
 			case White:
-				this.pos = new Posicao(0,0);
+				this.pos = new Posicao(2,11);
 				break;
 				
 			case Green:
-				this.pos = new Posicao(0,0);
+				this.pos = new Posicao(2,16);
 				break;
 				
 			case Peacock:
-				this.pos = new Posicao(0,0);
+				this.pos = new Posicao(8,25);
 				break;
 				
 			case Plum:
-				this.pos = new Posicao(0,0);
+				this.pos = new Posicao(21,25);
 				break;
 				
 			
@@ -53,27 +53,27 @@ class Jogador {
 		switch(this.personagem)
 		{
 			case Scarlet:
-				this.pos = new Posicao(0,0);
+				this.pos = new Posicao(26,9);
 				break;
 				
 			case Mustard:
-				this.pos = new Posicao(0,0);
+				this.pos = new Posicao(19,2);
 				break;
 			
 			case White:
-				this.pos = new Posicao(0,0);
+				this.pos = new Posicao(2,11);
 				break;
 				
 			case Green:
-				this.pos = new Posicao(0,0);
+				this.pos = new Posicao(2,16);
 				break;
 				
 			case Peacock:
-				this.pos = new Posicao(0,0);
+				this.pos = new Posicao(8,25);
 				break;
 				
 			case Plum:
-				this.pos = new Posicao(0,0);
+				this.pos = new Posicao(21,25);
 				break;
 				
 		}
@@ -81,6 +81,42 @@ class Jogador {
 			this.cartasIniciais.add(cartasIniciais[i]);
 			this.cartasVistas.add(cartasIniciais[i]);
 		}
+		this.podeDarPalpite = true;
+		this.errouAcusacao = false;
+		this.jogando = false;
+	}
+	
+	protected Jogador(Personagem personagem,ArrayList<Carta> cartasIniciais) {
+		this.personagem = personagem;
+		switch(this.personagem)
+		{
+			case Scarlet:
+				this.pos = new Posicao(26,9);
+				break;
+				
+			case Mustard:
+				this.pos = new Posicao(19,2);
+				break;
+			
+			case White:
+				this.pos = new Posicao(2,11);
+				break;
+				
+			case Green:
+				this.pos = new Posicao(2,16);
+				break;
+				
+			case Peacock:
+				this.pos = new Posicao(8,25);
+				break;
+				
+			case Plum:
+				this.pos = new Posicao(21,25);
+				break;
+				
+		}
+		this.cartasIniciais = cartasIniciais;
+		this.cartasVistas.addAll(cartasIniciais);
 		this.podeDarPalpite = true;
 		this.errouAcusacao = false;
 		this.jogando = false;
@@ -131,7 +167,7 @@ class Jogador {
 		errouAcusacao = p;
 	}
 	
-	protected Carta temCarta(Carta c[]) {
+	Carta temCarta(Carta c[]) {
 		for(Carta cOut : c) {
 			for(Carta cIn : cartasIniciais) {
 				if(cIn.equals(cOut))

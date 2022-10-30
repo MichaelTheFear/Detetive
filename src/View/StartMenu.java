@@ -10,18 +10,6 @@ import View.Window.Canvas;
 
 public class StartMenu extends JPanel{
 	
-	/*
-	StartMenu(){
-		JLabel j = new JLabel("Detetive");
-		j.setBounds(200,100,100,50);
-		this.setBounds(0,0,1200,700);
-		this.setVisible(true);
-		this.add(new Button("Novo Jogo",e -> System.out.println("Novo Jogo"),200,200));
-		this.add(new Button("Continuar",e -> System.out.println("Continuar"),200,300));
-		this.add(j);
-		
-	}
-	*/
 	
 	StartMenu(){
 		JLabel j = new JLabel("Detetive");

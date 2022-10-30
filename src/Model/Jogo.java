@@ -15,6 +15,12 @@ class Jogo {
 		vezDe = proxTurno(jogadores.length);
 	}
 	
+	public void setCartasAssasino(Carta [] cartas) {
+		for(int index = 0; index<cartas.length;index++) {
+			cartasAssassino[index] = cartas[index];
+		}
+	}
+	
 	protected void rolarDado() {
 		dados[0] = 5;
 		dados[1] = 5;
@@ -48,9 +54,9 @@ class Jogo {
 	}
 
 	
-	public int acusar(Carta c[]) {
+	public boolean acusar(Carta c[]) {
 		 //talez mudar td para treeSet
-		return -1;
+		return false;
 	}
 	
 	public String darPalpite(Carta palpites[]) {

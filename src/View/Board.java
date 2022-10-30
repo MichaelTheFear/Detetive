@@ -9,13 +9,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import View.Window.Canvas;
 
 public class Board extends JPanel implements MouseListener{
 

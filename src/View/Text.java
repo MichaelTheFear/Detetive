@@ -16,8 +16,4 @@ public class Text extends JLabel {
 		this.setForeground(c);
 	}
 
-	public Text(String jogador, int i, int j, int k, int l, Color colorOf) {
-		// TODO Auto-generated constructor stub
-	}
-
 }

@@ -2,6 +2,7 @@ package Model;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -31,14 +32,15 @@ public class TesteJogador {
 	@Test
 	public void testeGetCartasIniciais() {
 		Jogador j = Helpers.jogadorGenericoHelper();
-		List<Carta> cartas = Helpers.cartasGenericasHelper();
-		/*
-		Carta cartasJogador[] = j.getCartasIniciais();
-		assertEquals("Tamanho de cartas do getCartasIniciais Invalida",esperado.length,cartasJogador.length);
-		for(int i = 0; i<esperado.length;i++) {
-			assertTrue("Checando se Cartas do getCartasIniciais sao iguais",esperado[i].equals(cartasJogador[i]));
+		ArrayList<Carta> cartas = Helpers.cartasGenericasHelper();
+		List<Carta> esperado = j.getCartasIniciais();
+		Carta[] cartasArr = new Carta[3];
+		assertEquals("Tamanho de cartas do getCartasIniciais Invalida",esperado.size(),cartas.size());
+		for(int i = 0; i<esperado.size();i++) {
+			cartasArr[i] = esperado.get(i);
+			assertTrue("Checando se Cartas do getCartasIniciais sao iguais",esperado.get(i).equals(cartas.get(i)));
 		}
-		*/
+		assertTrue("Checando se as cartas são de tipos diferentes",Carta.mesmoTipoDeCarta(cartasArr));
 		//escrever teste para verificar que duas cartas nao sao do mesmo tipo
 	}
 	

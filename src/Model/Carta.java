@@ -27,18 +27,13 @@ abstract class Carta {
 	 
 	static boolean mesmoTipoDeCarta(Carta c[]) {
 		int tam = c.length;
+		boolean res = false;
 		for(int i=0; i<tam; i++) {
-			if(c[0] instanceof CartaArma && !(c[i] instanceof CartaArma)) {
-				return false;
-			}
-			if (c[0] instanceof CartaLocal && !(c[i] instanceof CartaLocal)) {
-				return false;
-			}
-			if(c[0] instanceof CartaSuspeito && !(c[i] instanceof CartaSuspeito)) {
-				return false;
-			}
+			res |= (c[i%tam] instanceof CartaArma &&
+					c[(i+1)%tam] instanceof CartaLocal &&
+					c[(i+2)%tam] instanceof CartaSuspeito); 
 		}
-		return true;
+		return res;
 	}
 	
 }

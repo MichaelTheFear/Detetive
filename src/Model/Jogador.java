@@ -175,6 +175,5 @@ class Jogador {
 			}
 		}
 		return null;
-	}
-	
+	}	
 }

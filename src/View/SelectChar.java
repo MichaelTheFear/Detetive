@@ -1,5 +1,6 @@
 package View;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
@@ -49,14 +50,19 @@ public class SelectChar extends JPanel {
 			this.setText(p.name());
 			this.setBounds(n, 600, 100, 50);
 			this.setFocusable(false);
-			this.addActionListener(e ->{
-				System.out.println("Added sus "+p.name());
-				if(this.isSelected()) {
-					sus.add(p.name());
-				}else {
-					sus.remove(p.name());
-				}
-			});
+			this.addActionListener(
+					new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							if(isSelected()) {
+								sus.add(p.name());
+							}else {
+								sus.remove(p.name());
+							}
+							
+						}
+						
+					});
 		}		
 		
 	}

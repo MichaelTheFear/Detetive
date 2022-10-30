@@ -17,9 +17,9 @@ public class Cards extends JPanel{
 		for(int i = 0;i<names.length;i++) {
 			name = names[i];
 			try {
-				images[i]=ImageIO.read(new File("images/"+type+"/"+name+".jpg"));
+				images[i]=ImageIO.read(new File("images/"+type+"/"+name+".jpg")); //le arquivo (em O(1))
 			}catch(IOException e) {
-				System.out.println("Erro de file");
+				System.out.println("Erro de file"); 
 			}
 		}
 	}
@@ -36,7 +36,7 @@ public class Cards extends JPanel{
 		Graphics2D g2D = (Graphics2D) g;
 		int i = 0;
 		for(Image image:images) {
-			g2D.drawImage(image,i,0,null);
+			g2D.drawImage(image,i,0,null); //desenha as cartas da pagina de selecao de personagem
 			i+=200;
 			if(i>1000) {
 				i=0;

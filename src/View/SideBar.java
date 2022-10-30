@@ -60,31 +60,31 @@ public class SideBar extends JPanel{
 	}
 	
 	
-	void setActionProximo(ActionListener callback){
+	void setActionProximo(ActionListener callback){ //para o controller
+		prox.addActionListener(callback);
+	}
+	 
+	void setActionPalpite(ActionListener callback){ //para o controller
 		prox.addActionListener(callback);
 	}
 	
-	void setActionPalpite(ActionListener callback){
+	void setActionMostrarCartas(ActionListener callback){ //para o controller
 		prox.addActionListener(callback);
 	}
 	
-	void setActionMostrarCartas(ActionListener callback){
+	void setActionNotas(ActionListener callback){ //para o controller
 		prox.addActionListener(callback);
 	}
 	
-	void setActionNotas(ActionListener callback){
+	void setActionAcusar(ActionListener callback){ //para o controller
 		prox.addActionListener(callback);
 	}
 	
-	void setActionAcusar(ActionListener callback){
+	void setActionRolarDados(ActionListener callback){ //para o controller
 		prox.addActionListener(callback);
 	}
 	
-	void setActionRolarDados(ActionListener callback){
-		prox.addActionListener(callback);
-	}
-	
-	void setActionUsarDados(ActionListener callback){
+	void setActionUsarDados(ActionListener callback){ //para o controller
 		prox.addActionListener(callback);
 	}
 	

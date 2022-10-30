@@ -39,7 +39,7 @@ public class Window{
 			this.setLayout(null);
 		}
 		
-		static void addGameStartListner(ActionListener ac) {
+		static void addGameStartListner(ActionListener ac) { //para o controller
 			SelectChar.setGameStart(ac);
 		}
 		
@@ -48,31 +48,31 @@ public class Window{
 			canvas.repaint();
 		}
 		
-		static void setActionProximo(ActionListener callback){
+		static void setActionProximo(ActionListener callback){ //para o controller
 			board.setActionProximo(callback);
 		}
 		
 		static void setActionPalpite(ActionListener callback){
-			board.setActionPalpite(callback);
+			board.setActionPalpite(callback);//para o controller
 		}
 		
-		static void setActionMostrarCartas(ActionListener callback){
+		static void setActionMostrarCartas(ActionListener callback){ //para o controller
 			board.setActionMostrarCartas(callback);
 		}
 		
-		static void setActionNotas(ActionListener callback){
+		static void setActionNotas(ActionListener callback){ //para o controller
 			board.setActionNotas(callback);
 		}
 		
-		static void setActionAcusar(ActionListener callback){
+		static void setActionAcusar(ActionListener callback){ //para o controller
 			board.setActionAcusar(callback);
 		}
 		
-		static void setActionRolarDados(ActionListener callback){
+		static void setActionRolarDados(ActionListener callback){ //para o controller
 			board.setActionRolarDados(callback);
 		}
 		
-		static void setActionUsarDados(ActionListener callback){
+		static void setActionUsarDados(ActionListener callback){ //para o controller
 			board.setActionUsarDados(callback);
 		}
 		

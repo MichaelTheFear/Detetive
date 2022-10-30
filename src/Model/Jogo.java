@@ -49,9 +49,16 @@ class Jogo {
 	
 	
 	
-	public int acusar(Carta c[]) {
-		 //talez mudar td para treeSet
-		return -1;
+	public boolean acusar(Carta acusacao[]) {
+		 //talvez mudar td para treeSet
+		for(int i=0; i<3; i++) {
+			for(int j=0; j<3; j++) {
+				if(!acusacao[j].equals(cartasAssassino[i])) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 	
 	public String darPalpite(Carta palpites[]) {

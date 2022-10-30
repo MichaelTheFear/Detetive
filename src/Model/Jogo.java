@@ -14,7 +14,7 @@ class Jogo {
 	Random gerador = new Random();
 	
 	  Jogo() {
-		vezDe = proxTurno(jogadores.length);
+		
 	}
 	
 	  void setCartasAssasino(Carta [] cartas) {
@@ -75,11 +75,12 @@ class Jogo {
 	  boolean acusar(Carta acusacao[]) {
 		 //talvez mudar td para treeSet
 		for(int i=0; i<3; i++) {
-			for(int j=0; j<3; j++) {
-				if(!acusacao[j].equals(cartasAssassino[i])) {
-					return false;
-				}
+			if(!acusacao[0].equals(cartasAssassino[i]) &&
+					!acusacao[1].equals(cartasAssassino[i]) &&
+					!acusacao[2].equals(cartasAssassino[i])) {
+				return false;
 			}
+			
 		}
 		return true;
 

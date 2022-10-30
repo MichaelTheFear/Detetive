@@ -4,9 +4,10 @@ import java.util.Random;
 
 class Jogo {
 	static protected int NUM_MAX_DADO = 6;
+	static protected int NUM_MAX_JOGADOR = 6;
 	Tabuleiro t;
 	Carta[] cartasAssassino = new Carta[3];
-	Jogador jogadores[] = new Jogador[10];
+	Jogador jogadores[] = new Jogador[NUM_MAX_JOGADOR];
 	int vezDe = 0;
 	int numTurno = 0;
 	int dados[] = new int[2];
@@ -14,6 +15,12 @@ class Jogo {
 	
 	public Jogo() {
 		vezDe = proxTurno(jogadores.length);
+	}
+	
+	public void setCartasAssasino(Carta [] cartas) {
+		for(int index = 0; index<cartas.length;index++) {
+			cartasAssassino[index] = cartas[index];
+		}
 	}
 	
 	protected void rolarDado() {
@@ -34,7 +41,7 @@ class Jogo {
 		turno++;
 		if(turno==jogadores.length)
 			turno = 0;
-		if(jogadores[turno].estaJogando()) {
+		if(!jogadores[turno].estaJogando()) {
 			proxTurno(turno);
 		}
 		return turno;
@@ -63,11 +70,9 @@ class Jogo {
 	}
 
 	
-	
-	
-	public int acusar(Carta c[]) {
+	public boolean acusar(Carta c[]) {
 		 //talez mudar td para treeSet
-		return -1;
+		return false;
 	}
 	
 	public String darPalpite(Carta palpites[]) {

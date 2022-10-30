@@ -71,7 +71,7 @@ public class TesteJogador {
 	public void testeTemCarta() {
 		Jogador j = Helpers.jogadorGenericoHelper();
 		List<Carta> c = Helpers.cartasGenericasHelper();
-		assertTrue("Testando TemCarta", j.temCarta(c));
+		assertTrue("Testando TemCarta", (j.temCarta(c)!=null));
 	}
 	
 

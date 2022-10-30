@@ -50,6 +50,29 @@ public class TesteJogador {
 		j.setJogando(false);
 		assertTrue("Testando estaJogando",!j.estaJogando());
 	}
+	@Test
+	public void testeGetPersonagem() {
+		Jogador j = Helpers.jogadorGenericoHelper();
+		assertEquals("Testando GetPersonagem", j.getPersonagem(), Personagem.Green); 
+	}
+	@Test
+	public void testeSetGetPodeDarPalpite() {
+		Jogador j = Helpers.jogadorGenericoHelper();
+		j.setPodeDarPalpite(false);
+		assertTrue("Testando PodeDarPalpite", !j.getPodeDarPalpite());
+	}
+	@Test
+	public void testeSetGetErrouAcusacao() {
+		Jogador j = Helpers.jogadorGenericoHelper();
+		j.setErrouAcusacao(false);
+		assertTrue("Testando ErrouAcusacao", !j.getErrouAcusacao());
+	}
+	@Test
+	public void testeTemCarta() {
+		Jogador j = Helpers.jogadorGenericoHelper();
+		List<Carta> c = Helpers.cartasGenericasHelper();
+		assertTrue("Testando TemCarta", j.temCarta(c));
+	}
 	
 
 

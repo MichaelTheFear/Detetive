@@ -2,18 +2,22 @@ package Model;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
+import Util.Personagem;
+
 public class Helpers {
 	
 	//esta classe foi criada pois havia testes em duas classes de testes que precisavam do mesmo helper
-	protected static Carta[] cartasGenericasHelper() {
-		Carta cartas[] = new Carta[3];
-		cartas[0] = new CartaArma("Corda");
-		cartas[1] = new CartaLocal("Cozinha");
-		cartas[2] = new CartaSuspeito("Coronel Mustarda");
+	static ArrayList<Carta> cartasGenericasHelper() {
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		cartas.add(new CartaArma("Corda"));
+		cartas.add(new CartaLocal("Cozinha"));
+		cartas.add(new CartaSuspeito("Coronel Mustarda"));
 		return cartas;
 	}
 	
-	protected static Posicao[][] posicoesArrayHelper() {
+	static Posicao[][] posicoesArrayHelper() {
 		Posicao pos[][] = new Posicao[Tabuleiro.numPorLinha][Tabuleiro.numPorLinha];
 		for(int i = 0, j;i<Tabuleiro.numPorLinha;i++) {
 			for(j = 0;j<Tabuleiro.numPorLinha;j++) {
@@ -21,7 +25,6 @@ public class Helpers {
 			}
 			
 		}
-		//printGrafo(pos);
 		return pos;
 	}
 	
@@ -32,7 +35,7 @@ public class Helpers {
 		return res;
 	}
 	
-	protected static Coordenadas[][][] posicoesArrayProxHelper(){
+	static Coordenadas[][][] posicoesArrayProxHelper(){
 		Coordenadas posicoesAdjacentes[][][] = new Coordenadas[Tabuleiro.numPorLinha][Tabuleiro.numPorLinha][4];
 		Coordenadas mapa[][] = new Coordenadas[Tabuleiro.numPorLinha][Tabuleiro.numPorLinha];
 		for(int i =0;i<Tabuleiro.numPorLinha;i++) {
@@ -52,14 +55,13 @@ public class Helpers {
 		return posicoesAdjacentes;
 	}
 	
-	/*
-	protected static Jogador jogadorGenericoHelper() {
-		Carta cartas[] = cartasGenericasHelper();
+	
+	static Jogador jogadorGenericoHelper() {
+		ArrayList<Carta> cartas = cartasGenericasHelper();
 		Posicao p = new Porta(10,10);
-		Jogador j = new Jogador("Reverendo Green",cartas,p);
+		Jogador j = new Jogador(Personagem.Green,cartas);
 		return j;
 	}
-	*/
 	protected static void posicaoHelper(int x, int y, String msg, Jogador j) {
 		Posicao p = j.getPos();
 		Posicao esperado = new Porta(x,y);

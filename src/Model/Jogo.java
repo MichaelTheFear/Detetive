@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.Random;
 
 class Jogo {
 	static protected int NUM_MAX_DADO = 6;
@@ -9,14 +10,15 @@ class Jogo {
 	int vezDe = 0;
 	int numTurno = 0;
 	int dados[] = new int[2];
+	Random gerador = new Random();
 	
 	public Jogo() {
 		vezDe = proxTurno(jogadores.length);
 	}
 	
 	protected void rolarDado() {
-		dados[0] = 5;
-		dados[1] = 5;
+		dados[0] = gerador.nextInt(6) + 1; //Gera-se nums de 0 a 5 e incrementa 1 para ser de 1 a 6
+		dados[1] = gerador.nextInt(6) + 1;
 	}
 	
 	protected int[] getDados() {

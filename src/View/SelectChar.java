@@ -5,12 +5,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Util.Personagem;
 import View.Window.Canvas;
 
-public class SelectChar extends JPanel {
+public class SelectChar extends JFrame {
 
 	static ArrayList<String> sus = new ArrayList<String>();
 	static Button b = new Button("Começar",1000,500);
@@ -43,6 +44,11 @@ public class SelectChar extends JPanel {
 			i+=100;
 		}
 		this.add(new Cards("Suspeitos",toEnumsStrings()));
+		this.pack();
+		this.setSize(Canvas.SIZE);
+		this.setVisible(true);
+		this.setLocationRelativeTo(null);
+		this.setLayout(null);
 	}
 	
 	private class CheckBox extends JCheckBox{

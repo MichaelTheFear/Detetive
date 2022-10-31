@@ -32,7 +32,7 @@ public class Board extends JPanel implements MouseListener{
 	
 	public void paint(Graphics g) { 
 		Graphics2D g2D = (Graphics2D) g;
-		g2D.drawImage(image,0,0,null); //printa tabuleiro
+		g2D.drawImage(image,0,0,null); //printa tabuleiro como requerido
 		drawPlayersAt(g2D,Player.players); //printa quadrado dos players
 		
 		for(int i = 0;i<sideB;i+=side) { //printa grid

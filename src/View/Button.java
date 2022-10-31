@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 public class Button extends JButton{ 
-	Button(String name,ActionListener action,int x, int y){
+	Button(String name,ActionListener actionListner,int x, int y){
 		this.setBounds(x,y,200,50);
-		this.addActionListener(action);
+		this.addActionListener(actionListner);
 		this.setText(name);
 	}
 	

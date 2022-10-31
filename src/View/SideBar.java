@@ -42,8 +42,24 @@ public class SideBar extends JPanel{
 			}
 		});
 		this.add(prox = new Button("Proximo",where,0));
-		this.add(mostraCartas = new Button("Mostra Cartas",where,ratio));
-		this.add(notas = new Button("Notas",where,ratio*2));
+		this.add(mostraCartas = new Button("Mostra Cartas",new ActionListener () {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CardsInGame();
+				
+			}
+			
+		},where,ratio));
+		this.add(notas = new Button("Notas",new ActionListener () {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Notes();
+				
+			}
+			
+		},where,ratio*2));
 		this.add(palpite = new Button("Palpite",where,ratio*3));
 		this.add(acusar = new Button("Acusar",where,ratio*4));
 		this.add(new Text(jogador,where+80,ratio*5,Player.getColorOf(jogador)));

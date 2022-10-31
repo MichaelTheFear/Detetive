@@ -3,9 +3,12 @@ package View;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Game extends JPanel{
+import View.Window.Canvas;
+
+public class Game extends JFrame{
 	Board board;
 	SideBar sideBar;
 	
@@ -13,6 +16,11 @@ public class Game extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.add(board = new Board());
 		this.add(sideBar = new SideBar("Green",board));
+		this.pack();
+		this.setSize(Canvas.SIZE);
+		this.setVisible(true);
+		this.setLocationRelativeTo(null);
+		this.setLayout(null);
 	}
 
 	void setActionProximo(ActionListener callback){ //para o controller

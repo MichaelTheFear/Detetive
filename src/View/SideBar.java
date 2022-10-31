@@ -23,6 +23,7 @@ public class SideBar extends JPanel{
 	Button acusar;
 	Button rolarDados;
 	Button usarDados;
+	int numJogadasSobrando = 10; 
 	String jogador;
 	
 	
@@ -51,6 +52,7 @@ public class SideBar extends JPanel{
 		this.add(new Text("Dado1     Dado2",where,ratio*8));
 		this.add(box2);
 		this.add(box1);
+		this.add(new Text("Jogadas Sobrando: "+numJogadasSobrando,200,where,ratio*10));
 		this.setLayout(new BorderLayout());
 		this.setBounds(where,where,200,700);
 	}
@@ -60,31 +62,35 @@ public class SideBar extends JPanel{
 	}
 	
 	
-	void setActionProximo(ActionListener callback){
+	void setNumJogadasSobrando(int i) {
+		numJogadasSobrando = i;
+	}
+	
+	void setActionProximo(ActionListener callback){ //para o controller
+		prox.addActionListener(callback);
+	}
+	 
+	void setActionPalpite(ActionListener callback){ //para o controller
 		prox.addActionListener(callback);
 	}
 	
-	void setActionPalpite(ActionListener callback){
+	void setActionMostrarCartas(ActionListener callback){ //para o controller
 		prox.addActionListener(callback);
 	}
 	
-	void setActionMostrarCartas(ActionListener callback){
+	void setActionNotas(ActionListener callback){ //para o controller
 		prox.addActionListener(callback);
 	}
 	
-	void setActionNotas(ActionListener callback){
+	void setActionAcusar(ActionListener callback){ //para o controller
 		prox.addActionListener(callback);
 	}
 	
-	void setActionAcusar(ActionListener callback){
+	void setActionRolarDados(ActionListener callback){ //para o controller
 		prox.addActionListener(callback);
 	}
 	
-	void setActionRolarDados(ActionListener callback){
-		prox.addActionListener(callback);
-	}
-	
-	void setActionUsarDados(ActionListener callback){
+	void setActionUsarDados(ActionListener callback){ //para o controller
 		prox.addActionListener(callback);
 	}
 	

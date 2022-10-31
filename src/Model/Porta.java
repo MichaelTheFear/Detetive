@@ -6,21 +6,21 @@ class Porta extends Posicao {
 	
 	private String porta;
 
-	public Porta(int i, int j, String string) {
+	  Porta(int i, int j, String string) {
 		super(i,j);
 		this.porta = string;
 	}
 
-	public Porta(int i, int j) {
+	  Porta(int i, int j) {
 		super(i,j);
 		this.porta="nenhum";
 	}
 	
-	public String getPorta() {
+	  String getPorta() {
 		return porta;
 	}
 
-	public boolean equals(Object obj) {
+	  public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}

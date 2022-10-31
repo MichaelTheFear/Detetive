@@ -18,8 +18,12 @@ public class TesteJogo {
 	public void testeAcusar() {
 		Jogo j = new Jogo();
 		ArrayList<Carta> cartas = Helpers.cartasGenericasHelper();
-		j.setCartasAssasino((Carta[]) cartas.toArray());
-		assertTrue("testando acusação" ,j.acusar((Carta[]) cartas.toArray()));
+		Carta cartasArr[] = new Carta[3];
+		for(int i = 0;i<cartas.size();i++) {
+			cartasArr[i] = cartas.get(i);
+		}
+		j.setCartasAssasino(cartasArr);
+		assertTrue("testando acusação" ,j.acusar(cartasArr));
 	}
 	
 

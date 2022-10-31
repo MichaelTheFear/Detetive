@@ -15,5 +15,10 @@ public class Text extends JLabel {
 		this.setBounds(x, y, 100, 50);
 		this.setForeground(c);
 	}
+	
+	Text(String text,int width,int x,int y){
+		this.setText(text);
+		this.setBounds(x, y, width, 50);
+	}
 
 }

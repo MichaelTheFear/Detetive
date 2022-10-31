@@ -7,17 +7,17 @@ class Comodo extends Posicao {
 	private String comodo;
 	
 	
-	public Comodo(int i, int j, String string) {
+	 Comodo(int i, int j, String string) {
 		super(i,j);
 		comodo=string;
 	}
 
 
-	public String getComodo() {
+	 String getComodo() {
 		return comodo;
 	}
 
-	public boolean equals(Object obj) {
+	 public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}

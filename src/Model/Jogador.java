@@ -14,7 +14,7 @@ class Jogador {
 	private Posicao pos;
 	private boolean jogando;
 	
-	protected Jogador(Personagem personagem) {
+	  Jogador(Personagem personagem) {
 		this.personagem = personagem;
 		switch(this.personagem)
 		{
@@ -48,7 +48,7 @@ class Jogador {
 		this.errouAcusacao = true;
 	}
 	
-	protected Jogador(Personagem personagem,Carta cartasIniciais[]) {
+	  Jogador(Personagem personagem,Carta cartasIniciais[]) {
 		this.personagem = personagem;
 		switch(this.personagem)
 		{
@@ -86,7 +86,7 @@ class Jogador {
 		this.jogando = false;
 	}
 	
-	protected Jogador(Personagem personagem,ArrayList<Carta> cartasIniciais) {
+	  Jogador(Personagem personagem,ArrayList<Carta> cartasIniciais) {
 		this.personagem = personagem;
 		switch(this.personagem)
 		{
@@ -123,51 +123,51 @@ class Jogador {
 	}
 	
 
-	protected boolean estaJogando() {
+	  boolean estaJogando() {
 		return jogando;
 	}
 
-	protected void setJogando(boolean jogando) {
+	  void setJogando(boolean jogando) {
 		this.jogando = jogando;
 	}
 
-	protected void addCartasVista(Carta c) {
+	  void addCartasVista(Carta c) {
 		cartasVistas.add(c);
 	}
 
-	protected List<Carta> getCartasVistas() {
+	  List<Carta> getCartasVistas() {
 		return cartasVistas;
 	}
 
-	protected List<Carta> getCartasIniciais() {
+	  List<Carta> getCartasIniciais() {
 		return cartasIniciais;
 	}
 
-	protected Posicao getPos() {
+	  Posicao getPos() {
 		return pos;
 	}
 
-	protected Personagem getPersonagem() {
+	  Personagem getPersonagem() {
 		return personagem;
 	}
 	
-	protected boolean getPodeDarPalpite() {
+	  boolean getPodeDarPalpite() {
 		return podeDarPalpite;
 	}
 	
-	protected void setPodeDarPalpite(boolean p) {
+	  void setPodeDarPalpite(boolean p) {
 		podeDarPalpite = p;
 	}
 	
-	protected boolean getErrouAcusacao() {
+	  boolean getErrouAcusacao() {
 		return errouAcusacao;
 	}
 	
-	protected void setErrouAcusacao(boolean p) {
+	  void setErrouAcusacao(boolean p) {
 		errouAcusacao = p;
 	}
 	
-	Carta temCarta(Carta c[]) {
+	Carta temCarta(List<Carta> c) {
 		for(Carta cOut : c) {
 			for(Carta cIn : cartasIniciais) {
 				if(cIn.equals(cOut))
@@ -175,6 +175,14 @@ class Jogador {
 			}
 		}
 		return null;
-	}
-	
+	}	
+	Carta temCarta(Carta[] c) {
+		for(Carta cOut : c) {
+			for(Carta cIn : cartasIniciais) {
+				if(cIn.equals(cOut))
+					return cIn;
+			}
+		}
+		return null;
+	}	
 }

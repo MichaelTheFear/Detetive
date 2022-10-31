@@ -16,7 +16,7 @@ class Jogo {
 	  Jogo() {
 		
 	}
-	
+	 
 	  void setCartasAssasino(Carta [] cartas) {
 		for(int index = 0; index<cartas.length;index++) {
 			cartasAssassino[index] = cartas[index];

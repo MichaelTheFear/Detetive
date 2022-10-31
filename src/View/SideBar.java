@@ -23,6 +23,7 @@ public class SideBar extends JPanel{
 	Button acusar;
 	Button rolarDados;
 	Button usarDados;
+	int numJogadasSobrando = 10; 
 	String jogador;
 	
 	
@@ -51,6 +52,7 @@ public class SideBar extends JPanel{
 		this.add(new Text("Dado1     Dado2",where,ratio*8));
 		this.add(box2);
 		this.add(box1);
+		this.add(new Text("Jogadas Sobrando: "+numJogadasSobrando,200,where,ratio*10));
 		this.setLayout(new BorderLayout());
 		this.setBounds(where,where,200,700);
 	}
@@ -59,6 +61,10 @@ public class SideBar extends JPanel{
 		this.jogador = jogador;
 	}
 	
+	
+	void setNumJogadasSobrando(int i) {
+		numJogadasSobrando = i;
+	}
 	
 	void setActionProximo(ActionListener callback){ //para o controller
 		prox.addActionListener(callback);

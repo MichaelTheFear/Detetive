@@ -167,7 +167,16 @@ class Jogador {
 		errouAcusacao = p;
 	}
 	
-	Carta temCarta(Carta c[]) {
+	Carta temCarta(List<Carta> c) {
+		for(Carta cOut : c) {
+			for(Carta cIn : cartasIniciais) {
+				if(cIn.equals(cOut))
+					return cIn;
+			}
+		}
+		return null;
+	}	
+	Carta temCarta(Carta[] c) {
 		for(Carta cOut : c) {
 			for(Carta cIn : cartasIniciais) {
 				if(cIn.equals(cOut))

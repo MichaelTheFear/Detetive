@@ -1,11 +1,16 @@
 package Util;
 
 public class FunctionClass {
-	public void callback(){
+	public void callbackVoid(){
 		
 	}
 	
-	public void callback(String name) {
+	public void callbackVoid(String name) {
 		
 	}
+	
+	public String callbackString() {
+		return "Error";
+	}
+	
 }

@@ -36,11 +36,11 @@ public class Canvas extends JFrame {
 		canvas = new Canvas();
 	}
 
-	public static ArrayList<Personagem> addGameStartListner(FunctionClass functionClass) { // para o controller
+	public static ArrayList<Personagem> onGameStart(FunctionClass functionClass) { // para o controller
 		return SelectChar.setGameStart(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				functionClass.callback();
+				functionClass.callbackVoid();
 			}
 		});
 	}
@@ -56,34 +56,48 @@ public class Canvas extends JFrame {
 		canvas.repaint();
 	}
 	
-	
-	
 
-	public static void setActionProximo(ActionListener callback) { // para o controller
-		board.setActionProximo(callback);
+	public static void onProximoTurno(FunctionClass functionClass) { 
+		board.setActionProximo(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				board.setName(functionClass.callbackString());
+			}
+			
+		});
 	}
 
-	public static void setActionPalpite(ActionListener callback) {
-		board.setActionPalpite(callback);// para o controller
+	public static void onPalpite(FunctionClass functionClass) {
+		board.setActionPalpite(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+			
+		});
+	}
+	
+	public static void onPalpiteConfirmed() {
+		
 	}
 
-	public static void setActionMostrarCartas(ActionListener callback) { // para o controller
+	public static void onMostrarCartas(ActionListener callback) {
 		board.setActionMostrarCartas(callback);
 	}
 
-	public static void setActionNotas(ActionListener callback) { // para o controller
+	public static void onMostrarNotas(ActionListener callback) { 
 		board.setActionNotas(callback);
 	}
 
-	public static void setActionAcusar(ActionListener callback) { // para o controller
+	public static void onAcusar(ActionListener callback) { 
 		board.setActionAcusar(callback);
 	}
 
-	public static void setActionRolarDados(ActionListener callback) { // para o controller
+	public static void onRolarDados(ActionListener callback) { 
 		board.setActionRolarDados(callback);
 	}
 
-	public static void setActionUsarDados(ActionListener callback) { // para o controller
+	public static void onUsarDados(ActionListener callback) { 
 		board.setActionUsarDados(callback);
 	}
 

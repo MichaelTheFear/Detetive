@@ -10,16 +10,21 @@ import javax.swing.JPanel;
 public class Game extends JFrame{
 	Board board;
 	SideBar sideBar;
+	String playerName;
 	
 	Game(){
 		this.setLayout(new BorderLayout());
 		this.add(board = new Board());
-		this.add(sideBar = new SideBar("Green",board));
+		this.add(sideBar = new SideBar(playerName,board));
 		this.pack();
 		this.setSize(Canvas.SIZE);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		this.setLayout(null);
+	}
+	
+	void setPlayerName(String name) {
+		this.playerName = name;
 	}
 
 	void setActionProximo(ActionListener callback){ //para o controller

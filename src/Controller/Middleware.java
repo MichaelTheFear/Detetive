@@ -8,8 +8,8 @@ public class Middleware {
 	
 	Middleware(){
 		Canvas.init();
-		ArrayList<Personagem> personagens = Canvas.addGameStartListner(new FunctionClass() {
-			public void callback() {
+		ArrayList<Personagem> personagens = Canvas.onGameStart(new FunctionClass() {
+			public void callbackVoid() {
 				
 			}
 		});

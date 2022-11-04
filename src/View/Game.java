@@ -8,19 +8,20 @@ import javax.swing.JPanel;
 
 
 public class Game extends JFrame{
-	Board board;
-	SideBar sideBar;
-	String playerName;
+	Board board = new Board();
+	String playerName="Scarlet";
+	SideBar sideBar = new SideBar(playerName,board);
 	
 	Game(){
 		this.setLayout(new BorderLayout());
-		this.add(board = new Board());
-		this.add(sideBar = new SideBar(playerName,board));
+		this.add(board);
+		this.add(sideBar);
 		this.pack();
 		this.setSize(Canvas.SIZE);
-		this.setVisible(true);
+		this.setVisible(false);
 		this.setLocationRelativeTo(null);
-		this.setLayout(null);
+		
+		
 	}
 	
 	void setPlayerName(String name) {
@@ -54,4 +55,7 @@ public class Game extends JFrame{
 	void setActionUsarDados(ActionListener callback){ //para o controller
 		sideBar.setActionUsarDados(callback);
 	}
+	
+	
+	
 }

@@ -2,7 +2,7 @@ package Model;
 
 import java.util.Random;
 
-class Jogo {
+public class Jogo {
 	static   int NUM_MAX_DADO = 6;
 	static   int NUM_MAX_JOGADOR = 6;
 	Tabuleiro t;
@@ -13,7 +13,7 @@ class Jogo {
 	int dados[] = new int[2];
 	Random gerador = new Random();
 	
-	  Jogo() {
+	  public Jogo() {
 		
 	}
 	 
@@ -23,12 +23,12 @@ class Jogo {
 		}
 	}
 	
-	  void rolarDado() {
+	public void rolarDado() {
 		dados[0] = gerador.nextInt(6) + 1; //Gera-se nums de 0 a 5 e incrementa 1 para ser de 1 a 6
 		dados[1] = gerador.nextInt(6) + 1;
 	}
 	
-	  int[] getDados() {
+	public int[] getDados() {
 		return dados;
 	}
 	

@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -60,6 +61,8 @@ public class SideBar extends JPanel{
 			}
 			
 		},where,ratio*2));
+		this.setLayout(new BorderLayout());
+		this.setBackground(Color.BLACK);
 		this.add(palpite = new Button("Palpite",where,ratio*3));
 		this.add(acusar = new Button("Acusar",where,ratio*4));
 		this.add(new Text(jogador,where+80,ratio*5,Player.getColorOf(jogador)));
@@ -69,12 +72,17 @@ public class SideBar extends JPanel{
 		this.add(box2);
 		this.add(box1);
 		this.add(new Text("Jogadas Sobrando: "+numJogadasSobrando,200,where,ratio*10));
-		this.setLayout(new BorderLayout());
 		this.setBounds(where,where,200,700);
 	}
 	
 	void setJogador(String jogador) {
 		this.jogador = jogador;
+	}
+	
+	void setDados(int numJogadasSobrando) {
+		this.numJogadasSobrando = numJogadasSobrando;
+		System.out.println(numJogadasSobrando);
+		repaint();
 	}
 	
 	
@@ -110,6 +118,9 @@ public class SideBar extends JPanel{
 		prox.addActionListener(callback);
 	}
 	
+	void setVisibleAll() {
+		prox.setVisible(true);
+	}
 	
 	
 }

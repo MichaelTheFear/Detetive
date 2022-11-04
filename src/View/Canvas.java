@@ -19,11 +19,15 @@ public class Canvas extends JFrame {
 	public static final Dimension SIZE = new Dimension(WIDTH, HEIGHT);
 	private static SelectChar selectChar;
 	private static StartMenu startMenu = new StartMenu();
-	private static Game board;
+	private static Game board = new Game();
+	
+	static {
+		canvas = new Canvas();
+	}
 
 	private Canvas() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		//this.board.setVisible(false);
 		this.add(startMenu);
 		this.pack();
 		this.setSize(Canvas.SIZE);
@@ -32,18 +36,19 @@ public class Canvas extends JFrame {
 		this.setLayout(null);
 	}
 	
-	public static void init() {
-		canvas = new Canvas();
-	}
+
 
 	public static ArrayList<Personagem> onGameStart(FunctionClass functionClass) { // para o controller
 		return SelectChar.setGameStart(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Canvas.showPanel("Board");
 				functionClass.callbackVoid();
 			}
 		});
 	}
+	
+
 
 	static void showPanel(String id) {
 		if (id == "SelectChar") {
@@ -51,20 +56,19 @@ public class Canvas extends JFrame {
 			selectChar = new SelectChar();
 		} else {
 			selectChar.dispose();
-			board = new Game();
+			board.setVisible(true);
+			//board.sideBar.setVisible(true);
 		}
 		canvas.repaint();
 	}
 	
-
-	public static void onProximoTurno(FunctionClass functionClass) { 
-		board.setActionProximo(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				board.setName(functionClass.callbackString());
-			}
-			
-		});
+	public static void setNamePlayingNow(String name) {
+		board.setName(name);
+	}
+	
+	
+	public static void onProximoTurno() { 
+		//board.setActionProximo();
 	}
 
 	public static void onPalpite(FunctionClass functionClass) {
@@ -75,6 +79,10 @@ public class Canvas extends JFrame {
 			}
 			
 		});
+	}
+	
+	public static void setDados(int dados[]) {
+		board.sideBar.setDados(dados[0]+dados[1]);
 	}
 	
 	public static void onPalpiteConfirmed() {

@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import Util.Armas;
 import Util.Comodos;
 import Util.Personagem;
-import View.Window.Canvas;
 
 public class CardsInGame extends JFrame {
 	

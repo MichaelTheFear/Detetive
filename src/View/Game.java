@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import View.Window.Canvas;
 
 public class Game extends JFrame{
 	Board board;

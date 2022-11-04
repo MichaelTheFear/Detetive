@@ -9,21 +9,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Util.Personagem;
-import View.Window.Canvas;
 
 public class SelectChar extends JFrame {
 
-	static ArrayList<String> sus = new ArrayList<String>();
+	static ArrayList<Personagem> sus = new ArrayList<Personagem>();
 	static Button b = new Button("Começar",1000,500);
 	
-	static ArrayList<String> setGameStart(ActionListener action) {
+	static ArrayList<Personagem> setGameStart(ActionListener action) {
 		b.addActionListener(action);
 		return sus;
 	}
 	
-	static ArrayList<String> getSuspeitos() {
-		return sus;
-	}
 	
 	private static String[] toEnumsStrings() {
 		Personagem per[] = Personagem.values();
@@ -61,9 +57,9 @@ public class SelectChar extends JFrame {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							if(isSelected()) {
-								sus.add(p.name());
+								sus.add(p);
 							}else {
-								sus.remove(p.name());
+								sus.remove(p);
 							}
 							
 						}

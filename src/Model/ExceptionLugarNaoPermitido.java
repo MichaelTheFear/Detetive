@@ -1,7 +1,7 @@
 package Model;
 
 public class ExceptionLugarNaoPermitido extends Exception {
-	ExceptionLugarNaoPermitido(String msg){
+	ExceptionLugarNaoPermitido(String msg) {
 		super(msg);
 	}
 }

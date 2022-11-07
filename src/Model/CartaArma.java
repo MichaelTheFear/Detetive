@@ -1,11 +1,11 @@
 package Model;
 
-class CartaArma extends Carta{ 
-	 CartaArma(String nome) {
+class CartaArma extends Carta {
+	CartaArma(String nome) {
 		super(nome);
 	}
 
-	 public boolean equals(Object obj) {
+	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}
@@ -17,6 +17,5 @@ class CartaArma extends Carta{
 		}
 		return true;
 	}
-	
-	
+
 };

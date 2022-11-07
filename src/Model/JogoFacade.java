@@ -15,6 +15,14 @@ public class JogoFacade {
 		}
 		return facade;
 	}
+	
+	public void setupJogadores(ArrayList<String> players) {
+		jogo.setupJogadores(players);
+	}
+	
+	public void distribuiCartas() {
+		jogo.distribuiCartas();
+	}
 
 	public void rolarDados() {
 		jogo.rolarDado();
@@ -22,9 +30,5 @@ public class JogoFacade {
 
 	public int[] getDados() {
 		return jogo.getDados();
-	}
-
-	public void setupJogadores(ArrayList<String> players) {
-		jogo.setupJogadores(players);
-	}
+	} 
 }

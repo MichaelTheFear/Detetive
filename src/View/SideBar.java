@@ -61,7 +61,6 @@ public class SideBar extends JPanel {
 
 		}, where, ratio * 2));
 		this.setLayout(new BorderLayout());
-		this.setBackground(Color.BLACK);
 		this.add(palpite = new Button("Palpite", where, ratio * 3));
 		this.add(acusar = new Button("Acusar", where, ratio * 4));
 		this.add(new Text(jogador, where + 80, ratio * 5, Player.getColorOf(jogador)));

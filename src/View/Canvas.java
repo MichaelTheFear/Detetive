@@ -22,7 +22,6 @@ public class Canvas extends JFrame {
 
 	private Canvas() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// this.board.setVisible(false);
 		this.add(startMenu);
 		this.pack();
 		this.setSize(Canvas.SIZE);
@@ -59,7 +58,6 @@ public class Canvas extends JFrame {
 		} else {
 			selectChar.dispose();
 			board.setVisible(true);
-			// board.sideBar.setVisible(true);
 		}
 		canvas.repaint();
 	}
@@ -68,8 +66,8 @@ public class Canvas extends JFrame {
 		board.setName(name);
 	}
 
-	public void onProximoTurno() {
-		// board.setActionProximo();
+	public void onProximoTurno(ActionListener listener) {
+		board.setActionProximo(listener);
 	}
 
 	public void onPalpite(ActionListener listener) {

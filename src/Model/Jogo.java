@@ -43,26 +43,21 @@ class Jogo {
 
 	}
 
-	void setupJogadores(ArrayList<String> players) {
-		Personagem per[] = Personagem.values();
-		String perStr[] = new String[per.length];
-		for (int i = 0; i < perStr.length; i++) {
-			perStr[i] = per[i].toString();
-		}
+	void setupJogadores(ArrayList<Personagem> players) {
 
-		for (String sus : perStr) {
-			for (String p : players) {
-				if (sus.compareTo(p) == 0) {
-					jogadores.add(new Jogador(Personagem.valueOf(p), false));
+		for (Personagem susPersonagem : Personagem.values()) {
+			for (Personagem p : players) {
+				if (susPersonagem == p) {
+					jogadores.add(new Jogador(p, false));
 					qtdEmJogo++;
 					break;
 				}
 			}
 			if (jogadores.isEmpty()) {
-				jogadores.add(new Jogador(Personagem.valueOf(sus), true));
+				jogadores.add(new Jogador(susPersonagem, true));
 			}
-			else if (jogadores.get(jogadores.size() - 1).getPersonagem() != Personagem.valueOf(sus)) {
-				jogadores.add(new Jogador(Personagem.valueOf(sus), true));
+			else if (jogadores.get(jogadores.size() - 1).getPersonagem() != susPersonagem) {
+				jogadores.add(new Jogador(susPersonagem, true));
 			}
 		}
 	}

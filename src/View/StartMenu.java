@@ -17,7 +17,7 @@ public class StartMenu extends JPanel {
 		this.add(new Button("Novo Jogo", new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Canvas.showPanel("SelectChar");
+				Canvas.getCanvas().showPanel("SelectChar");
 			}
 
 		}, 200, 200));

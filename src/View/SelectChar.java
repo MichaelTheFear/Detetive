@@ -16,9 +16,8 @@ public class SelectChar extends JFrame {
 	static ArrayList<Personagem> sus = new ArrayList<Personagem>();
 	static Button b = new Button("Começar", 1000, 500);
 
-	static ArrayList<Personagem> setGameStart(ActionListener action) {
+	static void setGameStart(ActionListener action) {
 		b.addActionListener(action);
-		return sus;
 	}
 
 	private static String[] toEnumsStrings() {
@@ -66,5 +65,9 @@ public class SelectChar extends JFrame {
 			});
 		}
 
+	}
+	
+	static ArrayList<Personagem> getSus(){
+		return sus;
 	}
 }

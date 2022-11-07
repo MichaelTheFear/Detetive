@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class Canvas extends JFrame {
-	static Canvas canvas;
+	private static Canvas canvas = null;
 
 	public static final int WIDTH = 1200;
 	public static final int HEIGHT = 740;
@@ -19,10 +19,6 @@ public class Canvas extends JFrame {
 	private static SelectChar selectChar;
 	private static StartMenu startMenu = new StartMenu();
 	private static Game board = new Game();
-
-	static {
-		canvas = new Canvas();
-	}
 
 	private Canvas() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,18 +30,29 @@ public class Canvas extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setLayout(null);
 	}
-
-	public static ArrayList<Personagem> onGameStart(FunctionClass functionClass) { // para o controller
-		return SelectChar.setGameStart(new ActionListener() {
+	
+	public static Canvas getCanvas() {
+		if(canvas == null) {
+			canvas = new Canvas();
+		}
+		return canvas;
+	}
+	
+	public void onGameStart(ActionListener listener) { // para o controller
+		SelectChar.setGameStart(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Canvas.showPanel("Board");
-				functionClass.callbackVoid();
+				listener.actionPerformed(e);
+				canvas.showPanel("Board");
 			}
 		});
 	}
 
-	static void showPanel(String id) {
+	public ArrayList<Personagem> getPlayers(){
+		return SelectChar.getSus();
+	}
+	
+	void showPanel(String id) {
 		if (id == "SelectChar") {
 			canvas.dispose();
 			selectChar = new SelectChar();
@@ -57,49 +64,43 @@ public class Canvas extends JFrame {
 		canvas.repaint();
 	}
 
-	public static void setNamePlayingNow(String name) {
+	public void setNamePlayingNow(String name) {
 		board.setName(name);
 	}
 
-	public static void onProximoTurno() {
+	public void onProximoTurno() {
 		// board.setActionProximo();
 	}
 
-	public static void onPalpite(FunctionClass functionClass) {
-		board.setActionPalpite(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-
-		});
+	public void onPalpite(ActionListener listener) {
+		board.setActionPalpite(listener);
 	}
 
-	public static void setDados(int dados[]) {
+	public void setDados(int dados[]) {
 		board.sideBar.setDados(dados[0] + dados[1]);
 	}
 
-	public static void onPalpiteConfirmed() {
+	public void onPalpiteConfirmed() {
 
 	}
 
-	public static void onMostrarCartas(ActionListener callback) {
+	public void onMostrarCartas(ActionListener callback) {
 		board.setActionMostrarCartas(callback);
 	}
 
-	public static void onMostrarNotas(ActionListener callback) {
+	public void onMostrarNotas(ActionListener callback) {
 		board.setActionNotas(callback);
 	}
 
-	public static void onAcusar(ActionListener callback) {
+	public void onAcusar(ActionListener callback) {
 		board.setActionAcusar(callback);
 	}
 
-	public static void onRolarDados(ActionListener callback) {
+	public void onRolarDados(ActionListener callback) {
 		board.setActionRolarDados(callback);
 	}
 
-	public static void onUsarDados(ActionListener callback) {
+	public void onUsarDados(ActionListener callback) {
 		board.setActionUsarDados(callback);
 	}
 

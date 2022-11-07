@@ -10,6 +10,7 @@ import View.Canvas;
 
 public class Middleware {
 	static JogoFacade model = JogoFacade.getJogoFacade();
+	static Canvas view = Canvas.getCanvas();
 
 	Middleware() {
 		// Canvas canvas = new Canvas();
@@ -20,23 +21,24 @@ public class Middleware {
 
 	private void initBoard() {
 
-		Canvas.onGameStart(new FunctionClass() {
+		view.onGameStart(new ActionListener() {
 
 			@Override
-			public void callbackVoid() {
-
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Personagem> viewPlayers = view.getPlayers();
+				model.setupJogadores(viewPlayers);
 			}
 
 		});
 	}
 
 	private void initRolarDados() {
-		Canvas.onRolarDados(new ActionListener() {
+		view.onRolarDados(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				model.rolarDados();
-				Canvas.setDados(model.getDados());
+				view.setDados(model.getDados());
 			}
 
 		});

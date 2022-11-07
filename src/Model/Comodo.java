@@ -5,19 +5,17 @@ import java.util.Objects;
 class Comodo extends Posicao {
 
 	private String comodo;
-	
-	
-	 Comodo(int i, int j, String string) {
-		super(i,j);
-		comodo=string;
+
+	Comodo(int i, int j, String string) {
+		super(i, j);
+		comodo = string;
 	}
 
-
-	 String getComodo() {
+	String getComodo() {
 		return comodo;
 	}
 
-	 public boolean equals(Object obj) {
+	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}
@@ -30,7 +28,5 @@ class Comodo extends Posicao {
 		Comodo other = (Comodo) obj;
 		return Objects.equals(comodo, other.comodo);
 	}
-	
-	
 
 }

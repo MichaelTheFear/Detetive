@@ -3,24 +3,24 @@ package Model;
 import java.util.Objects;
 
 class Porta extends Posicao {
-	
+
 	private String porta;
 
-	  Porta(int i, int j, String string) {
-		super(i,j);
+	Porta(int i, int j, String string) {
+		super(i, j);
 		this.porta = string;
 	}
 
-	  Porta(int i, int j) {
-		super(i,j);
-		this.porta="nenhum";
+	Porta(int i, int j) {
+		super(i, j);
+		this.porta = "nenhum";
 	}
-	
-	  String getPorta() {
+
+	String getPorta() {
 		return porta;
 	}
 
-	  public boolean equals(Object obj) {
+	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}
@@ -34,5 +34,4 @@ class Porta extends Posicao {
 		return Objects.equals(porta, other.porta);
 	}
 
-	
 }

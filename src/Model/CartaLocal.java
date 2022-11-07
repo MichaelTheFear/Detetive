@@ -1,11 +1,11 @@
 package Model;
 
-class CartaLocal extends Carta{
-	 CartaLocal(String nome) {
+class CartaLocal extends Carta {
+	CartaLocal(String nome) {
 		super(nome);
 	}
-	
-	 public boolean equals(Object obj) {
+
+	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}

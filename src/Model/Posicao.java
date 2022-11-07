@@ -1,47 +1,45 @@
 package Model;
 
-class Posicao{
-	
+class Posicao {
+
 	private Coordenadas[] posicoesProximas = new Coordenadas[4];
 	private Coordenadas coordenadas;
 	private int passouAqui = 0;
 	private int mudadoNoTurno = -1;
-	
-	  Posicao(int x, int y) {
-		coordenadas = new Coordenadas(x,y);
+
+	Posicao(int x, int y) {
+		coordenadas = new Coordenadas(x, y);
 	}
-	
-	  int getMudadoNoTurno() {
+
+	int getMudadoNoTurno() {
 		return mudadoNoTurno;
 	}
-	
-	  void setMudadoNoTurno(int t) {
+
+	void setMudadoNoTurno(int t) {
 		mudadoNoTurno = t;
 	}
-	
 
-	  void setPosicoesProximas(Coordenadas[] posicoesAdjacentes) {
+	void setPosicoesProximas(Coordenadas[] posicoesAdjacentes) {
 		this.posicoesProximas = posicoesAdjacentes;
 	}
 
-	  Coordenadas[] getPosicoesProximas() {
+	Coordenadas[] getPosicoesProximas() {
 		return this.posicoesProximas;
 	}
 
-
-	  Coordenadas getCoordenadas() {
+	Coordenadas getCoordenadas() {
 		return this.coordenadas;
 	}
-	
-	  int getPassouAqui() {
+
+	int getPassouAqui() {
 		return passouAqui;
 	}
-	
-	  void setPassouAqui(int p) {
+
+	void setPassouAqui(int p) {
 		passouAqui = p;
 	}
-	
-	  void addUmPassouAqui() {
+
+	void addUmPassouAqui() {
 		passouAqui++;
 	}
 
@@ -54,7 +52,7 @@ class Posicao{
 	}
 
 	public String toString() {
-		return "("+coordenadas.getX()+","+coordenadas.getY()+")";
+		return "(" + coordenadas.getX() + "," + coordenadas.getY() + ")";
 	}
 
 }

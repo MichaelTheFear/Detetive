@@ -53,5 +53,9 @@ public class Game extends JFrame {
 	void setActionUsarDados(ActionListener callback) { // para o controller
 		sideBar.setActionUsarDados(callback);
 	}
+	
+	void setDices(int num) {
+		sideBar.setDados(num);
+	}
 
 }

@@ -50,7 +50,7 @@ public class SideBar extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new CardsInGame();
+				Observer.callEvent(Events.showCards, jogador);
 
 			}
 
@@ -59,7 +59,7 @@ public class SideBar extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Observer.callEvent(Events.showNotes, null);
+				Observer.callEvent(Events.showNotes, jogador);
 				//new Notes(new ArrayList<String>(Arrays.asList("Scarlet","Cordas")));
 			}
 
@@ -83,7 +83,6 @@ public class SideBar extends JPanel {
 
 	void setDados(int numJogadasSobrando) {
 		this.numJogadasSobrando = numJogadasSobrando;
-		System.out.println(numJogadasSobrando);
 		repaint();
 	}
 
@@ -119,8 +118,5 @@ public class SideBar extends JPanel {
 		prox.addActionListener(callback);
 	}
 
-	void setVisibleAll() {
-		prox.setVisible(true);
-	}
 
 }

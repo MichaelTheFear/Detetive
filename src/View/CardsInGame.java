@@ -1,5 +1,7 @@
 package View;
 
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 
 import Util.Armas;
@@ -8,7 +10,7 @@ import Util.Personagem;
 
 public class CardsInGame extends JFrame {
 
-	CardsInGame() { // ps ngm nunca vai ter essa quantidade de cartas, ent o tamanho esta certo
+	CardsInGame(ArrayList<String> cards) { 
 		Armas arm[] = Armas.values();
 		Comodos com[] = Comodos.values();
 		Personagem sus[] = Personagem.values();

@@ -74,32 +74,27 @@ public class Canvas extends JFrame {
 		board.setActionPalpite(listener);
 	}
 
-	public void setDados(int dados[]) {
-		board.sideBar.setDados(dados[0] + dados[1]);
+
+
+	public void onAcusar(ActionListener listener) {
+		board.setActionAcusar(listener);
 	}
 
-	public void onPalpiteConfirmed() {
-
+	public void onPalpiteConfirmed(ActionListener listener) {
+		
+	}
+	
+	public void showCards(ArrayList<String> cards) {
+		new CardsInGame(cards);
+	}
+	
+	public void showNotes(ArrayList<String> cards) {
+		new Notes(cards);
 	}
 
-	public void onMostrarCartas(ActionListener callback) {
-		board.setActionMostrarCartas(callback);
+	public void setDados(int[] dados) {
+		board.setDices(dados[0]+dados[1]);
 	}
 
-	public void onMostrarNotas(ActionListener callback) {
-		board.setActionNotas(callback);
-	}
-
-	public void onAcusar(ActionListener callback) {
-		board.setActionAcusar(callback);
-	}
-
-	public void onRolarDados(ActionListener callback) {
-		board.setActionRolarDados(callback);
-	}
-
-	public void onUsarDados(ActionListener callback) {
-		board.setActionUsarDados(callback);
-	}
 
 }

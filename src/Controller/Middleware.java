@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import Model.JogoFacade;
 import Util.*;
 import View.Canvas;
+import View.Dices;
+import View.Observer;
 
 public class Middleware {
 	static JogoFacade model = JogoFacade.getJogoFacade();
@@ -33,6 +35,23 @@ public class Middleware {
 	}
 
 	private void initRolarDados() {
+		Observer.susbcribe(Events.dice, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				if(o==null) {
+					model.rolarDados();
+					view.setDados(model.getDados());
+				}else {
+					Dices dices = (Dices) o;
+					//model.setDados(dices);
+				}
+			}
+			
+		});
+		
+		
+		
+		/*
 		view.onRolarDados(new ActionListener() {
 
 			@Override
@@ -42,6 +61,7 @@ public class Middleware {
 			}
 
 		});
+		*/
 	}
 
 	public static void main(String[] agrs) {

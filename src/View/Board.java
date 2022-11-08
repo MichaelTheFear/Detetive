@@ -76,4 +76,7 @@ public class Board extends JPanel implements MouseListener {
 		movePlayerTo("Green", e.getY() / side, e.getX() / side);
 	}
 
+
+
+
 }

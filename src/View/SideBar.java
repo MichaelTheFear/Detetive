@@ -4,10 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import Util.Events;
 
 public class SideBar extends JPanel {
 
@@ -55,8 +59,8 @@ public class SideBar extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Notes();
-
+				Observer.callEvent(Events.showNotes, null);
+				//new Notes(new ArrayList<String>(Arrays.asList("Scarlet","Cordas")));
 			}
 
 		}, where, ratio * 2));

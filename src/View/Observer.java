@@ -4,10 +4,12 @@ import Util.Events;
 import Util.ObserverCallback;
 
 public class Observer {
-	private static Notify notifications = new Notify();
+	private static Notify notifications;
 	private static Observer observer = null;
 	
-	private Observer() {}
+	private Observer() {
+		notifications = new Notify();
+	}
 	
 	public static Observer getObserver() {
 		if(observer == null)
@@ -15,11 +17,11 @@ public class Observer {
 		return observer;
 	}
 	
-	public static void callEvent(Events event,Object o) {
+	public void callEvent(Events event,Object o) {
 		notifications.notify(event,o);
 	}
 	
-	public static void susbcribe(Events eve, ObserverCallback callback) {
+	public void susbcribe(Events eve, ObserverCallback callback) {
 		notifications.subscribe(eve, callback);
 	}
 	

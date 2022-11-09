@@ -35,7 +35,7 @@ public class Middleware {
 	}
 	
 	private void initNotes() {
-		Observer.susbcribe(Events.showNotes, new ObserverCallback() {
+		Observer.getObserver().susbcribe(Events.showNotes, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				//view.showNotes(model.getCartasVistas);
@@ -45,7 +45,7 @@ public class Middleware {
 	}
 	
 	private void initShowPlayersCards() {
-		Observer.susbcribe(Events.showCards, new ObserverCallback() {
+		Observer.getObserver().susbcribe(Events.showCards, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				//view.showNotes(model.getCartasIniciais);
@@ -55,7 +55,7 @@ public class Middleware {
 	}
 
 	private void initRolarDados() {
-		Observer.susbcribe(Events.dice, new ObserverCallback() {
+		Observer.getObserver().susbcribe(Events.dice, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				if(o==null) {

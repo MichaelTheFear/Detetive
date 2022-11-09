@@ -33,6 +33,26 @@ public class Middleware {
 
 		});
 	}
+	
+	private void initNotes() {
+		Observer.susbcribe(Events.showNotes, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				//view.showNotes(model.getCartasVistas);
+			}
+			
+		});
+	}
+	
+	private void initShowPlayersCards() {
+		Observer.susbcribe(Events.showCards, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				//view.showNotes(model.getCartasIniciais);
+			}
+			
+		});
+	}
 
 	private void initRolarDados() {
 		Observer.susbcribe(Events.dice, new ObserverCallback() {

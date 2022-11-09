@@ -14,7 +14,7 @@ public class Canvas extends JFrame {
 	private static Canvas canvas = null;
 
 	public static final int WIDTH = 1200;
-	public static final int HEIGHT = 740;
+	public static final int HEIGHT = 700;
 	public static final Dimension SIZE = new Dimension(WIDTH, HEIGHT);
 	private static SelectChar selectChar;
 	private static StartMenu startMenu = new StartMenu();

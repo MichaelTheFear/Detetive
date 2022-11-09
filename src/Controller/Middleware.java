@@ -19,6 +19,7 @@ public class Middleware {
 		// JogoFacade model = new JogoFacade();
 		initBoard();
 		initRolarDados();
+		initProx();
 	}
 
 	private void initBoard() {
@@ -29,8 +30,20 @@ public class Middleware {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Personagem> viewPlayers = view.getPlayers();
 				model.setupJogadores(viewPlayers);
+				view.setPlayerName(viewPlayers.get(0));
 			}
 
+		});
+	}
+	
+	private void initProx() {
+		view.onProximoTurno(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				model.passaVez();
+				Personagem prox = model.getJogadorVez();
+				view.setNamePlayingNow(prox.toString());
+			}
 		});
 	}
 	

@@ -29,14 +29,14 @@ public class Canvas extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setLayout(null);
 	}
-	
+
 	public static Canvas getCanvas() {
-		if(canvas == null) {
+		if (canvas == null) {
 			canvas = new Canvas();
 		}
 		return canvas;
 	}
-	
+
 	public void onGameStart(ActionListener listener) { // para o controller
 		SelectChar.setGameStart(new ActionListener() {
 			@Override
@@ -47,15 +47,20 @@ public class Canvas extends JFrame {
 		});
 	}
 
-	public ArrayList<Personagem> getPlayers(){
+	public ArrayList<Personagem> getPlayers() {
 		return SelectChar.getSus();
 	}
-	
+
+	public void setPlayerName(Personagem playerName) {
+		board.setPlayerName(playerName.toString());
+	}
+
 	void showPanel(String id) {
 		if (id == "SelectChar") {
 			canvas.dispose();
 			selectChar = new SelectChar();
-		} else {
+		}
+		else {
 			selectChar.dispose();
 			board.setVisible(true);
 		}
@@ -63,7 +68,9 @@ public class Canvas extends JFrame {
 	}
 
 	public void setNamePlayingNow(String name) {
-		board.setName(name);
+		board.setPlayerName(name);
+		System.out.println("Passando Turno para:");
+		System.out.println(name);
 	}
 
 	public void onProximoTurno(ActionListener listener) {
@@ -74,27 +81,24 @@ public class Canvas extends JFrame {
 		board.setActionPalpite(listener);
 	}
 
-
-
 	public void onAcusar(ActionListener listener) {
 		board.setActionAcusar(listener);
 	}
 
 	public void onPalpiteConfirmed(ActionListener listener) {
-		
+
 	}
-	
+
 	public void showCards(ArrayList<String> cards) {
 		new CardsInGame(cards);
 	}
-	
+
 	public void showNotes(ArrayList<String> cards) {
 		new Notes(cards);
 	}
 
 	public void setDados(int[] dados) {
-		board.setDices(dados[0]+dados[1]);
+		board.setDices(dados[0] + dados[1]);
 	}
-
 
 }

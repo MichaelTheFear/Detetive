@@ -39,4 +39,12 @@ public class JogoFacade {
 	public int[] getDados() {
 		return jogo.getDados();
 	} 
+	
+	public void passaVez() {
+		jogo.passaVez();
+	}
+	
+	public Personagem getJogadorVez() {
+		return jogo.jogadores.get(jogo.vezDe).getPersonagem();
+	}
 }

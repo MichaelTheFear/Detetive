@@ -24,6 +24,7 @@ public class Game extends JFrame {
 
 	void setPlayerName(String name) {
 		this.playerName = name;
+		sideBar.setJogador(this.playerName);
 	}
 
 	void setActionProximo(ActionListener callback) { // para o controller

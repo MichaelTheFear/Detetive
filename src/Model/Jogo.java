@@ -9,27 +9,16 @@ class Jogo {
 	static int NUM_MAX_DADO = 6;
 
 	Tabuleiro t;
-	Carta[] todasCartas = new Carta[] { 
-			new CartaArma(Armas.Cano.toString()), 
-			new CartaArma(Armas.Castical.toString()),
-			new CartaArma(Armas.ChaveInglesa.toString()), 
-			new CartaArma(Armas.Corda.toString()),
-			new CartaArma(Armas.Faca.toString()), 
-			new CartaArma(Armas.Revolver.toString()),
-			new CartaLocal(Comodos.Biblioteca.toString()), 
-			new CartaLocal(Comodos.Cozinha.toString()),
-			new CartaLocal(Comodos.Entrada.toString()), 
-			new CartaLocal(Comodos.Escritorio.toString()),
-			new CartaLocal(Comodos.JardimInverno.toString()), 
-			new CartaLocal(Comodos.SalaDeEstar.toString()),
-			new CartaLocal(Comodos.SalaDeJantar.toString()), 
-			new CartaLocal(Comodos.SalaDeMusica.toString()),
-			new CartaLocal(Comodos.SalaoDeJogos.toString()), 
-			new CartaSuspeito(Personagem.Green.toString()),
-			new CartaSuspeito(Personagem.Mustard.toString()), 
-			new CartaSuspeito(Personagem.Peacock.toString()),
-			new CartaSuspeito(Personagem.Plum.toString()), 
-			new CartaSuspeito(Personagem.Scarlet.toString()),
+	Carta[] todasCartas = new Carta[] { new CartaArma(Armas.Cano.toString()), new CartaArma(Armas.Castical.toString()),
+			new CartaArma(Armas.ChaveInglesa.toString()), new CartaArma(Armas.Corda.toString()),
+			new CartaArma(Armas.Faca.toString()), new CartaArma(Armas.Revolver.toString()),
+			new CartaLocal(Comodos.Biblioteca.toString()), new CartaLocal(Comodos.Cozinha.toString()),
+			new CartaLocal(Comodos.Entrada.toString()), new CartaLocal(Comodos.Escritorio.toString()),
+			new CartaLocal(Comodos.JardimInverno.toString()), new CartaLocal(Comodos.SalaDeEstar.toString()),
+			new CartaLocal(Comodos.SalaDeJantar.toString()), new CartaLocal(Comodos.SalaDeMusica.toString()),
+			new CartaLocal(Comodos.SalaoDeJogos.toString()), new CartaSuspeito(Personagem.Green.toString()),
+			new CartaSuspeito(Personagem.Mustard.toString()), new CartaSuspeito(Personagem.Peacock.toString()),
+			new CartaSuspeito(Personagem.Plum.toString()), new CartaSuspeito(Personagem.Scarlet.toString()),
 			new CartaSuspeito(Personagem.White.toString()) };
 	Carta[] cartasAssassino = new Carta[3];
 	ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
@@ -137,18 +126,17 @@ class Jogo {
 	}
 
 	private int proxTurno(int turno) {
-		turno++;
-		if (turno == jogadores.size())
-			turno = 0;
-		if (jogadores.get(turno).ehNpc()) {
-			proxTurno(turno);
-		}
+		do {
+			turno++;
+			if (turno == jogadores.size())
+				turno = 0;
+		} while (jogadores.get(turno).ehNpc());
 		return turno;
 	}
 
 	void passaVez() {
 		vezDe = proxTurno(vezDe);
-		t.houseKeepingTabuleiro();
+		//t.houseKeepingTabuleiro();
 	}
 
 	void mover(Coordenadas escolhida) throws ExceptionLugarNaoPermitido {

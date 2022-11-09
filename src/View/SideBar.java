@@ -28,11 +28,12 @@ public class SideBar extends JPanel {
 	Button acusar;
 	Button rolarDados;
 	Button usarDados;
-	int numJogadasSobrando = 10;
 	String jogador;
+	int numJogadasSobrando = 10;
+	Text txtVezJogador;
 
 	SideBar(String jogador, Board b) {
-		String[] options = { "1", "2", "3", "4", "5" };
+		String[] options = { "1", "2", "3", "4", "5", "6" };
 		box1 = new ComboBox(options, where, ratio * 9, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -67,7 +68,8 @@ public class SideBar extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.add(palpite = new Button("Palpite", where, ratio * 3));
 		this.add(acusar = new Button("Acusar", where, ratio * 4));
-		this.add(new Text(jogador, where + 80, ratio * 5, Player.getColorOf(jogador)));
+		txtVezJogador = new Text(jogador, where + 80, ratio * 5, Player.getColorOf(jogador));
+		this.add(txtVezJogador);
 		this.add(rolarDados = new Button("Rolar dados", where, ratio * 6));
 		this.add(usarDados = new Button("Usar esses dados", where, ratio * 7));
 		this.add(new Text("Dado1     Dado2", where, ratio * 8));
@@ -79,10 +81,16 @@ public class SideBar extends JPanel {
 
 	void setJogador(String jogador) {
 		this.jogador = jogador;
+		this.remove(txtVezJogador);
+		txtVezJogador = new Text(jogador, where + 80, ratio * 5, Player.getColorOf(jogador));
+		this.add(txtVezJogador);
+		repaint();
 	}
 
 	void setDados(int numJogadasSobrando) {
 		this.numJogadasSobrando = numJogadasSobrando;
+		//this.remove(txtJogadasSobrando);
+		//this.add(new Text("Jogadas Sobrando: " + numJogadasSobrando, 200, where, ratio * 10));
 		repaint();
 	}
 

@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 
 public class Game extends JFrame {
 	Board board = new Board();
-	String playerName = "Scarlet";
-	SideBar sideBar = new SideBar(playerName, board);
+	String playerName = "-";
+	SideBar sideBar = new SideBar(board);
 
 	Game() {
 		this.setLayout(new BorderLayout());

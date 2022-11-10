@@ -21,7 +21,7 @@ public class Game extends JFrame {
 		this.setLocationRelativeTo(null);
 
 	}
-
+	
 	void setPlayerName(String name) {
 		this.playerName = name;
 		sideBar.setJogador(this.playerName);

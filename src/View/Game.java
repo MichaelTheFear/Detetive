@@ -19,12 +19,19 @@ public class Game extends JFrame {
 		this.setSize(Canvas.SIZE);
 		this.setVisible(false);
 		this.setLocationRelativeTo(null);
-
 	}
 	
 	void setPlayerName(String name) {
 		this.playerName = name;
 		sideBar.setJogador(this.playerName);
+	}
+	
+	void movePlayerTo(String player, int x, int y) {
+		board.movePlayerTo(player, x, y);
+	}
+	
+	void moveCurrentPlayerTo(int x, int y) {
+		board.movePlayerTo(playerName, x, y);
 	}
 
 	void setActionProximo(ActionListener callback) { // para o controller

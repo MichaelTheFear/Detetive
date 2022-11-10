@@ -13,6 +13,8 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import Util.Events;
+
 public class Board extends JPanel implements MouseListener {
 
 	Image image;
@@ -74,7 +76,8 @@ public class Board extends JPanel implements MouseListener {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		movePlayerTo("Green", e.getY() / side, e.getX() / side);
+		Integer [] positions = new Integer[] { e.getX()/side , e.getY()/side};
+		Observer.getObserver().callEvent(Events.boardClick,positions);
 	}
 
 

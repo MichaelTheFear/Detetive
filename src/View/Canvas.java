@@ -36,6 +36,14 @@ public class Canvas extends JFrame {
 		}
 		return canvas;
 	}
+	
+	public void movePlayerTo(String player, int x, int y) {
+		board.movePlayerTo(player, x, y);
+	}
+	
+	public void moveCurrentPlayerTo(int x, int y) {
+		board.moveCurrentPlayerTo(x, y);
+	}
 
 	public void onGameStart(ActionListener listener) { // para o controller
 		SelectChar.setGameStart(new ActionListener() {

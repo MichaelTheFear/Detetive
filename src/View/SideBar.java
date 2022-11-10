@@ -44,7 +44,6 @@ public class SideBar extends JPanel {
 		});
 		this.add(prox = new Button("Proximo", where, 0));
 		this.add(mostraCartas = new Button("Mostra Cartas", new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Observer.getObserver().callEvent(Events.showCards, jogador);
@@ -53,11 +52,9 @@ public class SideBar extends JPanel {
 
 		}, where, ratio));
 		this.add(notas = new Button("Notas", new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Observer.getObserver().callEvent(Events.showNotes, jogador);
-				//new Notes(new ArrayList<String>(Arrays.asList("Scarlet","Cordas")));
 			}
 
 		}, where, ratio * 2));

@@ -36,6 +36,17 @@ public class Middleware {
 		});
 	}
 	
+	private void initMovement() {
+		Observer.getObserver().susbcribe(Events.boardClick, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				Integer[] position = (Integer[]) o;
+				//view.movePlayerTo ...
+			}
+		});
+	}
+	
+	
 	private void initProx() {
 		view.onProximoTurno(new ActionListener() {
 			@Override

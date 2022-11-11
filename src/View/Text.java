@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import javax.swing.JLabel;
 
-public class Text extends JLabel {
+class Text extends JLabel {
 	Text(String text, int x, int y) {
 		this.setText(text);
 		this.setBounds(x, y, 100, 50);

@@ -13,7 +13,7 @@ import Util.Armas;
 import Util.Comodos;
 import Util.Personagem;
 
-public class Notes extends JFrame {
+class Notes extends JFrame {
 
 	public Notes(ArrayList<String> cartas) {
 		this.setLayout(new BorderLayout());

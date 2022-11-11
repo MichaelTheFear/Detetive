@@ -8,7 +8,7 @@ import Util.Armas;
 import Util.Comodos;
 import Util.Personagem;
 
-public class CardsInGame extends JFrame {
+class CardsInGame extends JFrame {
 
 	CardsInGame(ArrayList<String> cards) { 
 		Armas arm[] = Armas.values();

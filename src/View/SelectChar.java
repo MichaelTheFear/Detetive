@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import Util.Personagem;
 
-public class SelectChar extends JFrame {
+class SelectChar extends JFrame {
 
 	static ArrayList<Personagem> sus = new ArrayList<Personagem>();
 	static Button b = new Button("Começar", 1000, 500);

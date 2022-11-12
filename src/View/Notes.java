@@ -19,8 +19,6 @@ public class Notes extends JFrame {
 		this.setLayout(new BorderLayout());
 		
 		this.add(new NotesPanel(cartas));
-		
-		
 		this.pack();
 		this.setSize(Canvas.SIZE);
 		this.setVisible(true);

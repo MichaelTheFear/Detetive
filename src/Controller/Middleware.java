@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import Model.JogoFacade;
 import Util.*;
 import View.Canvas;
-import View.Dices;
-import View.Observer;
+import View.Observer; 
 
 public class Middleware {
 	static JogoFacade model = JogoFacade.getJogoFacade();
@@ -86,7 +85,7 @@ public class Middleware {
 					model.rolarDados();
 					view.setDados(model.getDados());
 				}else {
-					Dices dices = (Dices) o;
+					Integer dices[] = (Integer[]) o;
 					//model.setDados(dices);
 				}
 			}

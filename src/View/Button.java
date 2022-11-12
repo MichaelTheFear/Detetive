@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-public class Button extends JButton {
+class Button extends JButton {
 	Button(String name, ActionListener actionListner, int x, int y) {
 		this.setBounds(x, y, 200, 50);
 		this.addActionListener(actionListner);
@@ -18,7 +18,7 @@ public class Button extends JButton {
 		this.setText(name);
 	}
 
-	public Button(String name, int x, int y) {
+	Button(String name, int x, int y) {
 		this.setBounds(x, y, 200, 50);
 		this.setText(name);
 	}

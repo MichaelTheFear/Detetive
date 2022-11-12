@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class Cards extends JPanel {
+class Cards extends JPanel {
 
 	Image images[];
 
@@ -73,7 +73,7 @@ public class Cards extends JPanel {
 		int i = 0;
 		int j = 0;
 		for (Image image : images) {
-			g2D.drawImage(image, i, j, null); // desenha as cartas da pagina de selecao de personagem como requerido
+			g2D.drawImage(image, i, j,171,271, null); // desenha as cartas da pagina de selecao de personagem como requerido
 			i += 200;
 			if (i > 1000) {
 				i = 0;

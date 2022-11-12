@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Player {
+class Player {
 	Color c;
 	int x, y;
 	static HashMap<String, Player> players = new HashMap<String, Player>();
@@ -27,18 +27,18 @@ public class Player {
 		p.y = y;
 	}
 
-	public Player(Color c, int x, int y) {
+	Player(Color c, int x, int y) {
 		this.c = c;
 		this.x = x;
 		this.y = y;
 	}
 
-	public int getX() {
+	int getX() {
 
 		return x;
 	}
 
-	public int getY() {
+	int getY() {
 
 		return y;
 	}

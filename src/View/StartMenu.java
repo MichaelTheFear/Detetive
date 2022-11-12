@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class StartMenu extends JPanel {
+class StartMenu extends JPanel {
 
 	StartMenu() {
 		JLabel j = new JLabel("Detetive");

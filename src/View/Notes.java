@@ -13,7 +13,7 @@ import Util.Armas;
 import Util.Comodos;
 import Util.Personagem;
 
-public class Notes extends JFrame {
+class Notes extends JFrame {
 
 	public Notes(ArrayList<String> cartas) {
 		this.setLayout(new BorderLayout());
@@ -60,16 +60,6 @@ public class Notes extends JFrame {
 		}
 		
 		
-		private class CheckBox extends JCheckBox{
-			
-			CheckBox(String name,int where,boolean marked){
-				this.setBounds(0,where,150,25);
-				this.setText(name);
-				this.setSelected(marked);
-				this.setEnabled(false);
-				this.setVisible(true);
-			}
-		}
 	}
 	
 }

@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 
 import Util.Events;
 
-public class Board extends JPanel implements MouseListener {
+class Board extends JPanel implements MouseListener {
 
 	Image image;
 	int side = 24;
@@ -58,7 +58,7 @@ public class Board extends JPanel implements MouseListener {
 		}
 	}
 
-	public void movePlayerTo(String player, int x, int y) { // move player e re-printa
+	void movePlayerTo(String player, int x, int y) { // move player e re-printa
 		Player.setPlayerTo(player, x, y);
 		repaint();
 	}

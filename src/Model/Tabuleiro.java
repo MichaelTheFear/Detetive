@@ -13,13 +13,11 @@ class Tabuleiro {
 		this.posicoes = posicoes;
 	}
 
-	void initCaminhos(Coordenadas[][][] posicoesProx) {
-		for (int i = 0; i < numPorLinha; i++) {
-			for (int j = 0; j < numPorLinha; j++) {
-				posicoes[i][j].setPosicoesProximas(posicoesProx[i][j]);
-			}
-		}
-	}
+	/*
+	 * void initCaminhos(Coordenadas[][][] posicoesProx) { for (int i = 0; i <
+	 * numPorLinha; i++) { for (int j = 0; j < numPorLinha; j++) {
+	 * posicoes[i][j].setPosicoesProximas(posicoesProx[i][j]); } } }
+	 */
 
 	Posicao[][] getPosicoes() {
 		return posicoes;
@@ -29,14 +27,14 @@ class Tabuleiro {
 		posicoes = p;
 	}
 
-	private Posicao getPosicaoAt(int x, int y) {
-		return posicoes[x][y];
+	Posicao getPosicaoAt(int linha, int coluna) {
+		return posicoes[linha][coluna];
 	}
 
 	void houseKeepingTabuleiro() {
 		for (Posicao arrayPos[] : posicoes) {
 			for (Posicao pos : arrayPos) {
-				pos.getCoordenadas().setPassouAqui(false);
+				pos.setPassouAqui(false);
 			}
 		}
 	}

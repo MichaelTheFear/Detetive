@@ -94,7 +94,7 @@ public class SideBar extends JPanel {
 	}
 
 	void setDados(int numJogadasSobrando) {
-		
+		this.numJogadasSobrando = numJogadasSobrando;
 	}
 
 	void setNumJogadasSobrando(int i) {
@@ -106,24 +106,23 @@ public class SideBar extends JPanel {
 	}
 
 	void setActionPalpite(ActionListener callback) { // para o controller
-		prox.addActionListener(callback);
+		palpite.addActionListener(callback);
 	}
 
 	void setActionMostrarCartas(ActionListener callback) { // para o controller
-		prox.addActionListener(callback);
+		mostraCartas.addActionListener(callback);
 	}
 
 	void setActionNotas(ActionListener callback) { // para o controller
-		prox.addActionListener(callback);
+		notas.addActionListener(callback);
 	}
 
 	void setActionAcusar(ActionListener callback) { // para o controller
-		prox.addActionListener(callback);
+		acusar.addActionListener(callback);
 	}
 
 	void setActionRolarDados(ActionListener callback) { // para o controller
-		prox.addActionListener(callback);
+		rolarDados.addActionListener(callback);
 	}
-
 
 }

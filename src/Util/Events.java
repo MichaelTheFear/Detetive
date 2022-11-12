@@ -4,5 +4,7 @@ public enum Events {
 	boardClick,
 	dice,
 	showCards,
-	showNotes
+	showNotes,
+	guess,
+	accuse
 }

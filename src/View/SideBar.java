@@ -47,7 +47,6 @@ public class SideBar extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Observer.getObserver().callEvent(Events.showCards, jogador);
-
 			}
 
 		}, where, ratio));
@@ -63,12 +62,24 @@ public class SideBar extends JPanel {
 		txtVezJogador = new Text(" - ", where + 80, ratio * 5);
 		this.add(txtVezJogador);
 		this.add(rolarDados = new Button("Rolar dados", where, ratio * 6));
-		this.add(usarDados = new Button("Usar esses dados", where, ratio * 7));
+		this.add(usarDados = new Button("Usar esses dados", new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Integer[] dices = new Integer[2];
+				dices[0] = Integer.valueOf(dice1);
+				dices[1] = Integer.valueOf(dice2);
+				Observer.getObserver().callEvent(Events.dice, dices);
+				
+			}
+			
+		},where, ratio * 7));
 		this.add(new Text("Dado1     Dado2", where, ratio * 8));
 		jogadas = new Text("Jogadas Sobrando: ", 200, where, ratio * 10);
 		this.add(jogadas);
 		this.add(box2);
 		this.add(box1);
+		this.setBackground(Color.GRAY);
 		this.setLayout(new BorderLayout());
 		this.setBounds(where, where, 200, 700);
 	}
@@ -113,10 +124,5 @@ public class SideBar extends JPanel {
 	void setActionRolarDados(ActionListener callback) { // para o controller
 		rolarDados.addActionListener(callback);
 	}
-
-	void setActionUsarDados(ActionListener callback) { // para o controller
-		usarDados.addActionListener(callback);
-	}
-
 
 }

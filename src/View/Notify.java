@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import Util.Events;
 
-public class Notify {
+class Notify {
 	private HashMap<Events,ArrayList<ObserverCallback>> observer;
 	
 	public Notify () {

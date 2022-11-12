@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Game extends JFrame {
+class Game extends JFrame {
 	Board board = new Board();
 	String playerName = "-";
 	SideBar sideBar = new SideBar(board);
@@ -58,10 +58,6 @@ public class Game extends JFrame {
 		sideBar.setActionRolarDados(callback);
 	}
 
-	void setActionUsarDados(ActionListener callback) { // para o controller
-		sideBar.setActionUsarDados(callback);
-	}
-	
 	void setDices(int num) {
 		sideBar.setDados(num);
 	}

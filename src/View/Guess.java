@@ -4,6 +4,10 @@ import javax.swing.JFrame;
 
 class Guess extends JFrame{
 	Guess(){
+		for() {
+			
+		}
+		
 		this.pack();
 		this.setSize(Canvas.SIZE);
 		this.setVisible(true);

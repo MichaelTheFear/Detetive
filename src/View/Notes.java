@@ -60,16 +60,6 @@ class Notes extends JFrame {
 		}
 		
 		
-		private class CheckBox extends JCheckBox{
-			
-			CheckBox(String name,int where,boolean marked){
-				this.setBounds(0,where,150,25);
-				this.setText(name);
-				this.setSelected(marked);
-				this.setEnabled(false);
-				this.setVisible(true);
-			}
-		}
 	}
 	
 }

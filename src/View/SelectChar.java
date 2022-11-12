@@ -35,18 +35,24 @@ class SelectChar extends JFrame {
 		this.setBounds(0, 0, 1200, 700);
 		this.add(b);
 		for (Personagem p : Personagem.values()) {
-			this.add(new CheckBox(p, i));
+			CheckBox check = new CheckBox(p, i);
+			check.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (check.isSelected()) {
+						sus.add(p);
+					} else {
+						sus.remove(p);
+					}
+					
+				}
+				
+			});
+			this.add(check);
 			i += 100;
 		}
-		this.add(new Cards("Suspeitos", toEnumsStrings()));
-		this.pack();
-		this.setSize(Canvas.SIZE);
-		this.setVisible(true);
-		this.setLocationRelativeTo(null);
-		this.setLayout(null);
-	}
-
-	private class CheckBox extends JCheckBox {
+		/*
+		 * class CheckBox extends JCheckBox {
 		CheckBox(Personagem p, int n) {
 			this.setText(p.name());
 			this.setBounds(n, 600, 100, 50);
@@ -66,6 +72,16 @@ class SelectChar extends JFrame {
 		}
 
 	}
+		 * */
+		this.add(new Cards("Suspeitos", toEnumsStrings()));
+		this.pack();
+		this.setSize(Canvas.SIZE);
+		this.setVisible(true);
+		this.setLocationRelativeTo(null);
+		this.setLayout(null);
+	}
+
+	
 	
 	static ArrayList<Personagem> getSus(){
 		return sus;

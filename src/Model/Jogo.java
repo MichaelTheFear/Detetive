@@ -29,9 +29,103 @@ class Jogo {
 	Random gerador = new Random();
 
 	Jogo() {
-
+		setupTabuleiro();
 	}
 
+	void setupTabuleiro() {
+		Posicao[][] posicoesTabuleiro = new Posicao[28][28]; // Tamanho do tabuleiro 28 x 28 quadrados
+		
+		System.out.println("Inicializando Posicoes Cozinha");
+		for(int i = 2; i < 8; i++) {
+			for(int j = 2; j < 8; j++) {
+				posicoesTabuleiro[i][j] = new Posicao(i, j);
+			}
+		}
+		for(int j = 3; j < 8; j++) {
+			posicoesTabuleiro[8][j] = new Posicao(8, j);
+		}
+		
+		System.out.println("Inicializando Posicoes Sala de Jantar");
+		for(int i = 12; i < 18; i++) {
+			for(int j = 2; j < 10; j++) {
+				posicoesTabuleiro[i][j] = new Posicao(i, j);
+			}
+		}
+		for(int j = 3; j < 8; j++) {
+			posicoesTabuleiro[11][j] = new Posicao(11, j);
+		}
+		
+		System.out.println("Inicializando Posicoes Sala de Estar");
+		for(int i = 21; i < 26; i++) {
+			for(int j = 2; j < 9; j++) {
+				posicoesTabuleiro[i][j] = new Posicao(i, j);
+			}
+		}
+		for(int j = 2; j < 8; j++) {
+			posicoesTabuleiro[26][j] = new Posicao(26, j);
+		}
+		
+		System.out.println("Inicializando Posicoes Entrada");
+		for(int i = 20; i < 26; i++) {
+			for(int j = 11; j < 17; j++) {
+				posicoesTabuleiro[i][j] = new Posicao(i, j);
+			}
+		}
+		for(int j = 12; j < 16; j++) {
+			posicoesTabuleiro[26][j] = new Posicao(26, j);
+		}
+		
+		System.out.println("Inicializando Posicoes Escritorio");
+		for(int i = 23; i < 26; i++) {
+			for(int j = 19; j < 26; j++) {
+				posicoesTabuleiro[i][j] = new Posicao(i, j);
+			}
+		}
+		for(int j = 20; j < 26; j++) {
+			posicoesTabuleiro[26][j] = new Posicao(26, j);
+		}
+		
+		System.out.println("Inicializando Posicoes Sala de Musica");
+		for(int i = 4; i < 10; i++) {
+			for(int j = 10; j < 18; j++) {
+				posicoesTabuleiro[i][j] = new Posicao(i, j);
+			}
+		}
+		for(int j = 12; j < 16; j++) {
+			posicoesTabuleiro[3][j] = new Posicao(3, j);
+		}
+		
+		System.out.println("Inicializando Posicoes Jardim de Inverno");
+		for(int i = 3; i < 7; i++) {
+			for(int j = 20; j < 26; j++) {
+				posicoesTabuleiro[i][j] = new Posicao(i, j);
+			}
+		}
+		for(int j = 21; j < 25; j++) {
+			posicoesTabuleiro[7][j] = new Posicao(7, j);
+		}
+		
+		System.out.println("Inicializando Posicoes Salao de Jogos");
+		for(int i = 10; i < 15; i++) {
+			for(int j = 20; j < 26; j++) {
+				posicoesTabuleiro[i][j] = new Posicao(i, j);
+			}
+		}
+		
+		System.out.println("Inicializando Posicoes Biblioteca");
+		for(int i = 16; i < 21; i++) {
+			for(int j = 20; j < 25; j++) {
+				posicoesTabuleiro[i][j] = new Posicao(i, j);
+			}
+		}
+		for(int i = 17; i < 20; i++) {
+			posicoesTabuleiro[i][19] = new Posicao(i, 19);
+			posicoesTabuleiro[i][25] = new Posicao(i, 25);
+		}
+		
+		this.t = new Tabuleiro(posicoesTabuleiro);
+	}
+	
 	void setupJogadores(ArrayList<Personagem> players) {
 
 		for (Personagem susPersonagem : Personagem.values()) {

@@ -17,11 +17,17 @@ class CheckBox extends JCheckBox {
 		this.setVisible(true);
 	}
 
-	CheckBox(Personagem p, int n) {
+	<T extends Enum<T>> CheckBox(T p,int n) {
 		this.setText(p.name());
 		this.setBounds(n, 600, 100, 50);
 		this.setFocusable(false);
 
+	}
+	
+	<T extends Enum<T>> CheckBox(T p,int x,int y) {
+		this.setText(p.name());
+		this.setBounds(x, y, 100, 50);
+		this.setFocusable(false);
 	}
 	
 	

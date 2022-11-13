@@ -2,13 +2,15 @@ package Model;
 
 class Posicao {
 
-	private Coordenadas[] posicoesProximas = new Coordenadas[4];
-	private Coordenadas coordenadas;
-	private int passouAqui = 0;
+	private Posicao[] posicoesProximas = new Posicao[53];
+	private int linha, coluna;
+	private boolean passouAqui = false;
+	private boolean jogadorAqui = false;
 	private int mudadoNoTurno = -1;
 
-	Posicao(int x, int y) {
-		coordenadas = new Coordenadas(x, y);
+	Posicao(int linha, int coluna) {
+		this.linha = linha;
+		this.coluna = coluna;
 	}
 
 	int getMudadoNoTurno() {
@@ -19,40 +21,51 @@ class Posicao {
 		mudadoNoTurno = t;
 	}
 
-	void setPosicoesProximas(Coordenadas[] posicoesAdjacentes) {
+	void setPosicoesProximas(Posicao[] posicoesAdjacentes) {
 		this.posicoesProximas = posicoesAdjacentes;
 	}
 
-	Coordenadas[] getPosicoesProximas() {
+	Posicao[] getPosicoesProximas() {
 		return this.posicoesProximas;
 	}
 
-	Coordenadas getCoordenadas() {
-		return this.coordenadas;
+	int getLinha() {
+		return this.linha;
+	}
+	
+	int getColuna() {
+		return this.coluna;
 	}
 
-	int getPassouAqui() {
+	boolean getPassouAqui() {
 		return passouAqui;
 	}
 
-	void setPassouAqui(int p) {
-		passouAqui = p;
+	void setPassouAqui(boolean passouAqui) {
+		this.passouAqui = passouAqui;
 	}
-
-	void addUmPassouAqui() {
-		passouAqui++;
+	
+	boolean getJogadorAqui() {
+		return this.jogadorAqui;
+	}
+	
+	void setJogadorAqui(boolean jogadorAqui) {
+		this.jogadorAqui = jogadorAqui;
 	}
 
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}
+		if (obj == null) {
+			return false;
+		}
 		Posicao other = (Posicao) obj;
-		return coordenadas.equals(other.coordenadas);
+		return (linha == other.getLinha() && coluna == other.getColuna());
 	}
 
 	public String toString() {
-		return "(" + coordenadas.getX() + "," + coordenadas.getY() + ")";
+		return "(" + coluna + "," + linha + ")";
 	}
 
 }

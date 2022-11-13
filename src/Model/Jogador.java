@@ -6,8 +6,7 @@ import java.util.List;
 import Util.Personagem;
 
 class Jogador {
-	private List<Carta> cartasVistas = new ArrayList<Carta>(); // mudar para ArrayList<Carta> se ele deixar usar as data
-																// structure
+	private List<Carta> cartasVistas = new ArrayList<Carta>();
 	private Personagem personagem;
 	private boolean podeDarPalpite;
 	private boolean errouAcusacao;
@@ -16,77 +15,37 @@ class Jogador {
 	private boolean jogando;
 	private boolean npc;
 
-	Jogador(Personagem personagem, boolean ehNpc) {
+	Jogador(Personagem personagem, boolean ehNpc, Tabuleiro t) {
 		this.personagem = personagem;
 		switch (this.personagem) {
 		case Scarlet:
-			this.pos = new Posicao(26, 9);
+			this.pos = t.getPosicaoAt(26, 9);
 			break;
 
 		case Mustard:
-			this.pos = new Posicao(19, 2);
+			this.pos = t.getPosicaoAt(19, 2);
 			break;
 
 		case White:
-			this.pos = new Posicao(2, 11);
+			this.pos = t.getPosicaoAt(2, 11);
 			break;
 
 		case Green:
-			this.pos = new Posicao(2, 16);
+			this.pos = t.getPosicaoAt(2, 16);
 			break;
 
 		case Peacock:
-			this.pos = new Posicao(8, 25);
+			this.pos = t.getPosicaoAt(8, 25);
 			break;
 
 		case Plum:
-			this.pos = new Posicao(21, 25);
+			this.pos = t.getPosicaoAt(21, 25);
 			break;
 
 		}
 		this.jogando = false;
 		this.npc = ehNpc;
 	}
-
-	/*
-	 * Jogador(Personagem personagem, Carta cartasIniciais[]) { this.personagem =
-	 * personagem; switch (this.personagem) { case Scarlet: this.pos = new
-	 * Posicao(26, 9); break;
-	 * 
-	 * case Mustard: this.pos = new Posicao(19, 2); break;
-	 * 
-	 * case White: this.pos = new Posicao(2, 11); break;
-	 * 
-	 * case Green: this.pos = new Posicao(2, 16); break;
-	 * 
-	 * case Peacock: this.pos = new Posicao(8, 25); break;
-	 * 
-	 * case Plum: this.pos = new Posicao(21, 25); break;
-	 * 
-	 * } for (int i = 0; i < cartasIniciais.length; i++) {
-	 * this.cartasIniciais.add(cartasIniciais[i]);
-	 * this.cartasVistas.add(cartasIniciais[i]); } this.podeDarPalpite = true;
-	 * this.errouAcusacao = false; this.jogando = false; }
-	 * 
-	 * 
-	 * Jogador(Personagem personagem, ArrayList<Carta> cartasIniciais) {
-	 * this.personagem = personagem; switch (this.personagem) { case Scarlet:
-	 * this.pos = new Posicao(26, 9); break;
-	 * 
-	 * case Mustard: this.pos = new Posicao(19, 2); break;
-	 * 
-	 * case White: this.pos = new Posicao(2, 11); break;
-	 * 
-	 * case Green: this.pos = new Posicao(2, 16); break;
-	 * 
-	 * case Peacock: this.pos = new Posicao(8, 25); break;
-	 * 
-	 * case Plum: this.pos = new Posicao(21, 25); break;
-	 * 
-	 * } this.cartasIniciais = cartasIniciais;
-	 * this.cartasVistas.addAll(cartasIniciais); this.podeDarPalpite = true;
-	 * this.errouAcusacao = false; this.jogando = false; }
-	 */
 
 	boolean ehNpc() {
 		return npc;

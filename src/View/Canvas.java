@@ -108,5 +108,13 @@ public class Canvas extends JFrame {
 	public void setDados(int[] dados) {
 		board.setDices(dados[0] + dados[1]);
 	}
+	
+	public void showGuess() {
+		new Guess();
+	}
+	
+	public void showAccuse() {
+		
+	}
 
 }

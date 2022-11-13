@@ -55,11 +55,7 @@ public class Helpers {
 		return posicoesAdjacentes;
 	}
 
-	static Jogador jogadorGenericoHelper() {
-		Posicao p = new Porta(10, 10);
-		Jogador j = new Jogador(Personagem.Green, false);
-		return j;
-	}
+
 
 	protected static void posicaoHelper(int x, int y, String msg, Jogador j) {
 		Posicao p = j.getPos();
@@ -67,10 +63,5 @@ public class Helpers {
 		assertTrue(msg, esperado.equals(p));
 	}
 
-	protected static Tabuleiro initCaminhoHelpers() {
-		Tabuleiro t = new Tabuleiro(posicoesArrayHelper());
-		t.initCaminhos(posicoesArrayProxHelper());
-		return t;
-	}
 
 }

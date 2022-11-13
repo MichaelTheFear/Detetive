@@ -92,19 +92,6 @@ public class Middleware {
 			
 		});
 		
-		
-		
-		/*
-		view.onRolarDados(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				model.rolarDados();
-				view.setDados(model.getDados());
-			}
-
-		});
-		*/
 	}
 
 	public static void main(String[] agrs) {

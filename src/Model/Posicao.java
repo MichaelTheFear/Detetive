@@ -1,8 +1,10 @@
 package Model;
 
+import java.util.ArrayList;
+
 class Posicao {
 
-	private Posicao[] posicoesProximas = new Posicao[53];
+	private ArrayList<Posicao> posicoesProximas = new ArrayList<Posicao>();
 	private int linha, coluna;
 	private boolean passouAqui = false;
 	private boolean jogadorAqui = false;
@@ -21,11 +23,11 @@ class Posicao {
 		mudadoNoTurno = t;
 	}
 
-	void setPosicoesProximas(Posicao[] posicoesAdjacentes) {
+	void setPosicoesProximas(ArrayList<Posicao> posicoesAdjacentes) {
 		this.posicoesProximas = posicoesAdjacentes;
 	}
 
-	Posicao[] getPosicoesProximas() {
+	ArrayList<Posicao> getPosicoesProximas() {
 		return this.posicoesProximas;
 	}
 

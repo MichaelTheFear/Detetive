@@ -154,7 +154,7 @@ class Jogo {
 		System.out.println("Inicializando Posicoes Corredor");
 		posicoesTabuleiro[3][9] = new Posicao(3, 9);
 		posCorredor.add(posicoesTabuleiro[3][9]);
-		posicoesTabuleiro[3][9] = new Posicao(3, 10);
+		posicoesTabuleiro[3][10] = new Posicao(3, 10);
 		posCorredor.add(posicoesTabuleiro[3][10]);
 		posicoesTabuleiro[3][11] = new Posicao(3, 11);
 		posCorredor.add(posicoesTabuleiro[3][11]);
@@ -283,6 +283,7 @@ class Jogo {
 		//Plum
 		posicoesTabuleiro[21][25] = new Posicao(21, 25);
 		posCorredor.add(posicoesTabuleiro[21][25]);
+		
 
 		setupPosicoesProximas(posicoesTabuleiro);
 		this.t = new Tabuleiro(posicoesTabuleiro);
@@ -290,34 +291,36 @@ class Jogo {
 
 	private void setupPosicoesProximas(Posicao[][] posicoesTabuleiro) {
 		System.out.println("Inicializando Posicoes Proximas...");
-		posicoesTabuleiro[9][6].setPosicoesProximas(posCozinha.toArray(new Posicao[posCozinha.size()]));
+		posicoesTabuleiro[9][6].setPosicoesProximas(posCozinha);
 		System.out.println("Porta Cozinha: OK");
 
-		posicoesTabuleiro[7][9].setPosicoesProximas(posSalaMusica.toArray(new Posicao[posSalaMusica.size()]));
-		posicoesTabuleiro[7][18].setPosicoesProximas(posSalaMusica.toArray(new Posicao[posSalaMusica.size()]));
-		posicoesTabuleiro[10][11].setPosicoesProximas(posSalaMusica.toArray(new Posicao[posSalaMusica.size()]));
-		posicoesTabuleiro[10][16].setPosicoesProximas(posSalaMusica.toArray(new Posicao[posSalaMusica.size()]));
+		posicoesTabuleiro[7][9].setPosicoesProximas(posSalaMusica);
+		posicoesTabuleiro[7][18].setPosicoesProximas(posSalaMusica);
+		posicoesTabuleiro[10][11].setPosicoesProximas(posSalaMusica);
+		posicoesTabuleiro[10][16].setPosicoesProximas(posSalaMusica);
 
-		posicoesTabuleiro[7][20].setPosicoesProximas(posJardimInverno.toArray(new Posicao[posJardimInverno.size()]));
+		posicoesTabuleiro[7][20].setPosicoesProximas(posJardimInverno);
 
-		posicoesTabuleiro[14][10].setPosicoesProximas(posSalaJantar.toArray(new Posicao[posSalaJantar.size()]));
-		posicoesTabuleiro[18][8].setPosicoesProximas(posSalaJantar.toArray(new Posicao[posSalaJantar.size()]));
+		posicoesTabuleiro[14][10].setPosicoesProximas(posSalaJantar);
+		posicoesTabuleiro[18][8].setPosicoesProximas(posSalaJantar );
 
-		posicoesTabuleiro[11][19].setPosicoesProximas(posSalaoJogos.toArray(new Posicao[posSalaoJogos.size()]));
-		posicoesTabuleiro[15][24].setPosicoesProximas(posSalaoJogos.toArray(new Posicao[posSalaoJogos.size()]));
+		posicoesTabuleiro[11][19].setPosicoesProximas(posSalaoJogos);
+		posicoesTabuleiro[15][24].setPosicoesProximas(posSalaoJogos);
 
-		posicoesTabuleiro[18][18].setPosicoesProximas(posBiblioteca.toArray(new Posicao[posBiblioteca.size()]));
-		posicoesTabuleiro[15][22].setPosicoesProximas(posBiblioteca.toArray(new Posicao[posBiblioteca.size()]));
+		posicoesTabuleiro[18][18].setPosicoesProximas(posBiblioteca);
+		posicoesTabuleiro[15][22].setPosicoesProximas(posBiblioteca);
 
-		posicoesTabuleiro[20][8].setPosicoesProximas(posSalaEstar.toArray(new Posicao[posSalaEstar.size()]));
+		posicoesTabuleiro[20][8].setPosicoesProximas(posSalaEstar);
 
-		posicoesTabuleiro[19][13].setPosicoesProximas(posEntrada.toArray(new Posicao[posEntrada.size()]));
-		posicoesTabuleiro[19][14].setPosicoesProximas(posEntrada.toArray(new Posicao[posEntrada.size()]));
-		posicoesTabuleiro[22][17].setPosicoesProximas(posEntrada.toArray(new Posicao[posEntrada.size()]));
+		posicoesTabuleiro[19][13].setPosicoesProximas(posEntrada);
+		posicoesTabuleiro[19][14].setPosicoesProximas(posEntrada);
+		posicoesTabuleiro[22][17].setPosicoesProximas(posEntrada);
 
-		posicoesTabuleiro[22][19].setPosicoesProximas(posEscritorio.toArray(new Posicao[posEscritorio.size()]));
+		posicoesTabuleiro[22][19].setPosicoesProximas(posEscritorio);
 
-		for (Posicao p : posCorredor) {
+		for (int i = 0 ;i<posCorredor.size();i++) {
+			Posicao p = posCorredor.get(i);
+			
 			int linha = p.getLinha();
 			int coluna = p.getColuna();
 			ArrayList<Posicao> posProx = new ArrayList<Posicao>();
@@ -335,7 +338,7 @@ class Jogo {
 				if (posCorredor.contains(posicoesTabuleiro[linha][coluna + 1])) {
 					posProx.add(posicoesTabuleiro[linha][coluna + 1]);
 				}
-				p.setPosicoesProximas((Posicao[]) posProx.toArray());
+				p.setPosicoesProximas(posProx);
 			}
 		}
 	}

@@ -5,6 +5,6 @@ public enum Events {
 	dice,
 	showCards,
 	showNotes,
-	guess,
-	accuse
+	confirmGuess,
+	confirmAccuse,
 }

@@ -47,4 +47,9 @@ public class JogoFacade {
 	public Personagem getJogadorVez() {
 		return jogo.jogadores.get(jogo.vezDe).getPersonagem();
 	}
+
+	public void setDados(Integer[] dices) {
+		jogo.setDados(new int[] {dices[0],dices[1]});
+		
+	}
 }

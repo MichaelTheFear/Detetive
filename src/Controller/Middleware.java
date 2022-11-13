@@ -86,12 +86,21 @@ public class Middleware {
 					view.setDados(model.getDados());
 				}else {
 					Integer dices[] = (Integer[]) o;
-					//model.setDados(dices);
+					model.setDados(dices);
 				}
 			}
 			
+		});	
+	}
+	
+	private void initPalpite() {
+		Observer.getObserver().susbcribe(Events.confirmGuess, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				String[] cartasPalpite = (String[]) o;
+				//model.palpite(cartasPalpite);
+			}
 		});
-		
 	}
 
 	public static void main(String[] agrs) {

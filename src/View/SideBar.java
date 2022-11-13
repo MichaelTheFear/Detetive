@@ -57,7 +57,13 @@ public class SideBar extends JPanel {
 			}
 
 		}, where, ratio * 2));
-		this.add(palpite = new Button("Palpite", where, ratio * 3));
+		this.add(palpite = new Button("Palpite",new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Guess();
+			}
+			
+		} ,where, ratio * 3));
 		this.add(acusar = new Button("Acusar", where, ratio * 4));
 		txtVezJogador = new Text(" - ", where + 80, ratio * 5);
 		this.add(txtVezJogador);

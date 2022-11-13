@@ -113,8 +113,8 @@ public class Canvas extends JFrame {
 		new Guess();
 	}
 	
-	public void showAccuse() {
-		
+	public void showAccuse(ArrayList<String> cartas) {
+		new Accuse(cartas);
 	}
 
 }

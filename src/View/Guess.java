@@ -7,13 +7,14 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import Util.Armas;
 import Util.Comodos;
+import Util.Events;
 import Util.Personagem;
 
 class Guess extends JFrame{
 	
-	ArrayList<CheckBox> sus;
-	ArrayList<CheckBox> weapons;
-	ArrayList<CheckBox> places;
+	ArrayList<CheckBox> sus = new ArrayList<>();
+	ArrayList<CheckBox> weapons = new ArrayList<>();
+	ArrayList<CheckBox> places = new ArrayList<>();
 	
 	String per = null;
 	String arma = null;
@@ -21,8 +22,15 @@ class Guess extends JFrame{
 	
 	int x = 50;
 	
+	private int indexOf(String s,ArrayList<CheckBox> ar) {
+		for(int i = 0;i<ar.size();i++) {
+			if(ar.get(i).getText()==s) 
+				return i;
+		}
+		return -1;
+	}
+	
 	Guess(){
-		this.setLayout(new BorderLayout());
 		
 		Personagem personagens[] = Personagem.values();		
 		Armas armas[] = Armas.values();		
@@ -33,9 +41,8 @@ class Guess extends JFrame{
 			b.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					String current = b.getName();
 					if(per!=null) {
-						sus.get(sus.indexOf(per)).setSelected(false);
+						sus.get(indexOf(per,sus)).setSelected(false);
 					}
 					per = b.getText();
 				}
@@ -45,13 +52,12 @@ class Guess extends JFrame{
 		}
 		
 		for(int i = 0 ; i<armas.length;i++) {
-			CheckBox b = new CheckBox(armas[i],0,i*x);
+			CheckBox b = new CheckBox(armas[i],300,i*x);
 			b.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					String current = b.getName();
 					if(arma!=null) {
-						weapons.get(weapons.indexOf(arma)).setSelected(false);
+						weapons.get(indexOf(arma,weapons)).setSelected(false);
 					}
 					arma = b.getText();
 				}
@@ -61,13 +67,12 @@ class Guess extends JFrame{
 		}
 		
 		for(int i = 0 ; i<comodos.length;i++) {
-			CheckBox b = new CheckBox(comodos[i],0,i*x);
+			CheckBox b = new CheckBox(comodos[i],600,i*x);
 			b.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					String current = b.getName();
 					if(comodo!=null) {
-						weapons.get(weapons.indexOf(comodo)).setSelected(false);
+						places.get(indexOf(comodo,places)).setSelected(false);
 					}
 					comodo = b.getText();
 				}
@@ -75,7 +80,18 @@ class Guess extends JFrame{
 			places.add(b);
 			this.add(b);
 		}
+		this.add(new Button("Confirmar", new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(per!=null && comodos!=null && arma!=null) 
+					Observer.getObserver().callEvent(Events.confirmGuess, new String[] {
+							per,arma,comodo
+					});
+			}
+		},600,1000));
 		
+		
+		this.setLayout(new BorderLayout());
 		this.pack();
 		this.setSize(Canvas.SIZE);
 		this.setVisible(true);

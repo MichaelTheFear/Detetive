@@ -116,5 +116,13 @@ public class Canvas extends JFrame {
 	public void showAccuse(ArrayList<String> cartas) {
 		new Accuse(cartas);
 	}
+	
+	public void setJogadasSobrando(int i) {
+		board.setJogdadasSobrando(i);
+	}
+	
+	public int getJogadasSobrando() {
+		return board.getJogadasSobrando();
+	}
 
 }

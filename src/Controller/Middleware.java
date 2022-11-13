@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import Model.ExceptionLugarNaoPermitido;
 import Model.JogoFacade;
 import Util.*;
 import View.Canvas;
@@ -40,7 +41,12 @@ public class Middleware {
 			@Override
 			public void onCall(Object o) {
 				Integer[] position = (Integer[]) o;
-				//view.movePlayerTo ...
+				int[] posicoes = new int[] {position[0],position[1]};
+				try {
+					//model.mover(posicoes);
+				}catch(ExceptionLugarNaoPermitido e) {
+					//view.showError("Não é permitido mover pra ca");
+				}
 			}
 		});
 	}
@@ -99,6 +105,7 @@ public class Middleware {
 			public void onCall(Object o) {
 				String[] cartasPalpite = (String[]) o;
 				//model.palpite(cartasPalpite);
+				//mover o player 
 			}
 		});
 	}

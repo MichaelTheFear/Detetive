@@ -106,6 +106,10 @@ public class SideBar extends JPanel {
 	void setNumJogadasSobrando(int i) {
 		numJogadasSobrando = i;
 	}
+	
+	int getNumJogadasSobrando() {
+		return this.numJogadasSobrando; 
+	}
 
 	void setActionProximo(ActionListener callback) { // para o controller
 		prox.addActionListener(callback);
@@ -130,5 +134,7 @@ public class SideBar extends JPanel {
 	void setActionRolarDados(ActionListener callback) { // para o controller
 		rolarDados.addActionListener(callback);
 	}
+	
+	
 
 }

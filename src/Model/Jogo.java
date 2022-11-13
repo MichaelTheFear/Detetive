@@ -470,6 +470,10 @@ class Jogo {
 			}
 		}
 	}
+	
+	void mover(int[] posicao,String playerName) throws ExceptionLugarNaoPermitido {
+		//implementar
+	}
 
 	boolean acusar(Carta acusacao[]) {
 		// talvez mudar td para treeSet

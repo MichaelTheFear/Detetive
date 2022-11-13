@@ -61,5 +61,13 @@ class Game extends JFrame {
 	void setDices(int num) {
 		sideBar.setDados(num);
 	}
+	
+	int getJogadasSobrando() {
+		return sideBar.getNumJogadasSobrando();
+	}
+	
+	void setJogdadasSobrando(int jogadasSobrando) {
+		sideBar.setNumJogadasSobrando(jogadasSobrando);
+	}
 
 }

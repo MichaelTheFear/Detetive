@@ -42,11 +42,20 @@ public class Middleware {
 			public void onCall(Object o) {
 				Integer[] position = (Integer[]) o;
 				int[] posicoes = new int[] {position[0],position[1]};
+				int jogadasSobrando;
+				/*
+					jogadasSobrando = view.getJogadasSobrando();
+					if(jogadasSobrando!= 0){
 				try {
-					//model.mover(posicoes);
-				}catch(ExceptionLugarNaoPermitido e) {
-					//view.showError("Não é permitido mover pra ca");
-				}
+						model.mover(posicoes);
+						view.setJogadasSobrando(jogadasSobrando-1);
+							}catch(ExceptionLugarNaoPermitido e) {
+								view.showError("Não é permitido mover pra ca");
+							}
+					}else{
+						view.showError("Não é permitido mover pra ca");
+					}
+				*/
 			}
 		});
 	}

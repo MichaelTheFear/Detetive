@@ -75,6 +75,10 @@ class Jogador {
 		return cartasIniciais;
 	}
 	
+	void setPos(Posicao pos) {
+		this.pos = pos;
+	}
+	
 	Posicao getPos() {
 		return pos;
 	}

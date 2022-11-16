@@ -85,6 +85,17 @@ public class Canvas extends JFrame {
 		board.setActionProximo(listener);
 	}
 
+	public void onPalpite(ActionListener listener) {
+		board.setActionPalpite(listener);
+	}
+
+	public void onAcusar(ActionListener listener) {
+		board.setActionAcusar(listener);
+	}
+
+	public void onPalpiteConfirmed(ActionListener listener) {
+
+	}
 
 	public void showCards(ArrayList<String> cards) {
 		new CardsInGame(cards);
@@ -114,12 +125,4 @@ public class Canvas extends JFrame {
 		return board.getJogadasSobrando();
 	}
 
-	public void showError(String txt) {
-		board.error(txt);
-	}
-	
-	public void showWarning(String txt) {
-		board.warning(txt);
-	}
-	
 }

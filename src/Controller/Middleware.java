@@ -8,19 +8,19 @@ import Model.ExceptionLugarNaoPermitido;
 import Model.JogoFacade;
 import Util.*;
 import View.Canvas;
-import View.Observer; 
+import View.Observer;
 
 public class Middleware {
 	static JogoFacade model = JogoFacade.getJogoFacade();
 	static Canvas view = Canvas.getCanvas();
-	static Observer obs = Observer.getObserver();
-	
+
 	Middleware() {
 		// Canvas canvas = new Canvas();
 		// JogoFacade model = new JogoFacade();
 		initBoard();
 		initRolarDados();
 		initProx();
+		initMovement();
 	}
 
 	private void initBoard() {
@@ -36,32 +36,36 @@ public class Middleware {
 
 		});
 	}
-	
+
 	private void initMovement() {
-		obs.susbcribe(Events.boardClick, new ObserverCallback() {
+		Observer.getObserver().susbcribe(Events.boardClick, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				Integer[] position = (Integer[]) o;
-				int[] posicoes = new int[] {position[0],position[1]};
+				int[] posicoes = new int[] { position[1], position[0] }; //position[1] = linha e position[0] = coluna
 				int jogadasSobrando;
-				/*
-					jogadasSobrando = view.getJogadasSobrando();
-					if(jogadasSobrando!= 0){
-				try {
+
+				jogadasSobrando = view.getJogadasSobrando();
+				System.out.println(jogadasSobrando);
+				if (jogadasSobrando != 0) {
+					try {
 						model.mover(posicoes);
-						view.setJogadasSobrando(jogadasSobrando-1);
-							}catch(ExceptionLugarNaoPermitido e) {
-								view.showError("Não é permitido mover pra ca");
-							}
-					}else{
-						view.showError("Não é permitido mover pra ca");
+						view.movePlayerTo(model.getNomeJogadorVez(), model.getLinhaJogadorVez(), model.getColunaJogadorVez());
+						view.setJogadasSobrando(jogadasSobrando - 1);
 					}
-				*/
+					catch (ExceptionLugarNaoPermitido e) {
+						//view.showError("Não é permitido mover pra ca");
+						System.out.println("Lugar nao permitido");
+					}
+				}
+				else {
+					//view.showError("Não é permitido mover pra ca");
+				}
+
 			}
 		});
 	}
-	
-	
+
 	private void initProx() {
 		view.onProximoTurno(new ActionListener() {
 			@Override
@@ -72,45 +76,46 @@ public class Middleware {
 			}
 		});
 	}
-	
+
 	private void initNotes() {
-		obs.susbcribe(Events.showNotes, new ObserverCallback() {
+		Observer.getObserver().susbcribe(Events.showNotes, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				//view.showNotes(model.getCartasVistas);
 			}
-			
+
 		});
 	}
-	
+
 	private void initShowPlayersCards() {
-		obs.susbcribe(Events.showCards, new ObserverCallback() {
+		Observer.getObserver().susbcribe(Events.showCards, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				//view.showNotes(model.getCartasIniciais);
 			}
-			
+
 		});
 	}
 
 	private void initRolarDados() {
-		obs.susbcribe(Events.dice, new ObserverCallback() {
+		Observer.getObserver().susbcribe(Events.dice, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
-				if(o==null) {
+				if (o == null) {
 					model.rolarDados();
 					view.setDados(model.getDados());
-				}else {
+				}
+				else {
 					Integer dices[] = (Integer[]) o;
 					model.setDados(dices);
 				}
 			}
-			
-		});	
+
+		});
 	}
-	
+
 	private void initPalpite() {
-		obs.susbcribe(Events.confirmGuess, new ObserverCallback() {
+		Observer.getObserver().susbcribe(Events.confirmGuess, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				String[] cartasPalpite = (String[]) o;
@@ -119,25 +124,6 @@ public class Middleware {
 			}
 		});
 	}
-	
-	private void initAccuse() {
-		obs.susbcribe(Events.confirmAccuse, new ObserverCallback() {
-			@Override
-			public void onCall(Object o) {
-				//model.acusar(view.getLastAccuse());
-			}
-		});
-		
-		obs.susbcribe(Events.showAccuse, new ObserverCallback() {
-			@Override
-			public void onCall(Object o) {
-				//view.showAccuse(model.getCartasVistas());
-			}
-			
-		});
-	}
-	
-	
 
 	public static void main(String[] agrs) {
 		new Middleware();

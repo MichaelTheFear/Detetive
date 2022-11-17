@@ -7,5 +7,4 @@ public enum Events {
 	showNotes,
 	confirmGuess,
 	confirmAccuse,
-	showAccuse
 }

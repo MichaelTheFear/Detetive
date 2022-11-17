@@ -69,13 +69,5 @@ class Game extends JFrame {
 	void setJogdadasSobrando(int jogadasSobrando) {
 		sideBar.setNumJogadasSobrando(jogadasSobrando);
 	}
-	
-	void error(String e) {
-		sideBar.error(e);
-	}
-	
-	void warning(String e) {
-		sideBar.warning(e);
-	}
 
 }

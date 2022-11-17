@@ -13,12 +13,6 @@ class Tabuleiro {
 		this.posicoes = posicoes;
 	}
 
-	/*
-	 * void initCaminhos(Coordenadas[][][] posicoesProx) { for (int i = 0; i <
-	 * numPorLinha; i++) { for (int j = 0; j < numPorLinha; j++) {
-	 * posicoes[i][j].setPosicoesProximas(posicoesProx[i][j]); } } }
-	 */
-
 	Posicao[][] getPosicoes() {
 		return posicoes;
 	}

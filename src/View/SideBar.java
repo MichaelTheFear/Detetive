@@ -27,7 +27,6 @@ public class SideBar extends JPanel {
 	int numJogadasSobrando = 10;
 	Text txtVezJogador;
 	Text jogadas;
-	ErrorNotification error;
 
 	SideBar(Board b) {
 		String[] options = { "1", "2", "3", "4", "5", "6" };
@@ -76,7 +75,6 @@ public class SideBar extends JPanel {
 				Integer[] dices = new Integer[2];
 				dices[0] = Integer.valueOf(dice1);
 				dices[1] = Integer.valueOf(dice2);
-				setJogadas(dices[0]+dices[1]);
 				Observer.getObserver().callEvent(Events.dice, dices);
 				
 			}
@@ -84,7 +82,6 @@ public class SideBar extends JPanel {
 		},where, ratio * 7));
 		this.add(new Text("Dado1     Dado2", where, ratio * 8));
 		jogadas = new Text("Jogadas Sobrando: ", 200, where, ratio * 10);
-		this.add(error = new ErrorNotification());
 		this.add(jogadas);
 		this.add(box2);
 		this.add(box1);
@@ -101,14 +98,6 @@ public class SideBar extends JPanel {
 		numJogadasSobrando = numJogadas;
 		this.jogadas.setText("Jogadas Sobrando: "+numJogadasSobrando);
 	}
-	
-	void error(String e) {
-		this.error.error(e);
-	}
-	
-	void warning(String warning) {
-		error.warning(warning);
-	}
 
 	void setDados(int numJogadasSobrando) {
 		this.numJogadasSobrando = numJogadasSobrando;
@@ -116,7 +105,6 @@ public class SideBar extends JPanel {
 
 	void setNumJogadasSobrando(int i) {
 		numJogadasSobrando = i;
-		setJogadas(i);
 	}
 	
 	int getNumJogadasSobrando() {

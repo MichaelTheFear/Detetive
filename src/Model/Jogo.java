@@ -44,7 +44,7 @@ class Jogo {
 
 	void setupTabuleiro() {
 		Posicao[][] posicoesTabuleiro = new Posicao[28][28]; // Tamanho do tabuleiro 28 x 28 quadrados
-		
+
 		System.out.println("Inicializando Posicoes Cozinha");
 		for (int i = 2; i < 8; i++) {
 			for (int j = 2; j < 8; j++) {
@@ -283,7 +283,6 @@ class Jogo {
 		//Plum
 		posicoesTabuleiro[21][25] = new Posicao(21, 25);
 		posCorredor.add(posicoesTabuleiro[21][25]);
-		
 
 		setupPosicoesProximas(posicoesTabuleiro);
 		this.t = new Tabuleiro(posicoesTabuleiro);
@@ -302,7 +301,7 @@ class Jogo {
 		posicoesTabuleiro[7][20].setPosicoesProximas(posJardimInverno);
 
 		posicoesTabuleiro[14][10].setPosicoesProximas(posSalaJantar);
-		posicoesTabuleiro[18][8].setPosicoesProximas(posSalaJantar );
+		posicoesTabuleiro[18][8].setPosicoesProximas(posSalaJantar);
 
 		posicoesTabuleiro[11][19].setPosicoesProximas(posSalaoJogos);
 		posicoesTabuleiro[15][24].setPosicoesProximas(posSalaoJogos);
@@ -318,14 +317,14 @@ class Jogo {
 
 		posicoesTabuleiro[22][19].setPosicoesProximas(posEscritorio);
 
-		for (int i = 0 ;i<posCorredor.size();i++) {
+		for (int i = 0; i < posCorredor.size(); i++) {
 			Posicao p = posCorredor.get(i);
-			
+
 			int linha = p.getLinha();
 			int coluna = p.getColuna();
 			ArrayList<Posicao> posProx = new ArrayList<Posicao>();
 
-			if (p.getPosicoesProximas() == null) {
+			if (p.getPosicoesProximas().isEmpty()) {
 				if (posCorredor.contains(posicoesTabuleiro[linha - 1][coluna])) {
 					posProx.add(posicoesTabuleiro[linha - 1][coluna]);
 				}
@@ -457,8 +456,13 @@ class Jogo {
 		//t.houseKeepingTabuleiro();
 	}
 
-	void mover(Posicao escolhida) throws ExceptionLugarNaoPermitido {
+	void mover(int[] posicao) throws ExceptionLugarNaoPermitido {
+		Posicao escolhida = t.getPosicaoAt(posicao[0], posicao[1]);
+		System.out.print("Posicao Clicada: ");
+		System.out.println(escolhida.toString());
 		for (Posicao pos : jogadores.get(vezDe).getPos().getPosicoesProximas()) {
+			System.out.print("Posicao proxima: ");
+			System.out.println(pos.toString());
 			if (pos.equals(escolhida)) {
 				if (pos.getPassouAqui()) {
 					throw new ExceptionLugarNaoPermitido("Já passou aqui");
@@ -466,13 +470,11 @@ class Jogo {
 				jogadores.get(vezDe).getPos().setPassouAqui(true);
 				jogadores.get(vezDe).getPos().setJogadorAqui(false);
 				pos.setJogadorAqui(true);
+				jogadores.get(vezDe).setPos(pos);
 				return;
 			}
 		}
-	}
-	
-	void mover(int[] posicao,String playerName) throws ExceptionLugarNaoPermitido {
-		//implementar
+		throw new ExceptionLugarNaoPermitido("Não é adjacente");
 	}
 
 	boolean acusar(Carta acusacao[]) {

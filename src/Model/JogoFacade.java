@@ -16,18 +16,18 @@ public class JogoFacade {
 		}
 		return facade;
 	}
-	
+
 	public void setupJogadores(ArrayList<Personagem> players) {
 		jogo.setupJogadores(players);
-		
+
 		System.out.println("Personagens em Jogo:");
-		for(Jogador j : jogo.jogadores) {
-			if(!j.ehNpc()) {
+		for (Jogador j : jogo.jogadores) {
+			if (!j.ehNpc()) {
 				System.out.println(j.getPersonagem().name());
 			}
 		}
 	}
-	
+
 	public void distribuiCartas() {
 		jogo.distribuiCartas();
 	}
@@ -38,18 +38,34 @@ public class JogoFacade {
 
 	public int[] getDados() {
 		return jogo.getDados();
-	} 
-	
+	}
+
 	public void passaVez() {
 		jogo.passaVez();
 	}
-	
+
 	public Personagem getJogadorVez() {
 		return jogo.jogadores.get(jogo.vezDe).getPersonagem();
 	}
 
+	public String getNomeJogadorVez() {
+		return jogo.jogadores.get(jogo.vezDe).getPersonagem().toString();
+	}
+
+	public int getLinhaJogadorVez() {
+		return jogo.jogadores.get(jogo.vezDe).getPos().getLinha();
+	}
+
+	public int getColunaJogadorVez() {
+		return jogo.jogadores.get(jogo.vezDe).getPos().getColuna();
+	}
+
 	public void setDados(Integer[] dices) {
-		jogo.setDados(new int[] {dices[0],dices[1]});
-		
+		jogo.setDados(new int[] { dices[0], dices[1] });
+
+	}
+
+	public void mover(int[] pos) throws ExceptionLugarNaoPermitido {
+		jogo.mover(pos);
 	}
 }

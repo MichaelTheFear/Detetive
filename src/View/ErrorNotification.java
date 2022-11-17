@@ -6,7 +6,6 @@ import javax.swing.JLabel;
 
 public class ErrorNotification extends JLabel{
 	
-	
 	ErrorNotification(){
 		this.setBounds(700, 560, 200, 75);
 	}

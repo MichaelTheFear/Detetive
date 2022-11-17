@@ -85,17 +85,6 @@ public class Canvas extends JFrame {
 		board.setActionProximo(listener);
 	}
 
-	public void onPalpite(ActionListener listener) {
-		board.setActionPalpite(listener);
-	}
-
-	public void onAcusar(ActionListener listener) {
-		board.setActionAcusar(listener);
-	}
-
-	public void onPalpiteConfirmed(ActionListener listener) {
-
-	}
 
 	public void showCards(ArrayList<String> cards) {
 		new CardsInGame(cards);

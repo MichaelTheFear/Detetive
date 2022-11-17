@@ -13,7 +13,8 @@ import View.Observer;
 public class Middleware {
 	static JogoFacade model = JogoFacade.getJogoFacade();
 	static Canvas view = Canvas.getCanvas();
-
+	static Observer obs = Observer.getObserver();
+	
 	Middleware() {
 		// Canvas canvas = new Canvas();
 		// JogoFacade model = new JogoFacade();
@@ -37,7 +38,7 @@ public class Middleware {
 	}
 	
 	private void initMovement() {
-		Observer.getObserver().susbcribe(Events.boardClick, new ObserverCallback() {
+		obs.susbcribe(Events.boardClick, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				Integer[] position = (Integer[]) o;
@@ -73,7 +74,7 @@ public class Middleware {
 	}
 	
 	private void initNotes() {
-		Observer.getObserver().susbcribe(Events.showNotes, new ObserverCallback() {
+		obs.susbcribe(Events.showNotes, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				//view.showNotes(model.getCartasVistas);
@@ -83,7 +84,7 @@ public class Middleware {
 	}
 	
 	private void initShowPlayersCards() {
-		Observer.getObserver().susbcribe(Events.showCards, new ObserverCallback() {
+		obs.susbcribe(Events.showCards, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				//view.showNotes(model.getCartasIniciais);
@@ -93,7 +94,7 @@ public class Middleware {
 	}
 
 	private void initRolarDados() {
-		Observer.getObserver().susbcribe(Events.dice, new ObserverCallback() {
+		obs.susbcribe(Events.dice, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				if(o==null) {
@@ -109,7 +110,7 @@ public class Middleware {
 	}
 	
 	private void initPalpite() {
-		Observer.getObserver().susbcribe(Events.confirmGuess, new ObserverCallback() {
+		obs.susbcribe(Events.confirmGuess, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				String[] cartasPalpite = (String[]) o;
@@ -118,6 +119,25 @@ public class Middleware {
 			}
 		});
 	}
+	
+	private void initAccuse() {
+		obs.susbcribe(Events.confirmAccuse, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				//model.acusar(view.getLastAccuse());
+			}
+		});
+		
+		obs.susbcribe(Events.showAccuse, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				//view.showAccuse(model.getCartasVistas());
+			}
+			
+		});
+	}
+	
+	
 
 	public static void main(String[] agrs) {
 		new Middleware();

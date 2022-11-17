@@ -125,4 +125,12 @@ public class Canvas extends JFrame {
 		return board.getJogadasSobrando();
 	}
 
+	public void showError(String txt) {
+		board.error(txt);
+	}
+	
+	public void showWarning(String txt) {
+		board.warning(txt);
+	}
+	
 }

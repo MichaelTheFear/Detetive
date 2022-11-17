@@ -76,6 +76,7 @@ public class SideBar extends JPanel {
 				Integer[] dices = new Integer[2];
 				dices[0] = Integer.valueOf(dice1);
 				dices[1] = Integer.valueOf(dice2);
+				setJogadas(dices[0]+dices[1]);
 				Observer.getObserver().callEvent(Events.dice, dices);
 				
 			}
@@ -115,6 +116,7 @@ public class SideBar extends JPanel {
 
 	void setNumJogadasSobrando(int i) {
 		numJogadasSobrando = i;
+		setJogadas(i);
 	}
 	
 	int getNumJogadasSobrando() {

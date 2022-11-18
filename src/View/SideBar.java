@@ -78,7 +78,7 @@ public class SideBar extends JPanel {
 				dices[0] = Integer.valueOf(dice1);
 				dices[1] = Integer.valueOf(dice2);
 				Observer.getObserver().callEvent(Events.dice, dices);
-				
+				setJogadas(dices[0] + dices[1]);
 			}
 			
 		},where, ratio * 7));

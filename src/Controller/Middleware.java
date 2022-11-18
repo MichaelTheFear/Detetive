@@ -31,7 +31,7 @@ public class Middleware {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Personagem> viewPlayers = view.getPlayers();
 				model.setupJogadores(viewPlayers);
-				view.setPlayerName(viewPlayers.get(0));
+				view.setPlayerName(model.getJogadorVez());
 			}
 
 		});
@@ -54,12 +54,12 @@ public class Middleware {
 						view.setJogadasSobrando(jogadasSobrando - 1);
 					}
 					catch (ExceptionLugarNaoPermitido e) {
-						//view.showError("Não é permitido mover pra ca");
+						view.showError("Não é permitido mover pra ca");
 						System.out.println("Lugar nao permitido");
 					}
 				}
 				else {
-					//view.showError("Não é permitido mover pra ca");
+					view.showError("Não é permitido mover pra ca");
 				}
 
 			}

@@ -77,6 +77,7 @@ class Board extends JPanel implements MouseListener {
 
 	public void mouseClicked(MouseEvent e) {
 		Integer [] positions = new Integer[] { e.getX()/side , e.getY()/side};
+		SideBar.clearError();
 		Observer.getObserver().callEvent(Events.boardClick,positions);
 	}
 

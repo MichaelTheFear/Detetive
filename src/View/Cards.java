@@ -3,69 +3,45 @@ package View;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
 class Cards extends JPanel {
 
-	Image images[];
+	List<Image> images= new ArrayList<Image>();
 
-	Cards(String type, String names[]) {
-		images = new Image[names.length];
-		String name;
-		for (int i = 0; i < names.length; i++) {
-			name = names[i];
-			try {
-				images[i] = ImageIO.read(new File("images/" + type + "/" + name + ".jpg")); // le arquivo (em O(1))
-			} catch (IOException e) {
-				System.out.println("Erro de file");
-			}
-		}
+	Cards(String type, List<String> names) {
+		pushImagesFromFs(type,names);
 	}
 
 	Cards(String type, String name) {
-		try {
-			images[0] = ImageIO.read(new File("images/" + type + "/" + name + ".jpg"));
-		} catch (IOException e) {
-			System.out.println("Erro de file");
-		}
+		images.add(readFile(type+"/"+name));
 	}
 
-	Cards(String armas[], String comodos[], String sus[]) {
-		images = new Image[armas.length + comodos.length + sus.length];
-		String name;
-		int j = 0;
-		for (int i = 0; i < comodos.length; i++) {
-			name = comodos[i];
-			try {
-				images[i] = ImageIO.read(new File("images/Comodos/" + name + ".jpg")); // le arquivo (em O(1))
-			} catch (IOException e) {
-				System.out.println(name);
-			}
-			j++;
+	Cards(List<String> armas, List<String> comodos, List<String> sus) {
+		pushImagesFromFs("Armas",armas);
+		pushImagesFromFs("Comodos",comodos);
+		pushImagesFromFs("Suspeitos",sus);
+	}
+	
+	void pushImagesFromFs(String where, List<String> names) {
+		for(String file: names) {
+			images.add(readFile(where+"/"+file));
 		}
-
-		for (int i = 0; i < armas.length; i++) {
-			name = armas[i];
-			try {
-				images[j] = ImageIO.read(new File("images/Armas/" + name + ".jpg")); // le arquivo (em O(1))
-			} catch (IOException e) {
-				System.out.println(name);
-			}
-			j++;
+	}
+	
+	Image readFile(String path) {
+		Image res;
+		try {
+			res = ImageIO.read(new File("images/" + path + ".jpg"));
+		}catch(IOException e) {
+			res = null;
+			System.out.println("Não foi possivel achar o arquivo "+path);
 		}
-
-		for (int i = 0; i < sus.length; i++) {
-			name = sus[i];
-			try {
-				images[j] = ImageIO.read(new File("images/Suspeitos/" + name + ".jpg")); // le arquivo (em O(1))
-			} catch (IOException e) {
-				System.out.println(name);
-			}
-			j++;
-		}
-
+		return res;
 	}
 
 	public void paint(Graphics g) {

@@ -3,6 +3,8 @@ package Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import Model.ExceptionLugarNaoPermitido;
 import Model.JogoFacade;
@@ -21,6 +23,9 @@ public class Middleware {
 		initRolarDados();
 		initProx();
 		initMovement();
+		initPalpite();
+		initShowPlayersCards();
+		initNotes();
 	}
 
 	private void initBoard() {
@@ -81,7 +86,9 @@ public class Middleware {
 		Observer.getObserver().susbcribe(Events.showNotes, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
-				//view.showNotes(model.getCartasVistas);
+				List mock =  Arrays.asList(new String[] {Personagem.Green.name(),Armas.Cano.name()});
+				view.showNotes(mock);
+				//precisa pegar do model 
 			}
 
 		});
@@ -91,7 +98,9 @@ public class Middleware {
 		Observer.getObserver().susbcribe(Events.showCards, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
-				//view.showNotes(model.getCartasIniciais);
+				List mock =  Arrays.asList(new String[] {Personagem.Green.name(),Armas.Cano.name()});
+				view.showCards(mock);
+				//precisa pegar do model 
 			}
 
 		});

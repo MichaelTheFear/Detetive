@@ -20,11 +20,11 @@ class SelectChar extends JFrame {
 		b.addActionListener(action);
 	}
 
-	private static String[] toEnumsStrings() {
+	private static ArrayList<String> toEnumsStrings() {
 		Personagem per[] = Personagem.values();
-		String res[] = new String[per.length];
-		for (int i = 0; i < res.length; i++) {
-			res[i] = per[i].toString();
+		ArrayList<String> res = new ArrayList<>();
+		for(Personagem p: per) {
+			res.add(p.name());
 		}
 		return res;
 	}

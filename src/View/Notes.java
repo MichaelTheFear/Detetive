@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -15,10 +16,10 @@ import Util.Personagem;
 
 class Notes extends JFrame {
 
-	public Notes(ArrayList<String> cartas) {
+	public Notes(List<String> cards) {
 		this.setLayout(new BorderLayout());
 		
-		this.add(new NotesPanel(cartas));
+		this.add(new NotesPanel(cards));
 		this.pack();
 		this.setSize(Canvas.SIZE);
 		this.setVisible(true);
@@ -27,7 +28,7 @@ class Notes extends JFrame {
 
 
 	private class NotesPanel extends JPanel {
-		NotesPanel(ArrayList<String> cartas){
+		NotesPanel(List<String> cartas){
 			ArrayList<String> unmarked = new ArrayList<>();
 			int i = 0;
 			

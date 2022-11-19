@@ -26,7 +26,7 @@ class CheckBox extends JCheckBox {
 	
 	<T extends Enum<T>> CheckBox(T p,int x,int y) {
 		this.setText(p.name());
-		this.setBounds(x, y, 100, 50);
+		this.setBounds(x, y, 200, 50);
 		this.setFocusable(false);
 	}
 	

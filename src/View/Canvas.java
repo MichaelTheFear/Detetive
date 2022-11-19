@@ -7,6 +7,7 @@ import Util.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -97,12 +98,13 @@ public class Canvas extends JFrame {
 
 	}
 
-	public void showCards(ArrayList<String> cards) {
+	public void showCards(List<String> cards) {
 		new CardsInGame(cards);
 	}
 
-	public void showNotes(ArrayList<String> cards) {
+	public void showNotes(List<String> cards) {
 		new Notes(cards);
+		System.out.println("Hmmm");
 	}
 
 	public void setDados(int[] dados) {

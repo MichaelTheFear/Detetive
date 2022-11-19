@@ -1,6 +1,7 @@
 package View;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -10,23 +11,31 @@ import Util.Personagem;
 
 class CardsInGame extends JFrame {
 
-	CardsInGame(ArrayList<String> cards) { 
+	CardsInGame(List<String> cards) { 
+		for(String s: cards) {
+			System.out.println("?"+s);
+		}
+		
 		Armas arm[] = Armas.values();
 		Comodos com[] = Comodos.values();
 		Personagem sus[] = Personagem.values();
-		String armas[] = new String[arm.length];
-		String comodos[] = new String[com.length];
-		String personagem[] = new String[sus.length];
-		for (int i = 0; i < armas.length; i++) {
-			armas[i] = arm[i].name();
+		List<String> armas = new ArrayList<>();
+		List<String> comodos = new ArrayList<>();
+		List<String> personagens = new ArrayList<>();
+		for (Armas a: arm) {
+			if(cards.contains(a.name()))
+				armas.add(a.name());
 		}
-		for (int i = 0; i < com.length; i++) {
-			comodos[i] = com[i].name();
+		for (Comodos c: com) {
+			if(cards.contains(c.name()))
+				comodos.add(c.name());
 		}
-		for (int i = 0; i < personagem.length; i++) {
-			personagem[i] = sus[i].name();
+		for (Personagem s: sus) {
+			if(cards.contains(s.name()))
+				personagens.add(s.name());
 		}
-		this.add(new Cards(armas, comodos, personagem));
+	
+		this.add(new Cards(armas, comodos, personagens));
 		this.pack();
 		this.setSize(Canvas.SIZE);
 		this.setVisible(true);

@@ -15,6 +15,7 @@ import View.Observer;
 public class Middleware {
 	static JogoFacade model = JogoFacade.getJogoFacade();
 	static Canvas view = Canvas.getCanvas();
+	static Observer obs = Observer.getObserver();
 
 	Middleware() {
 		// Canvas canvas = new Canvas();
@@ -26,8 +27,30 @@ public class Middleware {
 		initPalpite();
 		initShowPlayersCards();
 		initNotes();
+		initAcusar();
 	}
 
+	private void initAcusar() {
+		obs.susbcribe(Events.showAccuse, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				List mock =  Arrays.asList(new String[] {Personagem.Green.name(),Armas.Cano.name()});
+				view.showAccuse(mock);
+			}
+			
+		});
+		
+		obs.susbcribe(Events.confirmAccuse, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				String[] cards = (String[]) o;
+				
+				//faltando agr a parte do model
+			}
+			
+		} );
+	}
+	
 	private void initBoard() {
 
 		view.onGameStart(new ActionListener() {
@@ -43,7 +66,7 @@ public class Middleware {
 	}
 
 	private void initMovement() {
-		Observer.getObserver().susbcribe(Events.boardClick, new ObserverCallback() {
+		obs.susbcribe(Events.boardClick, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				Integer[] position = (Integer[]) o;
@@ -83,7 +106,7 @@ public class Middleware {
 	}
 
 	private void initNotes() {
-		Observer.getObserver().susbcribe(Events.showNotes, new ObserverCallback() {
+		obs.susbcribe(Events.showNotes, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				List mock =  Arrays.asList(new String[] {Personagem.Green.name(),Armas.Cano.name()});
@@ -95,7 +118,7 @@ public class Middleware {
 	}
 
 	private void initShowPlayersCards() {
-		Observer.getObserver().susbcribe(Events.showCards, new ObserverCallback() {
+		obs.susbcribe(Events.showCards, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				List mock =  Arrays.asList(new String[] {Personagem.Green.name(),Armas.Cano.name()});
@@ -107,7 +130,7 @@ public class Middleware {
 	}
 
 	private void initRolarDados() {
-		Observer.getObserver().susbcribe(Events.dice, new ObserverCallback() {
+		obs.susbcribe(Events.dice, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				if (o == null) {
@@ -124,7 +147,7 @@ public class Middleware {
 	}
 
 	private void initPalpite() {
-		Observer.getObserver().susbcribe(Events.confirmGuess, new ObserverCallback() {
+		obs.susbcribe(Events.confirmGuess, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
 				String[] cartasPalpite = (String[]) o;

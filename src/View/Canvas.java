@@ -115,7 +115,7 @@ public class Canvas extends JFrame {
 		new Guess();
 	}
 	
-	public void showAccuse(ArrayList<String> cartas) {
+	public void showAccuse(List<String> cartas) {
 		new Accuse(cartas);
 	}
 	

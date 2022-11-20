@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -32,7 +33,7 @@ public class Accuse extends JFrame {
 		return -1;
 	}
 	
-	Accuse(ArrayList<String> cartasVistas){
+	Accuse(List<String> cartasVistas){
 		
 		Personagem personagens[] = Personagem.values();		
 		Armas armas[] = Armas.values();		

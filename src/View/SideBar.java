@@ -64,7 +64,12 @@ public class SideBar extends JPanel {
 			}
 
 		}, where, ratio * 3));
-		this.add(acusar = new Button("Acusar", where, ratio * 4));
+		this.add(acusar = new Button("Acusar", new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Observer.getObserver().callEvent(Events.showAccuse, null);
+			}
+		}, where, ratio * 4));
 		this.add(txtVezJogador = new Text(" - ", where + 80, ratio * 5));
 		this.add(rolarDados = new Button("Rolar dados", where, ratio * 6));
 		this.add(usarDados = new Button("Usar esses dados", new ActionListener() {
@@ -107,8 +112,8 @@ public class SideBar extends JPanel {
 
 	void setJogadas(int numJogadas) {
 		numJogadasSobrando = numJogadas;
-		this.jogadas.setText("Jogadas Sobrando: " + numJogadasSobrando);
 		this.jogadas.setBackground(Color.gray);
+		this.jogadas.setText("Jogadas Sobrando: " + numJogadasSobrando);
 	}
 
 	void setDados(int numJogadasSobrando) {

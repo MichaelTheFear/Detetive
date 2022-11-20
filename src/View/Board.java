@@ -15,25 +15,21 @@ import javax.swing.JPanel;
 
 import Util.Events;
 
-class Board extends JPanel implements MouseListener {
+class Board extends JpgImage implements MouseListener {
 
-	Image image;
+	
 	int side = 24;
 	int sideB = 672;
 
 	Board() {
-		try {
-			image = ImageIO.read(new File("images/Tabuleiros/Tabuleiro-Clue-A.jpg")); // le file
-		} catch (IOException e) {
-			System.out.println("Erro ao ler arquivo");
-		}
+		images.add(readFile("Tabuleiros/Tabuleiro-Clue-A"));
 		addMouseListener(this);
 		this.setSize(sideB, sideB);
 	}
 
 	public void paint(Graphics g) {
 		Graphics2D g2D = (Graphics2D) g;
-		g2D.drawImage(image, 0, 0,sideB,696, null); // printa tabuleiro como requerido
+		g2D.drawImage(images.get(0), 0, 0,sideB,696, null); // printa tabuleiro como requerido
 		
 		drawPlayersAt(g2D, Player.players); // printa quadrado dos players
 

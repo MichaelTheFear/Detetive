@@ -44,35 +44,12 @@ class SelectChar extends JFrame {
 					} else {
 						sus.remove(p);
 					}
-					
 				}
 				
 			});
 			this.add(check);
 			i += 100;
 		}
-		/*
-		 * class CheckBox extends JCheckBox {
-		CheckBox(Personagem p, int n) {
-			this.setText(p.name());
-			this.setBounds(n, 600, 100, 50);
-			this.setFocusable(false);
-			this.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					if (isSelected()) {
-						sus.add(p);
-					} else {
-						sus.remove(p);
-					}
-
-				}
-
-			});
-		}
-
-	}
-		 * */
 		this.add(new Cards("Suspeitos", toEnumsStrings()));
 		this.pack();
 		this.setSize(Canvas.SIZE);

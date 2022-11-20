@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
@@ -9,13 +10,14 @@ import javax.swing.JPanel;
 class Game extends JFrame {
 	Board board = new Board();
 	String playerName = "-";
-	SideBar sideBar = new SideBar(board);
+	SideBar sideBar = SideBar.newSideBar();
 
 	Game() {
 		this.setLayout(new BorderLayout());
 		this.add(board);
 		this.add(sideBar);
 		this.pack();
+		this.setBackground(Color.GRAY);
 		this.setSize(Canvas.SIZE);
 		this.setVisible(false);
 		this.setLocationRelativeTo(null);

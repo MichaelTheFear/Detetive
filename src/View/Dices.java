@@ -1,20 +1,30 @@
 package View;
 
-public class Dices {
-	int dice1;
-	int dice2;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+public class Dices extends JpgImage{
 	
-	public Dices(int dice1,int dice2){
-		this.dice1 = dice1;
-		this.dice2 = dice2;
+	int dice1 = 4;
+	int dice2 = 6;
+	
+	Dices(){
+		int[] dices = new int[] {1,2,3,4,5,6};
+		for(int dice: dices)
+			images.add(readFile("Tabuleiros/dado"+dice));
 	}
 	
-	public int getDice1() {
-		return dice1;
+	public void paint(Graphics g) {
+		Graphics2D g2D = (Graphics2D) g;
+		g2D.drawImage(images.get(dice1-1),1000,10,50,50,null);
+		g2D.drawImage(images.get(dice2-1),1050,10,50,50,null);
 	}
 	
-	public int getDice2() {
-		return dice2;
+	void setDices(int d1,int d2) {
+		dice1 = d1;
+		dice2 = d2;
+		paint(this.getGraphics());
 	}
+	
 	
 }

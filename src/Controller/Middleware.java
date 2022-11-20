@@ -136,7 +136,6 @@ public class Middleware {
 
 	public static void main(String[] agrs) {
 		new Middleware();
-
 	}
 
 }

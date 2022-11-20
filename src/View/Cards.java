@@ -9,9 +9,8 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-class Cards extends JPanel {
+class Cards extends JpgImage {
 
-	List<Image> images= new ArrayList<Image>();
 
 	Cards(String type, List<String> names) {
 		pushImagesFromFs(type,names);
@@ -27,22 +26,6 @@ class Cards extends JPanel {
 		pushImagesFromFs("Suspeitos",sus);
 	}
 	
-	void pushImagesFromFs(String where, List<String> names) {
-		for(String file: names) {
-			images.add(readFile(where+"/"+file));
-		}
-	}
-	
-	Image readFile(String path) {
-		Image res;
-		try {
-			res = ImageIO.read(new File("images/" + path + ".jpg"));
-		}catch(IOException e) {
-			res = null;
-			System.out.println("Não foi possivel achar o arquivo "+path);
-		}
-		return res;
-	}
 
 	public void paint(Graphics g) {
 		Graphics2D g2D = (Graphics2D) g;

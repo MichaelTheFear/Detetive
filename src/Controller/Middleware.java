@@ -34,8 +34,11 @@ public class Middleware {
 		obs.susbcribe(Events.showAccuse, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
-				List mock =  Arrays.asList(new String[] {Personagem.Green.name(),Armas.Cano.name()});
-				view.showAccuse(mock);
+				//List mock =  Arrays.asList(new String[] {Personagem.Green.name(),Armas.Cano.name()});
+				//view.showAccuse(mock);
+				
+				ArrayList<String> notas = model.getNotas(); // pega as cartas vistas para a showAccuse
+				view.showAccuse(notas);
 			}
 			
 		});
@@ -44,8 +47,8 @@ public class Middleware {
 			@Override
 			public void onCall(Object o) {
 				String[] cards = (String[]) o;
-				
 				//faltando agr a parte do model
+				boolean acusacao = model.acusar(cards); // chama acusar do model com as cartas que o jogador marcou
 			}
 			
 		} );
@@ -82,12 +85,12 @@ public class Middleware {
 						view.setJogadasSobrando(jogadasSobrando - 1);
 					}
 					catch (ExceptionLugarNaoPermitido e) {
-						view.showError("Não é permitido mover pra ca");
+						view.showError("NÃ£o Ã© permitido mover pra ca");
 						System.out.println("Lugar nao permitido");
 					}
 				}
 				else {
-					view.showError("Não é permitido mover pra ca");
+					view.showError("NÃ£o Ã© permitido mover pra ca");
 				}
 
 			}
@@ -109,9 +112,11 @@ public class Middleware {
 		obs.susbcribe(Events.showNotes, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
-				List mock =  Arrays.asList(new String[] {Personagem.Green.name(),Armas.Cano.name()});
-				view.showNotes(mock);
+				//List mock =  Arrays.asList(new String[] {Personagem.Green.name(),Armas.Cano.name()});
+				//view.showNotes(mock);
 				//precisa pegar do model 
+				List<String> notas = model.getNotas();  // pega as cartas vistas 
+				view.showNotes(notas);   // mostra cartas vistas
 			}
 
 		});
@@ -121,11 +126,11 @@ public class Middleware {
 		obs.susbcribe(Events.showCards, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
-				List mock =  Arrays.asList(new String[] {Personagem.Green.name(),Armas.Cano.name()});
-				view.showCards(mock);
-				//precisa pegar do model 
+				//List mock =  Arrays.asList(new String[] {Personagem.Green.name(),Armas.Cano.name()});
+				//view.showCards(mock);
+				ArrayList<String> playersCards = model.getCartasJogador(); // pega cartas do jogador da vez para a showCards
+				view.showCards(playersCards);
 			}
-
 		});
 	}
 
@@ -142,7 +147,6 @@ public class Middleware {
 					model.setDados(dices);
 				}
 			}
-
 		});
 	}
 
@@ -151,8 +155,9 @@ public class Middleware {
 			@Override
 			public void onCall(Object o) {
 				String[] cartasPalpite = (String[]) o;
-				//model.palpite(cartasPalpite);
+				model.darPalpite(cartasPalpite);    // darPalpite com as cartas q o jogador marcou
 				//mover o player 
+				model.moverPalpite(cartasPalpite[0], cartasPalpite[2]); // mover player 'acusado' para o comodo do palpite
 			}
 		});
 	}
@@ -162,3 +167,4 @@ public class Middleware {
 	}
 
 }
+

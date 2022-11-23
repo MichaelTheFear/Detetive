@@ -1,8 +1,11 @@
 package Model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 import Util.*;
 
@@ -45,7 +48,27 @@ class Jogo {
 		this.setCartasAssasino(todasCartas);
 		this.distribuiCartas();
 	}
+	
+	Jogo(File file) throws FileNotFoundException{
+		List<String> infoStrings = carregaStringsDoArquivo(file); //o vez de é att pelo carregaStrings
+		
+	}
+	
+	List<String> carregaStringsDoArquivo(File file) throws FileNotFoundException{
+		List<String> lines = new ArrayList<String>();
+		Scanner scan = new Scanner(file);
+		vezDe = Integer.parseInt(scan.nextLine());
+		while(scan.hasNext()) {
+			lines.add(scan.nextLine());
+		}
+		scan.close();
+		return lines;
+	}
 
+	void guardaPartida(String filePath) {
+		
+	}
+	
 	void setupTabuleiro() {
 		Posicao[][] posicoesTabuleiro = new Posicao[28][28]; // Tamanho do tabuleiro 28 x 28 quadrados
 

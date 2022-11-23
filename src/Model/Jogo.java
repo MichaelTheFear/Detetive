@@ -42,6 +42,8 @@ class Jogo {
 
 	Jogo() {
 		setupTabuleiro();
+		this.setCartasAssasino(todasCartas);
+		this.distribuiCartas();
 	}
 
 	void setupTabuleiro() {
@@ -470,7 +472,7 @@ class Jogo {
 					throw new ExceptionLugarNaoPermitido("JÃ¡ passou aqui");
 				}
 				if (pos.getJogadorAqui()) {  // verificando se ja tem um jogador na posicao escolhida
-					throw new ExceptionLugarNaoPermitido("Posição ocupada");
+					throw new ExceptionLugarNaoPermitido("Posiï¿½ï¿½o ocupada");
 				}
 				jogadores.get(vezDe).getPos().setPassouAqui(true);
 				jogadores.get(vezDe).getPos().setJogadorAqui(false);

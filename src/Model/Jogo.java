@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import Util.*;
@@ -37,6 +38,7 @@ class Jogo {
 	int numTurno = 0;
 	int dados[] = new int[2];
 	Random gerador = new Random();
+	ArrayList<String> blocoDeNotas = new ArrayList<String>();
 
 	Jogo() {
 		setupTabuleiro();
@@ -467,6 +469,9 @@ class Jogo {
 				if (pos.getPassouAqui()) {
 					throw new ExceptionLugarNaoPermitido("JÃ¡ passou aqui");
 				}
+				if (pos.getJogadorAqui()) {  // verificando se ja tem um jogador na posicao escolhida
+					throw new ExceptionLugarNaoPermitido("Posição ocupada");
+				}
 				jogadores.get(vezDe).getPos().setPassouAqui(true);
 				jogadores.get(vezDe).getPos().setJogadorAqui(false);
 				pos.setJogadorAqui(true);
@@ -476,12 +481,13 @@ class Jogo {
 		}
 		throw new ExceptionLugarNaoPermitido("NÃ£o Ã© adjacente");
 	}
-
-	boolean acusar(Carta acusacao[]) {
+	
+	boolean acusar(String cartasAcusacao[]) { // agora recebe string
 		// talvez mudar td para treeSet
-		for (int i = 0; i < 3; i++) {
-			if (!acusacao[0].equals(cartasAssassino[i]) && !acusacao[1].equals(cartasAssassino[i])
-					&& !acusacao[2].equals(cartasAssassino[i])) {
+		for (int i = 0; i < 3; i++) { // compara o nome das cartas do assassino 
+			if (!cartasAcusacao[0].equals(cartasAssassino[i].getNome()) && !cartasAcusacao[1].equals(cartasAssassino[i].getNome())
+					&& !cartasAcusacao[2].equals(cartasAssassino[i].getNome())) {
+				jogadores.get(vezDe).setErrouAcusacao(true); // o acusador errou
 				return false;
 			}
 
@@ -489,8 +495,8 @@ class Jogo {
 		return true;
 
 	}
-
-	String darPalpite(Carta palpites[]) {
+	
+	String darPalpite(String palpites[]) { // aqui so mudou o parametro, alterei a temCarta (em jogador) para funcionar
 		int proxJogador = proxTurno(vezDe);
 		while (proxJogador != vezDe) {
 			Carta c = jogadores.get(proxJogador).temCarta(palpites);
@@ -500,6 +506,62 @@ class Jogo {
 			}
 			proxJogador = proxTurno(proxJogador);
 		}
+		
 		return "nenhum";
 	}
+	
+	void moveComPalpite(String per, String comodo) {		// move jogador do palpite para comodo do palpite
+		Comodos c = Comodos.valueOf(comodo);
+		ArrayList<Posicao> posComodo;
+		switch(c) {
+		case Biblioteca:
+			posComodo = posBiblioteca;
+			break;
+		case Cozinha:
+			posComodo = posCozinha;
+			break;
+		case Entrada:
+			posComodo = posEntrada;
+			break;
+		case Escritorio:
+			posComodo = posEscritorio;
+			break;
+		case JardimInverno:
+			posComodo = posJardimInverno;
+			break;
+		case SalaDeEstar:
+			posComodo = posSalaEstar;
+			break;
+		case SalaDeJantar:
+			posComodo = posSalaJantar;
+			break;
+		case SalaDeMusica:
+			posComodo = posSalaMusica;
+			break;
+		case SalaoDeJogos:
+			posComodo = posSalaoJogos;
+			break;
+		default: // gambiarra ; posComodo tinha q ser inicializada se nao da ruim (faco direito depois)
+			posComodo = null;
+			break;
+		}
+		for(Posicao p : posComodo) { // coloca o jogador do palpite em uma posicao qualquer livre do comodo do palpite
+			if(!p.getJogadorAqui()) {
+				for(Jogador j : jogadores) {
+					if(j.getPersonagem().equals(Personagem.valueOf(per))) {
+						j.setPos(p);
+					}
+				}
+			}
+		}
+	}
+	
+	ArrayList<String> cartasParaString(List<Carta> cartas) { // transforma array de cartas para array de strings
+		ArrayList<String> str = new ArrayList<String>();	 
+		for(Carta c : cartas) {
+			str.add(c.getNome());
+		}
+		return str;
+	}
+	
 }

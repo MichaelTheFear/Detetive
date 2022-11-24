@@ -2,6 +2,9 @@ package Model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -50,14 +53,15 @@ class Jogo {
 	}
 	
 	Jogo(File file) throws FileNotFoundException{
-		List<String> infoStrings = carregaStringsDoArquivo(file); //o vez de é att pelo carregaStrings
-		
+		List<String> infoStrings = carregaStringsDoArquivo(file); 
+		//le linha do vezDe
+		//3 linhas com as 3 cartas de assassino
+		//o resto e jogador por linha
 	}
 	
 	List<String> carregaStringsDoArquivo(File file) throws FileNotFoundException{
 		List<String> lines = new ArrayList<String>();
 		Scanner scan = new Scanner(file);
-		vezDe = Integer.parseInt(scan.nextLine());
 		while(scan.hasNext()) {
 			lines.add(scan.nextLine());
 		}
@@ -65,11 +69,16 @@ class Jogo {
 		return lines;
 	}
 
-	void guardaPartida(String filePath) {
-		//guardar vez de 
-		for(Jogador jogador: jogadores) {
-			
+	void guardaPartida(String filePath) throws IOException  {
+		PrintWriter writer = new PrintWriter(new FileWriter(filePath));
+		writer.println(vezDe);
+		for(Carta assassino : this.cartasAssassino) {
+			writer.println(assassino.getNome());
 		}
+		for(Jogador jogador: jogadores) {
+			writer.println(jogador.toString());
+		}
+		writer.close();
 	}
 	
 	void setupTabuleiro() {

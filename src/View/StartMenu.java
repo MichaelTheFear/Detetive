@@ -8,8 +8,6 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 class StartMenu extends JPanel {
-
-	
 	
 	StartMenu() {
 		JLabel j = new JLabel("Detetive");

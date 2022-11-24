@@ -45,8 +45,8 @@ class Jogo {
 
 	Jogo() {
 		setupTabuleiro();
-		this.setCartasAssasino(todasCartas);
-		this.distribuiCartas();
+		//this.setCartasAssasino(todasCartas);
+		//this.distribuiCartas();
 	}
 	
 	Jogo(File file) throws FileNotFoundException{
@@ -67,7 +67,9 @@ class Jogo {
 
 	void guardaPartida(String filePath) {
 		//guardar vez de 
-		//guardar npc 
+		for(Jogador jogador: jogadores) {
+			
+		}
 	}
 	
 	void setupTabuleiro() {

@@ -34,11 +34,9 @@ public class Accuse extends JFrame {
 	}
 	
 	Accuse(List<String> cartasVistas){
-		
 		Personagem personagens[] = Personagem.values();		
 		Armas armas[] = Armas.values();		
 		Comodos comodos[] = Comodos.values();		
-		
 		for(int i = 0 ; i<personagens.length;i++) {
 			CheckBox b = new CheckBox(personagens[i],0,i*x);
 			if(cartasVistas.indexOf(personagens[i].name())!=-1) 

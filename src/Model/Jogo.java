@@ -66,7 +66,8 @@ class Jogo {
 	}
 
 	void guardaPartida(String filePath) {
-		
+		//guardar vez de 
+		//guardar npc 
 	}
 	
 	void setupTabuleiro() {

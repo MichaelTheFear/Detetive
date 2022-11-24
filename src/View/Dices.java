@@ -16,8 +16,8 @@ public class Dices extends JpgImage{
 	
 	public void paint(Graphics g) {
 		Graphics2D g2D = (Graphics2D) g;
-		g2D.drawImage(images.get(dice1-1),1000,10,50,50,null);
-		g2D.drawImage(images.get(dice2-1),1050,10,50,50,null);
+		g2D.drawImage(images.get(dice1-1),900,0,50,50,null);
+		g2D.drawImage(images.get(dice2-1),950,0,50,50,null);
 	}
 	
 	void setDices(int d1,int d2) {

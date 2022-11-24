@@ -87,18 +87,16 @@ public class SideBar extends JPanel {
 				dicesImages.setDices(dices[0],dices[1]);
 			}
 		}, where, ratio * 7));
-		this.add(new Text("Dado1     Dado2", where, ratio * 8));
-		jogadas = new Text("Jogadas Sobrando: ", 200, where, ratio * 10);
+		this.add(new Text("Dado1     Dado2", 900,60));
 		this.add(error = new ErrorNotification());
-		this.add(jogadas);
 		
-		this.add(box1 = new ComboBox(options, where, ratio * 9, new ActionListener() {
+		this.add(box1 = new ComboBox(options, 900, 100, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				strDice1 = (String) box1.getSelectedItem();
 			}
 		}));
-		this.add(box2 = new ComboBox(options, where + 100, ratio * 9, new ActionListener() {
+		this.add(box2 = new ComboBox(options, 950, 100, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				strDice2 = (String) box2.getSelectedItem();
@@ -117,7 +115,8 @@ public class SideBar extends JPanel {
 				}
 			}
 			
-		},1000,600));
+		},900,200));
+		this.add(jogadas = new Text("Jogadas Sobrando: ", 200, 900, 150));
 	
 		this.add(dicesImages = new Dices());
 		

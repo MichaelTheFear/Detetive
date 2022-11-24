@@ -1,7 +1,6 @@
 package View;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,9 +16,9 @@ class StartMenu extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFileChooser file = new JFileChooser();
-				file.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		        int i= file.showOpenDialog(null);
+				JFileChooser filePicker = new JFileChooser();
+				filePicker.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		        int i= filePicker.showOpenDialog(null);
 		        if(i == JFileChooser.APPROVE_OPTION) {
 		        	//check if file type correct
 		        	

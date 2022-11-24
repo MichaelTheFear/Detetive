@@ -4,9 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
+import java.io.File;
 import Util.Events;
+import Util.ObserverCallback;
 
 public class SideBar extends JPanel {
 	
@@ -100,6 +104,20 @@ public class SideBar extends JPanel {
 				strDice2 = (String) box2.getSelectedItem();
 			}
 		}));
+		this.add(new Button("Salvar Jogo", new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser filePicker = new JFileChooser();
+				filePicker.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				int i = filePicker.showSaveDialog(null);
+				File selectedFile = filePicker.getSelectedFile();
+				if(i == JFileChooser.APPROVE_OPTION) {
+					Observer.getObserver().callEvent(Events.saveGame,selectedFile.getAbsolutePath());
+				}
+			}
+			
+		},1000,600));
 	
 		this.add(dicesImages = new Dices());
 		

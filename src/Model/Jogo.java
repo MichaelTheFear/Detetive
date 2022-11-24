@@ -48,7 +48,7 @@ class Jogo {
 
 	Jogo() {
 		setupTabuleiro();
-		//this.setCartasAssasino(todasCartas);
+		this.setCartasAssasino(todasCartas);
 		//this.distribuiCartas();
 	}
 	

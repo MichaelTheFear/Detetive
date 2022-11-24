@@ -20,8 +20,16 @@ class Board extends JpgImage implements MouseListener {
 	
 	int side = 24;
 	int sideB = 672;
-
-	Board() {
+	static Board board = null;
+	
+	static Board newBoard(){
+		if(board==null)
+			board = new Board();
+		return board;
+	}
+	
+	
+	private Board() {
 		images.add(readFile("Tabuleiros/Tabuleiro-Clue-A"));
 		addMouseListener(this);
 		this.setSize(sideB, sideB);

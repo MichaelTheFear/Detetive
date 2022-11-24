@@ -2,6 +2,8 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +30,7 @@ public class Middleware {
 		initShowPlayersCards();
 		initNotes();
 		initAcusar();
+		initFileSave();
 	}
 
 	private void initAcusar() {
@@ -52,6 +55,21 @@ public class Middleware {
 			}
 			
 		} );
+	}
+	
+	private void initFileSave() {
+		obs.susbcribe(Events.saveGame, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				String filePath = (String) o;
+				try {					
+					model.salvaJogo(filePath);
+				}catch(IOException e) {
+					System.out.println(e);
+					view.showError("Não foi possivel achar arquivo");
+				}
+			}
+		});
 	}
 	
 	private void initBoard() {

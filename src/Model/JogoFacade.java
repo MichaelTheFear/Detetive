@@ -1,5 +1,7 @@
 package Model;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import Util.Personagem;
 
@@ -62,7 +64,10 @@ public class JogoFacade {
 
 	public void setDados(Integer[] dices) {
 		jogo.setDados(new int[] { dices[0], dices[1] });
-
+	}
+	
+	public void salvaJogo(String filePath) throws IOException {
+		jogo.guardaPartida(filePath);
 	}
 
 	public void mover(int[] pos) throws ExceptionLugarNaoPermitido {

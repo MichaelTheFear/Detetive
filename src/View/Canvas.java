@@ -17,7 +17,7 @@ public class Canvas extends JFrame {
 	public static final int WIDTH = 1200;
 	public static final int HEIGHT = 700;
 	public static final Dimension SIZE = new Dimension(WIDTH, HEIGHT);
-	private static SelectChar selectChar;
+	private static SelectChar selectChar = null;
 	private static StartMenu startMenu = new StartMenu();
 	private static Game board = new Game();
 
@@ -64,13 +64,17 @@ public class Canvas extends JFrame {
 		board.setPlayerName(playerName.toString());
 	}
 
-	void showPanel(String id) {
+	public void showPanel(String id) {
 		if (id == "SelectChar") {
 			canvas.dispose();
 			selectChar = new SelectChar();
 		}
 		else {
-			selectChar.dispose();
+			if(selectChar!=null) 
+				selectChar.dispose();
+			else 
+				canvas.dispose();
+			
 			board.setVisible(true);
 		}
 		canvas.repaint();

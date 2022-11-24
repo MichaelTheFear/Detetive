@@ -3,6 +3,7 @@ package Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +31,7 @@ public class Middleware {
 		initShowPlayersCards();
 		initNotes();
 		initAcusar();
-		initFileSave();
+		initFile();
 	}
 
 	private void initAcusar() {
@@ -57,7 +58,7 @@ public class Middleware {
 		} );
 	}
 	
-	private void initFileSave() {
+	private void initFile() {
 		obs.susbcribe(Events.saveGame, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
@@ -65,9 +66,22 @@ public class Middleware {
 				try {					
 					model.salvaJogo(filePath);
 				}catch(IOException e) {
-					System.out.println(e);
-					view.showError("Não foi possivel achar arquivo");
+					view.showError("Não foi possivel achar o diretorio");
 				}
+			}
+		});
+		
+		obs.susbcribe(Events.loadGame, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				File f = (File) o;
+				try {					
+					model.carregarJogo(f);
+					view.showPanel("Board");
+				}catch(FileNotFoundException e) {
+					System.out.println(e); //talvez botar um popup no lugar 
+				}
+				
 			}
 		});
 	}

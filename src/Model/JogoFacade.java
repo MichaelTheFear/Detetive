@@ -1,6 +1,7 @@
 package Model;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import Util.Personagem;
@@ -68,6 +69,10 @@ public class JogoFacade {
 	
 	public void salvaJogo(String filePath) throws IOException {
 		jogo.guardaPartida(filePath);
+	}
+	
+	public void carregarJogo(File filePath) throws FileNotFoundException {
+		jogo.carregaStringsDoArquivo(filePath);
 	}
 
 	public void mover(int[] pos) throws ExceptionLugarNaoPermitido {

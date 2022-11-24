@@ -8,5 +8,6 @@ public enum Events {
 	showAccuse,
 	confirmGuess,
 	confirmAccuse,
-	saveGame
+	saveGame,
+	loadGame
 }

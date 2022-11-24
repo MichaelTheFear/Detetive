@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import Util.Events;
+
 class StartMenu extends JPanel {
 	
 	StartMenu() {
@@ -19,9 +21,9 @@ class StartMenu extends JPanel {
 				JFileChooser filePicker = new JFileChooser();
 				filePicker.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		        int i= filePicker.showOpenDialog(null);
+		        
 		        if(i == JFileChooser.APPROVE_OPTION) {
-		        	//check if file type correct
-		        	
+		        	Observer.getObserver().callEvent(Events.loadGame, filePicker.getSelectedFile());
 		        }
 			}
 			

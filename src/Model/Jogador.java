@@ -112,11 +112,23 @@ class Jogador {
 		}
 		return null;
 	}
+	
+	
 
 	Carta temCarta(Carta[] c) {
 		for (Carta cOut : c) {
 			for (Carta cIn : cartasIniciais) {
 				if (cIn.equals(cOut))
+					return cIn;
+			}
+		}
+		return null;
+	}
+	
+	Carta temCarta(String[] c) {
+		for(String cOut: c) {
+			for(Carta cIn : cartasIniciais) {
+				if(cIn.getNome().equals(cOut))
 					return cIn;
 			}
 		}

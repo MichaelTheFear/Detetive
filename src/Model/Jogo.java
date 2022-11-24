@@ -54,9 +54,10 @@ class Jogo {
 	
 	Jogo(File file) throws FileNotFoundException{
 		List<String> infoStrings = carregaStringsDoArquivo(file); 
-		//le linha do vezDe
+		vezDe = Integer.parseInt(infoStrings.get(0));//le linha do vezDe
 		//3 linhas com as 3 cartas de assassino
 		//o resto e jogador por linha
+		
 	}
 	
 	List<String> carregaStringsDoArquivo(File file) throws FileNotFoundException{

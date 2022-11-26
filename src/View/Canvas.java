@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class Canvas extends JFrame {
 	private static Canvas canvas = null;
@@ -20,8 +22,35 @@ public class Canvas extends JFrame {
 	private static SelectChar selectChar = null;
 	private static StartMenu startMenu = new StartMenu();
 	private static Game board = new Game();
+	private String[] looksAndFeels = new String[] { "javax.swing.plaf.nimbus.NimbusLookAndFeel\r\n",
+			"com.sun.java.swing.plaf.motif.MotifLookAndFeel\r\n",
+			"com.sun.java.swing.plaf.windows.WindowsLookAndFeel\r\n",
+			"com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel" };
+	private int lookIndex = 0;
+
+	private void loadLook() {
+		try {
+			if(lookIndex != -1)
+				UIManager.setLookAndFeel(looksAndFeels[lookIndex]);
+			else
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (UnsupportedLookAndFeelException e) {
+			lookIndex++;
+			loadLook();
+		} catch (ClassNotFoundException e) {
+			lookIndex++;
+			loadLook();
+		} catch (IndexOutOfBoundsException e) {
+			lookIndex = -1;
+			loadLook();
+		}catch (Exception e) {
+			lookIndex++;
+			loadLook();
+		}
+	}
 
 	private Canvas() {
+		loadLook();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.add(startMenu);
 		this.pack();
@@ -37,11 +66,11 @@ public class Canvas extends JFrame {
 		}
 		return canvas;
 	}
-	
+
 	public void movePlayerTo(String player, int x, int y) {
 		board.movePlayerTo(player, x, y);
 	}
-	
+
 	public void moveCurrentPlayerTo(int x, int y) {
 		board.moveCurrentPlayerTo(x, y);
 	}
@@ -68,13 +97,12 @@ public class Canvas extends JFrame {
 		if (id == "SelectChar") {
 			canvas.dispose();
 			selectChar = new SelectChar();
-		}
-		else {
-			if(selectChar!=null) 
+		} else {
+			if (selectChar != null)
 				selectChar.dispose();
-			else 
+			else
 				canvas.dispose();
-			
+
 			board.setVisible(true);
 		}
 		canvas.repaint();
@@ -114,27 +142,27 @@ public class Canvas extends JFrame {
 	public void setDados(int[] dados) {
 		board.setDices(dados[0] + dados[1]);
 	}
-	
+
 	public void showGuess() {
 		new Guess();
 	}
-	
+
 	public void showAccuse(List<String> cartas) {
 		new Accuse(cartas);
 	}
-	
+
 	public void setJogadasSobrando(int i) {
 		board.setJogdadasSobrando(i);
 	}
-	
+
 	public int getJogadasSobrando() {
 		return board.getJogadasSobrando();
 	}
-	
+
 	public void showError(String err) {
 		board.error(err);
 	}
-	
+
 	public void showWarning(String err) {
 		board.warning(err);
 	}

@@ -26,6 +26,10 @@ class Posicao {
 	void setPosicoesProximas(ArrayList<Posicao> posicoesAdjacentes) {
 		this.posicoesProximas = posicoesAdjacentes;
 	}
+	
+	void addPosicoesProximas(ArrayList<Posicao> posicoesAdjacentes) {
+		this.posicoesProximas.addAll(posicoesAdjacentes);
+	}
 
 	ArrayList<Posicao> getPosicoesProximas() {
 		return this.posicoesProximas;

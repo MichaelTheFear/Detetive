@@ -42,6 +42,9 @@ public class Middleware {
 				//view.showAccuse(mock);
 				
 				ArrayList<String> notas = model.getNotas(); // pega as cartas vistas para a showAccuse
+				System.out.println("Acusar len "+notas.size() );
+				for(String str: notas)
+					System.out.println("acusar: "+str);
 				view.showAccuse(notas);
 			}
 			
@@ -92,6 +95,7 @@ public class Middleware {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				model.novoJogo();
 				ArrayList<Personagem> viewPlayers = view.getPlayers();
 				model.setupJogadores(viewPlayers);
 				view.setPlayerName(model.getJogadorVez());

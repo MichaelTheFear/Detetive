@@ -71,10 +71,15 @@ public class JogoFacade {
 		jogo.guardaPartida(filePath);
 	}
 	
-	public void carregarJogo(File filePath) throws FileNotFoundException {
-		jogo.carregaStringsDoArquivo(filePath);
+	public void carregarJogo(File file) throws FileNotFoundException {
+		//jogo.carregaStringsDoArquivo(filePath);
+		jogo = new Jogo(file);
 	}
 
+	public void novoJogo() {
+		jogo = new Jogo();
+	}
+	
 	public void mover(int[] pos) throws ExceptionLugarNaoPermitido {
 		jogo.mover(pos);
 	}

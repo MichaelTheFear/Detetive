@@ -1,10 +1,10 @@
 package Model;
 
-class CartaSuspeito extends Carta{
-	public CartaSuspeito(String nome) {
+class CartaSuspeito extends Carta {
+	CartaSuspeito(String nome) {
 		super(nome);
 	}
-	
+
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;

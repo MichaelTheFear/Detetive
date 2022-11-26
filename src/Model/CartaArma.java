@@ -1,7 +1,7 @@
 package Model;
 
-class CartaArma extends Carta{ 
-	public CartaArma(String nome) {
+class CartaArma extends Carta {
+	CartaArma(String nome) {
 		super(nome);
 	}
 
@@ -17,6 +17,5 @@ class CartaArma extends Carta{
 		}
 		return true;
 	}
-	
-	
+
 };

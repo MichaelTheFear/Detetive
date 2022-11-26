@@ -1,179 +1,157 @@
 package Model;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 import Util.Personagem;
 
 class Jogador {
-	private List<Carta> cartasVistas = new ArrayList<Carta>(); //mudar para ArrayList<Carta> se ele deixar usar as data structure
+	private List<Carta> cartasVistas = new ArrayList<Carta>();
 	private Personagem personagem;
 	private boolean podeDarPalpite;
 	private boolean errouAcusacao;
 	private List<Carta> cartasIniciais = new ArrayList<Carta>();
 	private Posicao pos;
 	private boolean jogando;
-	
-	protected Jogador(Personagem personagem) {
-		this.personagem = personagem;
-		switch(this.personagem)
-		{
-			case Scarlet:
-				this.pos = new Posicao(26,9);
-				break;
-				
-			case Mustard:
-				this.pos = new Posicao(19,2);
-				break;
-			
-			case White:
-				this.pos = new Posicao(2,11);
-				break;
-				
-			case Green:
-				this.pos = new Posicao(2,16);
-				break;
-				
-			case Peacock:
-				this.pos = new Posicao(8,25);
-				break;
-				
-			case Plum:
-				this.pos = new Posicao(21,25);
-				break;
-				
-			
-		}
-		this.jogando = false;
-		this.errouAcusacao = true;
-	}
-	
-	protected Jogador(Personagem personagem,Carta cartasIniciais[]) {
-		this.personagem = personagem;
-		switch(this.personagem)
-		{
-			case Scarlet:
-				this.pos = new Posicao(26,9);
-				break;
-				
-			case Mustard:
-				this.pos = new Posicao(19,2);
-				break;
-			
-			case White:
-				this.pos = new Posicao(2,11);
-				break;
-				
-			case Green:
-				this.pos = new Posicao(2,16);
-				break;
-				
-			case Peacock:
-				this.pos = new Posicao(8,25);
-				break;
-				
-			case Plum:
-				this.pos = new Posicao(21,25);
-				break;
-				
-		}
-		for(int i = 0; i<cartasIniciais.length;i++) {
-			this.cartasIniciais.add(cartasIniciais[i]);
-			this.cartasVistas.add(cartasIniciais[i]);
-		}
-		this.podeDarPalpite = true;
-		this.errouAcusacao = false;
-		this.jogando = false;
-	}
-	
-	protected Jogador(Personagem personagem,ArrayList<Carta> cartasIniciais) {
-		this.personagem = personagem;
-		switch(this.personagem)
-		{
-			case Scarlet:
-				this.pos = new Posicao(26,9);
-				break;
-				
-			case Mustard:
-				this.pos = new Posicao(19,2);
-				break;
-			
-			case White:
-				this.pos = new Posicao(2,11);
-				break;
-				
-			case Green:
-				this.pos = new Posicao(2,16);
-				break;
-				
-			case Peacock:
-				this.pos = new Posicao(8,25);
-				break;
-				
-			case Plum:
-				this.pos = new Posicao(21,25);
-				break;
-				
-		}
-		this.cartasIniciais = cartasIniciais;
-		this.cartasVistas.addAll(cartasIniciais);
-		this.podeDarPalpite = true;
-		this.errouAcusacao = false;
-		this.jogando = false;
-	}
-	
+	private boolean npc;
 
-	protected boolean estaJogando() {
+	Jogador(Personagem personagem, boolean ehNpc, Tabuleiro t) {
+		this.personagem = personagem;
+		switch (this.personagem) {
+		case Scarlet:
+			this.pos = t.getPosicaoAt(26, 9);
+			this.pos.setJogadorAqui(true);
+			break;
+
+		case Mustard:
+			this.pos = t.getPosicaoAt(19, 2);
+			this.pos.setJogadorAqui(true);
+			break;
+
+		case White:
+			this.pos = t.getPosicaoAt(2, 11);
+			this.pos.setJogadorAqui(true);
+			break;
+
+		case Green:
+			this.pos = t.getPosicaoAt(2, 16);
+			this.pos.setJogadorAqui(true);
+			break;
+
+		case Peacock:
+			this.pos = t.getPosicaoAt(8, 25);
+			this.pos.setJogadorAqui(true);
+			break;
+
+		case Plum:
+			this.pos = t.getPosicaoAt(21, 25);
+			this.pos.setJogadorAqui(true);
+			break;
+
+		}
+		this.jogando = false;
+		this.npc = ehNpc;
+	}
+
+	boolean ehNpc() {
+		return npc;
+	}
+	
+	boolean estaJogando() {
 		return jogando;
 	}
 
-	protected void setJogando(boolean jogando) {
+	void setJogando(boolean jogando) {
 		this.jogando = jogando;
 	}
 
-	protected void addCartasVista(Carta c) {
+	void addCartasVista(Carta c) {
 		cartasVistas.add(c);
 	}
 
-	protected List<Carta> getCartasVistas() {
+	List<Carta> getCartasVistas() {
 		return cartasVistas;
 	}
 
-	protected List<Carta> getCartasIniciais() {
-		return cartasIniciais;
+	void setCartasIniciais(List<Carta> cartasIniciais) {
+		this.cartasIniciais = cartasIniciais;
 	}
 
-	protected Posicao getPos() {
+	List<Carta> getCartasIniciais() {
+		return cartasIniciais;
+	}
+	
+	void setPos(Posicao pos) {
+		this.pos = pos;
+	}
+	
+	Posicao getPos() {
 		return pos;
 	}
 
-	protected Personagem getPersonagem() {
+	Personagem getPersonagem() {
 		return personagem;
 	}
-	
-	protected boolean getPodeDarPalpite() {
+
+	boolean getPodeDarPalpite() {
 		return podeDarPalpite;
 	}
-	
-	protected void setPodeDarPalpite(boolean p) {
+
+	void setPodeDarPalpite(boolean p) {
 		podeDarPalpite = p;
 	}
-	
-	protected boolean getErrouAcusacao() {
+
+	boolean getErrouAcusacao() {
 		return errouAcusacao;
 	}
-	
-	protected void setErrouAcusacao(boolean p) {
+
+	void setErrouAcusacao(boolean p) {
 		errouAcusacao = p;
 	}
-	
-	Carta temCarta(Carta c[]) {
-		for(Carta cOut : c) {
-			for(Carta cIn : cartasIniciais) {
-				if(cIn.equals(cOut))
+
+	Carta temCarta(List<Carta> c) {
+		for (Carta cOut : c) {
+			for (Carta cIn : cartasIniciais) {
+				if (cIn.equals(cOut))
 					return cIn;
 			}
 		}
 		return null;
-	}	
+	}
+	
+	
+
+	Carta temCarta(Carta[] c) {
+		for (Carta cOut : c) {
+			for (Carta cIn : cartasIniciais) {
+				if (cIn.equals(cOut))
+					return cIn;
+			}
+		}
+		return null;
+	}
+	
+	Carta temCarta(String[] c) {
+		for(String cOut: c) {
+			for(Carta cIn : cartasIniciais) {
+				if(cIn.getNome().equals(cOut))
+					return cIn;
+			}
+		}
+		return null;
+	}
+	public String toString() { // nome-cartas iniciais-pos-errou acusacao-pode dar palpite-npc-jogando
+		String str = this.personagem.name();
+		str +=","+pos.toString();
+		str += ","+String.valueOf(errouAcusacao);
+		str += ","+String.valueOf(podeDarPalpite);
+		str += ","+String.valueOf(npc);
+		str += ","+String.valueOf(jogando)+",";
+		for(int i=0; i<cartasIniciais.size(); i++) {
+			str += cartasIniciais.get(i).getNome()+"_";
+		}
+		System.out.print(str);
+		return str;
+	}
 }

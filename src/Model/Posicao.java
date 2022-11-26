@@ -1,60 +1,77 @@
 package Model;
 
-class Posicao{
-	
-	private Coordenadas[] posicoesProximas = new Coordenadas[4];
-	private Coordenadas coordenadas;
-	private int passouAqui = 0;
+import java.util.ArrayList;
+
+class Posicao {
+
+	private ArrayList<Posicao> posicoesProximas = new ArrayList<Posicao>();
+	private int linha, coluna;
+	private boolean passouAqui = false;
+	private boolean jogadorAqui = false;
 	private int mudadoNoTurno = -1;
-	
-	protected Posicao(int x, int y) {
-		coordenadas = new Coordenadas(x,y);
+
+	Posicao(int linha, int coluna) {
+		this.linha = linha;
+		this.coluna = coluna;
 	}
-	
-	protected int getMudadoNoTurno() {
+
+	int getMudadoNoTurno() {
 		return mudadoNoTurno;
 	}
-	
-	protected void setMudadoNoTurno(int t) {
+
+	void setMudadoNoTurno(int t) {
 		mudadoNoTurno = t;
 	}
-	
 
-	protected void setPosicoesProximas(Coordenadas[] posicoesAdjacentes) {
+	void setPosicoesProximas(ArrayList<Posicao> posicoesAdjacentes) {
 		this.posicoesProximas = posicoesAdjacentes;
 	}
+	
+	void addPosicoesProximas(ArrayList<Posicao> posicoesAdjacentes) {
+		this.posicoesProximas.addAll(posicoesAdjacentes);
+	}
 
-	protected Coordenadas[] getPosicoesProximas() {
+	ArrayList<Posicao> getPosicoesProximas() {
 		return this.posicoesProximas;
 	}
 
-
-	protected Coordenadas getCoordenadas() {
-		return this.coordenadas;
+	int getLinha() {
+		return this.linha;
 	}
 	
-	protected int getPassouAqui() {
+	int getColuna() {
+		return this.coluna;
+	}
+
+	boolean getPassouAqui() {
 		return passouAqui;
 	}
-	
-	protected void setPassouAqui(int p) {
-		passouAqui = p;
+
+	void setPassouAqui(boolean passouAqui) {
+		this.passouAqui = passouAqui;
 	}
 	
-	protected void addUmPassouAqui() {
-		passouAqui++;
+	boolean getJogadorAqui() {
+		return this.jogadorAqui;
+	}
+	
+	void setJogadorAqui(boolean jogadorAqui) {
+		this.jogadorAqui = jogadorAqui;
 	}
 
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}
+		if (obj == null) {
+			return false;
+		}
 		Posicao other = (Posicao) obj;
-		return coordenadas.equals(other.coordenadas);
+		return (linha == other.getLinha() && coluna == other.getColuna());
 	}
 
 	public String toString() {
-		return "("+coordenadas.getX()+","+coordenadas.getY()+")";
+		return "(" + coluna + "," + linha + ")";
 	}
 
 }

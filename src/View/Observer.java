@@ -30,3 +30,7 @@ public class Observer {
 	}
 	
 }
+
+/*
+ * functio
+ */

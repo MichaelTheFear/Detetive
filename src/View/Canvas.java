@@ -26,6 +26,7 @@ public class Canvas extends JFrame {
 			"com.sun.java.swing.plaf.motif.MotifLookAndFeel\r\n",
 			"com.sun.java.swing.plaf.windows.WindowsLookAndFeel\r\n",
 			"com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel" };
+	
 	private int lookIndex = 0;
 
 	private void loadLook() {
@@ -39,7 +40,7 @@ public class Canvas extends JFrame {
 			loadLook();
 		} catch (ClassNotFoundException e) {
 			lookIndex++;
-			loadLook();
+			loadLook(); 
 		} catch (IndexOutOfBoundsException e) {
 			lookIndex = -1;
 			loadLook();
@@ -140,7 +141,8 @@ public class Canvas extends JFrame {
 	}
 
 	public void setDados(int[] dados) {
-		board.setDices(dados[0] + dados[1]);
+		System.out.println("Chamou canvas");
+		board.setDices(dados);
 	}
 
 	public void showGuess() {

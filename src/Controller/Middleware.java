@@ -56,6 +56,7 @@ public class Middleware {
 				String[] cards = (String[]) o;
 				//faltando agr a parte do model
 				boolean acusacao = model.acusar(cards); // chama acusar do model com as cartas que o jogador marcou
+				
 			}
 			
 		} );
@@ -98,13 +99,16 @@ public class Middleware {
 				model.novoJogo();
 				ArrayList<Personagem> viewPlayers = view.getPlayers();
 				model.setupJogadores(viewPlayers);
+				model.distribuiCartas();
 				view.setPlayerName(model.getJogadorVez());
 			}
 
 		});
 	}
-
+	
+	
 	private void initMovement() {
+		
 		obs.susbcribe(Events.boardClick, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
@@ -131,6 +135,7 @@ public class Middleware {
 
 			}
 		});
+		
 	}
 
 	private void initProx() {
@@ -175,12 +180,14 @@ public class Middleware {
 			@Override
 			public void onCall(Object o) {
 				if (o == null) {
+					System.out.println("Chamou canvas");
 					model.rolarDados();
 					view.setDados(model.getDados());
 				}
 				else {
 					Integer dices[] = (Integer[]) o;
 					model.setDados(dices);
+					view.setDados(model.getDados());
 				}
 			}
 		});

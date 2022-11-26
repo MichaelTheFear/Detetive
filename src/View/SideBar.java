@@ -13,9 +13,9 @@ import Util.Events;
 import Util.ObserverCallback;
 
 public class SideBar extends JPanel {
-	
+
 	private static SideBar sideBar = null;
-	
+
 	int where = 700;
 	int ratio = 50;
 	String strDice1 = "1";
@@ -36,13 +36,12 @@ public class SideBar extends JPanel {
 	static ErrorNotification error;
 	Dices dicesImages;
 
-	
 	public static SideBar newSideBar() {
-		if(sideBar==null)
+		if (sideBar == null)
 			sideBar = new SideBar();
 		return sideBar;
 	}
-	
+
 	private SideBar() {
 		this.setLayout(new BorderLayout());
 		String[] options = { "1", "2", "3", "4", "5", "6" };
@@ -75,7 +74,14 @@ public class SideBar extends JPanel {
 			}
 		}, where, ratio * 4));
 		this.add(txtVezJogador = new Text(" - ", where + 80, ratio * 5));
-		this.add(rolarDados = new Button("Rolar dados", where, ratio * 6));
+		this.add(rolarDados = new Button("Rolar dados", new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Observer.getObserver().callEvent(Events.dice, null);
+			}
+
+		}, where, ratio * 6));
 		this.add(usarDados = new Button("Usar esses dados", new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -84,12 +90,12 @@ public class SideBar extends JPanel {
 				dices[1] = Integer.valueOf(strDice2);
 				Observer.getObserver().callEvent(Events.dice, dices);
 				setJogadas(dices[0] + dices[1]);
-				dicesImages.setDices(dices[0],dices[1]);
+				dicesImages.setDices(dices[0], dices[1]);
 			}
 		}, where, ratio * 7));
-		this.add(new Text("Dado1     Dado2", 900,60));
+		this.add(new Text("Dado1     Dado2", 900, 60));
 		this.add(error = new ErrorNotification());
-		
+
 		this.add(box1 = new ComboBox(options, 900, 100, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -103,23 +109,23 @@ public class SideBar extends JPanel {
 			}
 		}));
 		this.add(new Button("Salvar Jogo", new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser filePicker = new JFileChooser();
 				filePicker.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				int i = filePicker.showSaveDialog(null);
 				File selectedFile = filePicker.getSelectedFile();
-				if(i == JFileChooser.APPROVE_OPTION) {
-					Observer.getObserver().callEvent(Events.saveGame,selectedFile.getAbsolutePath());
+				if (i == JFileChooser.APPROVE_OPTION) {
+					Observer.getObserver().callEvent(Events.saveGame, selectedFile.getAbsolutePath());
 				}
 			}
-			
-		},900,200));
+
+		}, 900, 200));
 		this.add(jogadas = new Text("Jogadas Sobrando: ", 200, 900, 150));
-	
+
 		this.add(dicesImages = new Dices());
-		
+
 		this.setBounds(where, where, 500, 700);
 	}
 
@@ -133,8 +139,10 @@ public class SideBar extends JPanel {
 		this.jogadas.setText("Jogadas Sobrando: " + numJogadasSobrando);
 	}
 
-	void setDados(int numJogadasSobrando) {
-		this.numJogadasSobrando = numJogadasSobrando;
+	void setDados(int[] dados) {
+		System.out.println("Chamou set dados");
+		setJogadas(dados[0] + dados[1]);
+		this.dicesImages.setDices(dados[0], dados[1]);
 	}
 
 	int getNumJogadasSobrando() {

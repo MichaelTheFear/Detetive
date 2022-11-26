@@ -82,7 +82,7 @@ public class JogoFacade {
 	}
 	
 	public void mover(int[] pos) throws ExceptionLugarNaoPermitido {
-		jogo.mover(pos);
+		jogo.mover(pos); 
 	}
 	
 	public void darPalpite(String[] palpites) { // dar palpite para o middleware

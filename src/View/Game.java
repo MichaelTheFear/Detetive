@@ -62,8 +62,8 @@ class Game extends JFrame {
 		sideBar.setActionRolarDados(callback);
 	}
 
-	void setDices(int num) {
-		sideBar.setDados(num);
+	void setDices(int[] dados) {
+		sideBar.setDados(dados);
 	}
 	
 	int getJogadasSobrando() {

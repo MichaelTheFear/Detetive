@@ -134,4 +134,18 @@ class Jogador {
 		}
 		return null;
 	}
+	
+	public String toString() { // nome-pos-errou acusacao-pode dar palpite-npc-jogando-cartas iniciais
+		String str = this.personagem.name();
+		str +=","+pos.toString();
+		str += ","+String.valueOf(errouAcusacao);
+		str += ","+String.valueOf(podeDarPalpite);
+		str += ","+String.valueOf(npc);
+		str += ","+String.valueOf(jogando)+",";
+		for(int i=0; i<cartasIniciais.size(); i++) {
+			str += cartasIniciais.get(i).getNome()+"_";
+		}
+		System.out.println(str);
+		return str;
+	}
 }

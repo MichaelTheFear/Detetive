@@ -141,6 +141,7 @@ class Jogador {
 		}
 		return null;
 	}
+	
 	public String toString() { // nome-cartas iniciais-pos-errou acusacao-pode dar palpite-npc-jogando
 		String str = this.personagem.name();
 		str +=","+pos.toString();
@@ -151,7 +152,11 @@ class Jogador {
 		for(int i=0; i<cartasIniciais.size(); i++) {
 			str += cartasIniciais.get(i).getNome()+"_";
 		}
-		System.out.print(str);
+		str+=",";
+		for(Carta c : cartasVistas) {
+			str += c.getNome()+"_";
+		}
+		System.out.println(str);
 		return str;
 	}
 }

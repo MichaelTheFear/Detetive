@@ -28,6 +28,9 @@ class Tabuleiro {
 	void houseKeepingTabuleiro() {
 		for (Posicao arrayPos[] : posicoes) {
 			for (Posicao pos : arrayPos) {
+				if(pos == null) {
+					continue;
+				}
 				pos.setPassouAqui(false);
 			}
 		}

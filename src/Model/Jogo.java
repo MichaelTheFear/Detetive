@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import Util.*;
+import Util.Armas;
+import Util.Comodos;
+import Util.Personagem;
 
 class Jogo {
 	static int NUM_MAX_DADO = 6;
@@ -48,21 +50,22 @@ class Jogo {
 
 	Jogo() {
 		setupTabuleiro();
-		this.setCartasAssasino(todasCartas);
-		//this.distribuiCartas();
+		this.setCartasAssasino();
+		// this.distribuiCartas();
 	}
-	
-	Jogo(File file) throws FileNotFoundException{
-		List<String> infoStrings = carregaStringsDoArquivo(file); 
-		vezDe = Integer.parseInt(infoStrings.get(0));//le linha do vezDe
-		//3 linhas com as 3 cartas de assassino
-		//o resto e jogador por linha
+
+	Jogo(File file) throws FileNotFoundException {
+		List<String> infoStrings = carregaStringsDoArquivo(file);
+		vezDe = Integer.parseInt(infoStrings.get(0));// le linha do vezDe
+		// 3 linhas com as 3 cartas de assassino
+		// o resto e jogador por linha
 		cartasAssassino[0] = new CartaArma(infoStrings.get(1));
 		cartasAssassino[1] = new CartaLocal(infoStrings.get(2));
 		cartasAssassino[2] = new CartaSuspeito(infoStrings.get(3));
 		// nome-npc-pos-errou acusacao-pode dar palpite-jogando-cartas iniciais
-		for(int i=4; i<infoStrings.size(); i++) {
-			String[] s = infoStrings.get(i).split(",()"); 
+		for (int i = 4; i < infoStrings.size(); i++) {
+			String[] s = infoStrings.get(i).split(",()"); // separa os atributos do jogador e a linha e coluna da pos
+															// dele
 			Jogador j = new Jogador(Personagem.valueOf(s[0]), Boolean.valueOf(s[1]), t);
 			int coluna = Integer.parseInt(s[2]);
 			int linha = Integer.parseInt(s[3]);
@@ -70,40 +73,32 @@ class Jogo {
 			j.setErrouAcusacao(Boolean.valueOf(s[4]));
 			j.setPodeDarPalpite(Boolean.valueOf(s[5]));
 			j.setJogando(Boolean.valueOf(s[6]));
-			String[] cartas = s[7].split("_");
-			ArrayList<Carta> cartasIni = new ArrayList<Carta>();
-			for(int n=0; n<todasCartas.length;n++) {
-				for(int m=0; m<cartas.length; m++) {
-					if(cartas[m].equals(todasCartas[n].getNome())) {
-						cartasIni.add(todasCartas[n]);
-					}
-				}
-			}
-			j.setCartasIniciais(cartasIni);
+
 		}
 	}
-	List<String> carregaStringsDoArquivo(File file) throws FileNotFoundException{
+
+	List<String> carregaStringsDoArquivo(File file) throws FileNotFoundException {
 		List<String> lines = new ArrayList<String>();
 		Scanner scan = new Scanner(file);
-		while(scan.hasNext()) {
+		while (scan.hasNext()) {
 			lines.add(scan.nextLine());
 		}
 		scan.close();
 		return lines;
 	}
 
-	void guardaPartida(String filePath) throws IOException  {
+	void guardaPartida(String filePath) throws IOException {
 		PrintWriter writer = new PrintWriter(new FileWriter(filePath));
 		writer.println(vezDe);
-		for(Carta assassino : this.cartasAssassino) {
+		for (Carta assassino : this.cartasAssassino) {
 			writer.println(assassino.getNome());
 		}
-		for(Jogador jogador: jogadores) {
+		for (Jogador jogador : jogadores) {
 			writer.println(jogador.toString());
 		}
 		writer.close();
 	}
-	
+
 	void setupTabuleiro() {
 		Posicao[][] posicoesTabuleiro = new Posicao[28][28]; // Tamanho do tabuleiro 28 x 28 quadrados
 
@@ -327,22 +322,22 @@ class Jogo {
 		posicoesTabuleiro[26][18] = new Posicao(26, 18);
 		posCorredor.add(posicoesTabuleiro[26][18]);
 		System.out.println("Inicializando Posicoes Jogadores");
-		//Scarlet
+		// Scarlet
 		posicoesTabuleiro[26][9] = new Posicao(26, 9);
 		posCorredor.add(posicoesTabuleiro[26][9]);
-		//Mustard
+		// Mustard
 		posicoesTabuleiro[19][2] = new Posicao(19, 2);
 		posCorredor.add(posicoesTabuleiro[19][2]);
-		//White
+		// White
 		posicoesTabuleiro[2][11] = new Posicao(2, 11);
 		posCorredor.add(posicoesTabuleiro[2][11]);
-		//Green
+		// Green
 		posicoesTabuleiro[2][16] = new Posicao(2, 16);
 		posCorredor.add(posicoesTabuleiro[2][16]);
-		//Peacock
+		// Peacock
 		posicoesTabuleiro[8][25] = new Posicao(8, 25);
 		posCorredor.add(posicoesTabuleiro[8][25]);
-		//Plum
+		// Plum
 		posicoesTabuleiro[21][25] = new Posicao(21, 25);
 		posCorredor.add(posicoesTabuleiro[21][25]);
 
@@ -352,33 +347,6 @@ class Jogo {
 
 	private void setupPosicoesProximas(Posicao[][] posicoesTabuleiro) {
 		System.out.println("Inicializando Posicoes Proximas...");
-		posicoesTabuleiro[9][6].setPosicoesProximas(posCozinha);
-		System.out.println("Porta Cozinha: OK");
-
-		posicoesTabuleiro[7][9].setPosicoesProximas(posSalaMusica);
-		posicoesTabuleiro[7][18].setPosicoesProximas(posSalaMusica);
-		posicoesTabuleiro[10][11].setPosicoesProximas(posSalaMusica);
-		posicoesTabuleiro[10][16].setPosicoesProximas(posSalaMusica);
-
-		posicoesTabuleiro[7][20].setPosicoesProximas(posJardimInverno);
-
-		posicoesTabuleiro[14][10].setPosicoesProximas(posSalaJantar);
-		posicoesTabuleiro[18][8].setPosicoesProximas(posSalaJantar);
-
-		posicoesTabuleiro[11][19].setPosicoesProximas(posSalaoJogos);
-		posicoesTabuleiro[15][24].setPosicoesProximas(posSalaoJogos);
-
-		posicoesTabuleiro[18][18].setPosicoesProximas(posBiblioteca);
-		posicoesTabuleiro[15][22].setPosicoesProximas(posBiblioteca);
-
-		posicoesTabuleiro[20][8].setPosicoesProximas(posSalaEstar);
-
-		posicoesTabuleiro[19][13].setPosicoesProximas(posEntrada);
-		posicoesTabuleiro[19][14].setPosicoesProximas(posEntrada);
-		posicoesTabuleiro[22][17].setPosicoesProximas(posEntrada);
-
-		posicoesTabuleiro[22][19].setPosicoesProximas(posEscritorio);
-
 		for (int i = 0; i < posCorredor.size(); i++) {
 			Posicao p = posCorredor.get(i);
 
@@ -402,6 +370,123 @@ class Jogo {
 				p.setPosicoesProximas(posProx);
 			}
 		}
+		System.out.println("Corredor OK");
+
+		posicoesTabuleiro[9][6].addPosicoesProximas(posCozinha);
+
+		posicoesTabuleiro[7][9].addPosicoesProximas(posSalaMusica);
+		posicoesTabuleiro[7][18].addPosicoesProximas(posSalaMusica);
+		posicoesTabuleiro[10][11].addPosicoesProximas(posSalaMusica);
+		posicoesTabuleiro[10][16].addPosicoesProximas(posSalaMusica);
+
+		posicoesTabuleiro[7][20].addPosicoesProximas(posJardimInverno);
+
+		posicoesTabuleiro[14][10].addPosicoesProximas(posSalaJantar);
+		posicoesTabuleiro[18][8].addPosicoesProximas(posSalaJantar);
+
+		posicoesTabuleiro[11][19].addPosicoesProximas(posSalaoJogos);
+		posicoesTabuleiro[15][24].addPosicoesProximas(posSalaoJogos);
+
+		posicoesTabuleiro[18][18].addPosicoesProximas(posBiblioteca);
+		posicoesTabuleiro[15][22].addPosicoesProximas(posBiblioteca);
+
+		posicoesTabuleiro[20][8].addPosicoesProximas(posSalaEstar);
+
+		posicoesTabuleiro[19][13].addPosicoesProximas(posEntrada);
+		posicoesTabuleiro[19][14].addPosicoesProximas(posEntrada);
+		posicoesTabuleiro[22][17].addPosicoesProximas(posEntrada);
+
+		posicoesTabuleiro[22][19].addPosicoesProximas(posEscritorio);
+		System.out.println("Portas OK");
+
+		for (int i = 0; i < posCozinha.size(); i++) {
+			Posicao p = posCozinha.get(i);
+			ArrayList<Posicao> posProx = new ArrayList<Posicao>();
+			posProx.add(posicoesTabuleiro[9][6]);
+
+			p.setPosicoesProximas(posProx);
+		}
+		System.out.println("Cozinha OK");
+
+		for (int i = 0; i < posSalaMusica.size(); i++) {
+			Posicao p = posSalaMusica.get(i);
+			ArrayList<Posicao> posProx = new ArrayList<Posicao>();
+			posProx.add(posicoesTabuleiro[7][9]);
+			posProx.add(posicoesTabuleiro[7][18]);
+			posProx.add(posicoesTabuleiro[10][11]);
+			posProx.add(posicoesTabuleiro[10][16]);
+
+			p.setPosicoesProximas(posProx);
+		}
+		System.out.println("Sala de Musica OK");
+
+		for (int i = 0; i < posJardimInverno.size(); i++) {
+			Posicao p = posJardimInverno.get(i);
+			ArrayList<Posicao> posProx = new ArrayList<Posicao>();
+			posProx.add(posicoesTabuleiro[7][20]);
+
+			p.setPosicoesProximas(posProx);
+		}
+		System.out.println("Jardim de Inverno OK");
+
+		for (int i = 0; i < posSalaJantar.size(); i++) {
+			Posicao p = posSalaJantar.get(i);
+			ArrayList<Posicao> posProx = new ArrayList<Posicao>();
+			posProx.add(posicoesTabuleiro[14][10]);
+			posProx.add(posicoesTabuleiro[18][8]);
+
+			p.setPosicoesProximas(posProx);
+		}
+		System.out.println("Sala de Jantar OK");
+
+		for (int i = 0; i < posSalaoJogos.size(); i++) {
+			Posicao p = posSalaoJogos.get(i);
+			ArrayList<Posicao> posProx = new ArrayList<Posicao>();
+			posProx.add(posicoesTabuleiro[11][19]);
+			posProx.add(posicoesTabuleiro[15][24]);
+
+			p.setPosicoesProximas(posProx);
+		}
+		System.out.println("Salao de Jogos OK");
+
+		for (int i = 0; i < posBiblioteca.size(); i++) {
+			Posicao p = posBiblioteca.get(i);
+			ArrayList<Posicao> posProx = new ArrayList<Posicao>();
+			posProx.add(posicoesTabuleiro[18][18]);
+			posProx.add(posicoesTabuleiro[15][22]);
+
+			p.setPosicoesProximas(posProx);
+		}
+		System.out.println("Biblioteca OK");
+
+		for (int i = 0; i < posSalaEstar.size(); i++) {
+			Posicao p = posSalaEstar.get(i);
+			ArrayList<Posicao> posProx = new ArrayList<Posicao>();
+			posProx.add(posicoesTabuleiro[20][8]);
+
+			p.setPosicoesProximas(posProx);
+		}
+		System.out.println("Sala de Estar OK");
+
+		for (int i = 0; i < posEntrada.size(); i++) {
+			Posicao p = posEntrada.get(i);
+			ArrayList<Posicao> posProx = new ArrayList<Posicao>();
+			posProx.add(posicoesTabuleiro[19][13]);
+			posProx.add(posicoesTabuleiro[19][14]);
+			posProx.add(posicoesTabuleiro[22][17]);
+
+			p.setPosicoesProximas(posProx);
+		}
+		System.out.println("Entrada OK");
+
+		for (int i = 0; i < posEscritorio.size(); i++) {
+			Posicao p = posEscritorio.get(i);
+			ArrayList<Posicao> posProx = new ArrayList<Posicao>();
+			posProx.add(posicoesTabuleiro[22][19]);
+
+			p.setPosicoesProximas(posProx);
+		}
+		System.out.println("Escritorio OK");
 	}
 
 	void setupJogadores(ArrayList<Personagem> players) {
@@ -415,8 +500,7 @@ class Jogo {
 			}
 			if (jogadores.isEmpty()) {
 				jogadores.add(new Jogador(susPersonagem, true, t));
-			}
-			else if (jogadores.get(jogadores.size() - 1).getPersonagem() != susPersonagem) {
+			} else if (jogadores.get(jogadores.size() - 1).getPersonagem() != susPersonagem) {
 				jogadores.add(new Jogador(susPersonagem, true, t));
 			}
 		}
@@ -429,10 +513,12 @@ class Jogo {
 		}
 	}
 
-	void setCartasAssasino(Carta[] cartas) {
+	void setCartasAssasino() {
 		cartasAssassino[0] = todasCartas[gerador.nextInt(6)]; // De 0 a 5 estão as Cartas de Arma
-		cartasAssassino[1] = todasCartas[gerador.nextInt(9) + 6]; // Gera-se nums de 0 a 8 e incrementa 6 para ser de 6 a 14 onde estão as Cartas de Local
-		cartasAssassino[2] = todasCartas[gerador.nextInt(6) + 15]; // Gera-se nums de 0 a 5 e incrementa 15 para ser de 15 a 20 onde estão as Cartas de Suspeito
+		cartasAssassino[1] = todasCartas[gerador.nextInt(9) + 6]; // Gera-se nums de 0 a 8 e incrementa 6 para ser de 6
+																	// a 14 onde estão as Cartas de Local
+		cartasAssassino[2] = todasCartas[gerador.nextInt(6) + 15]; // Gera-se nums de 0 a 5 e incrementa 15 para ser de
+																	// 15 a 20 onde estão as Cartas de Suspeito
 	}
 
 	private ArrayList<Carta> getCartasEmJogo() {
@@ -442,13 +528,11 @@ class Jogo {
 				if (todasCartas[i].getNome().compareTo(cartasAssassino[0].getNome()) == 0) {
 					continue;
 				}
-			}
-			else if (i < 15) {
+			} else if (i < 15) {
 				if (todasCartas[i].getNome().compareTo(cartasAssassino[1].getNome()) == 0) {
 					continue;
 				}
-			}
-			else {
+			} else {
 				if (todasCartas[i].getNome().compareTo(cartasAssassino[2].getNome()) == 0) {
 					continue;
 				}
@@ -460,9 +544,9 @@ class Jogo {
 
 	void distribuiCartas() {
 		ArrayList<Carta> cartasDistribuir = getCartasEmJogo();
-		int numCartasPessoa = cartasDistribuir.size() / qtdEmJogo; // Qtd de cartas que cada um tem = todas as cartas menos do assassino / qtd de jogadores em jogo
+		int numCartasPessoa = cartasDistribuir.size() / qtdEmJogo; // Qtd de cartas que cada um tem = todas as cartas
+																	// menos do assassino / qtd de jogadores em jogo
 		int cont = 0;
-
 		for (int i = 1; i < jogadores.size(); i++) {
 			if (jogadores.get(i).ehNpc()) {
 				continue;
@@ -483,7 +567,8 @@ class Jogo {
 			}
 
 			if (!jogadores.get(cont).ehNpc()) { // Se não for NPC
-				jogadores.get(cont).getCartasIniciais().add(cartasDistribuir.get(0)); // Adiciona uma carta que sobrou as Cartas Iniciais
+				jogadores.get(cont).getCartasIniciais().add(cartasDistribuir.get(0)); // Adiciona uma carta que sobrou
+																						// as Cartas Iniciais
 				cartasDistribuir.remove(0);
 			}
 			cont++;
@@ -508,28 +593,23 @@ class Jogo {
 			turno++;
 			if (turno == jogadores.size())
 				turno = 0;
-		}
-		while (jogadores.get(turno).ehNpc());
+		} while (jogadores.get(turno).ehNpc());
 		return turno;
 	}
 
 	void passaVez() {
 		vezDe = proxTurno(vezDe);
-		//t.houseKeepingTabuleiro();
+		t.houseKeepingTabuleiro();
 	}
 
 	void mover(int[] posicao) throws ExceptionLugarNaoPermitido {
 		Posicao escolhida = t.getPosicaoAt(posicao[0], posicao[1]);
-		System.out.print("Posicao Clicada: ");
-		System.out.println(escolhida.toString());
 		for (Posicao pos : jogadores.get(vezDe).getPos().getPosicoesProximas()) {
-			System.out.print("Posicao proxima: ");
-			System.out.println(pos.toString());
 			if (pos.equals(escolhida)) {
 				if (pos.getPassouAqui()) {
 					throw new ExceptionLugarNaoPermitido("Já passou aqui");
 				}
-				if (pos.getJogadorAqui()) {  // verificando se ja tem um jogador na posicao escolhida
+				if (pos.getJogadorAqui()) { // verificando se ja tem um jogador na posicao escolhida
 					throw new ExceptionLugarNaoPermitido("Posi��o ocupada");
 				}
 				jogadores.get(vezDe).getPos().setPassouAqui(true);
@@ -541,11 +621,65 @@ class Jogo {
 		}
 		throw new ExceptionLugarNaoPermitido("Não é adjacente");
 	}
-	
+
+	boolean verificaPassagemSecreta() {
+		Posicao posJogador = jogadores.get(vezDe).getPos();
+		if (posCozinha.contains(posJogador) || posEscritorio.contains(posJogador) || posSalaEstar.contains(posJogador)
+				|| posJardimInverno.contains(posJogador)) {
+			return true;
+		}
+		return false;
+	}
+
+	void moverPassagemSecreta() {
+		Posicao posJogador = jogadores.get(vezDe).getPos();
+		posJogador.setJogadorAqui(false);
+		if (posCozinha.contains(posJogador)) {
+			for (Posicao posOutroComodo : posEscritorio) {
+				if (posOutroComodo.getJogadorAqui()) {
+					continue;
+				}
+				jogadores.get(vezDe).setPos(posOutroComodo);
+				return;
+			}
+		}
+
+		if (posEscritorio.contains(posJogador)) {
+			for (Posicao posOutroComodo : posCozinha) {
+				if (posOutroComodo.getJogadorAqui()) {
+					continue;
+				}
+				jogadores.get(vezDe).setPos(posOutroComodo);
+				return;
+			}
+		}
+
+		if (posSalaEstar.contains(posJogador)) {
+			for (Posicao posOutroComodo : posJardimInverno) {
+				if (posOutroComodo.getJogadorAqui()) {
+					continue;
+				}
+				jogadores.get(vezDe).setPos(posOutroComodo);
+				return;
+			}
+		}
+
+		if (posJardimInverno.contains(posJogador)) {
+			for (Posicao posOutroComodo : posSalaEstar) {
+				if (posOutroComodo.getJogadorAqui()) {
+					continue;
+				}
+				jogadores.get(vezDe).setPos(posOutroComodo);
+				return;
+			}
+		}
+	}
+
 	boolean acusar(String cartasAcusacao[]) { // agora recebe string
 		// talvez mudar td para treeSet
-		for (int i = 0; i < 3; i++) { // compara o nome das cartas do assassino 
-			if (!cartasAcusacao[0].equals(cartasAssassino[i].getNome()) && !cartasAcusacao[1].equals(cartasAssassino[i].getNome())
+		for (int i = 0; i < 3; i++) { // compara o nome das cartas do assassino
+			if (!cartasAcusacao[0].equals(cartasAssassino[i].getNome())
+					&& !cartasAcusacao[1].equals(cartasAssassino[i].getNome())
 					&& !cartasAcusacao[2].equals(cartasAssassino[i].getNome())) {
 				jogadores.get(vezDe).setErrouAcusacao(true); // o acusador errou
 				return false;
@@ -555,7 +689,7 @@ class Jogo {
 		return true;
 
 	}
-	
+
 	String darPalpite(String palpites[]) { // aqui so mudou o parametro, alterei a temCarta (em jogador) para funcionar
 		int proxJogador = proxTurno(vezDe);
 		while (proxJogador != vezDe) {
@@ -566,14 +700,14 @@ class Jogo {
 			}
 			proxJogador = proxTurno(proxJogador);
 		}
-		
+
 		return "nenhum";
 	}
-	
-	void moveComPalpite(String per, String comodo) {		// move jogador do palpite para comodo do palpite
+
+	void moveComPalpite(String per, String comodo) { // move jogador do palpite para comodo do palpite
 		Comodos c = Comodos.valueOf(comodo);
 		ArrayList<Posicao> posComodo;
-		switch(c) {
+		switch (c) {
 		case Biblioteca:
 			posComodo = posBiblioteca;
 			break;
@@ -601,27 +735,29 @@ class Jogo {
 		case SalaoDeJogos:
 			posComodo = posSalaoJogos;
 			break;
-		default: // gambiarra ; posComodo tinha q ser inicializada se nao da ruim (faco direito depois)
+		default: // gambiarra ; posComodo tinha q ser inicializada se nao da ruim (faco direito
+					// depois)
 			posComodo = null;
 			break;
 		}
-		for(Posicao p : posComodo) { // coloca o jogador do palpite em uma posicao qualquer livre do comodo do palpite
-			if(!p.getJogadorAqui()) {
-				for(Jogador j : jogadores) {
-					if(j.getPersonagem().equals(Personagem.valueOf(per))) {
+		for (Posicao p : posComodo) { // coloca o jogador do palpite em uma posicao qualquer livre do comodo do
+										// palpite
+			if (!p.getJogadorAqui()) {
+				for (Jogador j : jogadores) {
+					if (j.getPersonagem().equals(Personagem.valueOf(per))) {
 						j.setPos(p);
 					}
 				}
 			}
 		}
 	}
-	
+
 	ArrayList<String> cartasParaString(List<Carta> cartas) { // transforma array de cartas para array de strings
-		ArrayList<String> str = new ArrayList<String>();	 
-		for(Carta c : cartas) {
+		ArrayList<String> str = new ArrayList<String>();
+		for (Carta c : cartas) {
 			str.add(c.getNome());
 		}
 		return str;
 	}
-	
+
 }

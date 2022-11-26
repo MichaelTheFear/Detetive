@@ -32,6 +32,7 @@ public class JogoFacade {
 	}
 
 	public void distribuiCartas() {
+		jogo.setCartasAssasino();
 		jogo.distribuiCartas();
 	}
 

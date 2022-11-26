@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,26 +21,32 @@ class Jogador {
 		switch (this.personagem) {
 		case Scarlet:
 			this.pos = t.getPosicaoAt(26, 9);
+			this.pos.setJogadorAqui(true);
 			break;
 
 		case Mustard:
 			this.pos = t.getPosicaoAt(19, 2);
+			this.pos.setJogadorAqui(true);
 			break;
 
 		case White:
 			this.pos = t.getPosicaoAt(2, 11);
+			this.pos.setJogadorAqui(true);
 			break;
 
 		case Green:
 			this.pos = t.getPosicaoAt(2, 16);
+			this.pos.setJogadorAqui(true);
 			break;
 
 		case Peacock:
 			this.pos = t.getPosicaoAt(8, 25);
+			this.pos.setJogadorAqui(true);
 			break;
 
 		case Plum:
 			this.pos = t.getPosicaoAt(21, 25);
+			this.pos.setJogadorAqui(true);
 			break;
 
 		}
@@ -134,8 +141,7 @@ class Jogador {
 		}
 		return null;
 	}
-	
-	public String toString() { // nome-pos-errou acusacao-pode dar palpite-npc-jogando-cartas iniciais
+	public String toString() { // nome-cartas iniciais-pos-errou acusacao-pode dar palpite-npc-jogando
 		String str = this.personagem.name();
 		str +=","+pos.toString();
 		str += ","+String.valueOf(errouAcusacao);
@@ -145,7 +151,7 @@ class Jogador {
 		for(int i=0; i<cartasIniciais.size(); i++) {
 			str += cartasIniciais.get(i).getNome()+"_";
 		}
-		System.out.println(str);
+		System.out.print(str);
 		return str;
 	}
 }

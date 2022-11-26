@@ -57,9 +57,31 @@ class Jogo {
 		vezDe = Integer.parseInt(infoStrings.get(0));//le linha do vezDe
 		//3 linhas com as 3 cartas de assassino
 		//o resto e jogador por linha
-		
+		cartasAssassino[0] = new CartaArma(infoStrings.get(1));
+		cartasAssassino[1] = new CartaLocal(infoStrings.get(2));
+		cartasAssassino[2] = new CartaSuspeito(infoStrings.get(3));
+		// nome-npc-pos-errou acusacao-pode dar palpite-jogando-cartas iniciais
+		for(int i=4; i<infoStrings.size(); i++) {
+			String[] s = infoStrings.get(i).split(",()"); 
+			Jogador j = new Jogador(Personagem.valueOf(s[0]), Boolean.valueOf(s[1]), t);
+			int coluna = Integer.parseInt(s[2]);
+			int linha = Integer.parseInt(s[3]);
+			j.setPos(new Posicao(linha, coluna));
+			j.setErrouAcusacao(Boolean.valueOf(s[4]));
+			j.setPodeDarPalpite(Boolean.valueOf(s[5]));
+			j.setJogando(Boolean.valueOf(s[6]));
+			String[] cartas = s[7].split("_");
+			ArrayList<Carta> cartasIni = new ArrayList<Carta>();
+			for(int n=0; n<todasCartas.length;n++) {
+				for(int m=0; m<cartas.length; m++) {
+					if(cartas[m].equals(todasCartas[n].getNome())) {
+						cartasIni.add(todasCartas[n]);
+					}
+				}
+			}
+			j.setCartasIniciais(cartasIni);
+		}
 	}
-	
 	List<String> carregaStringsDoArquivo(File file) throws FileNotFoundException{
 		List<String> lines = new ArrayList<String>();
 		Scanner scan = new Scanner(file);
@@ -427,7 +449,7 @@ class Jogo {
 				}
 			}
 			else {
-				if (todasCartas[i].getNome().compareTo(cartasAssassino[3].getNome()) == 0) {
+				if (todasCartas[i].getNome().compareTo(cartasAssassino[2].getNome()) == 0) {
 					continue;
 				}
 			}

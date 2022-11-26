@@ -3,6 +3,8 @@ package View;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,8 @@ import Util.Events;
 import Util.Personagem;
 
 public class Accuse extends JFrame {
+	
+	static private Accuse accuse = null;
 	
 	ArrayList<CheckBox> sus = new ArrayList<>();
 	ArrayList<CheckBox> weapons = new ArrayList<>();
@@ -33,7 +37,13 @@ public class Accuse extends JFrame {
 		return -1;
 	}
 	
-	Accuse(List<String> cartasVistas){
+	static Accuse newAccuse(List<String> cartas) {
+		if(accuse == null)
+			accuse = new Accuse(cartas);
+		return accuse;
+	}
+	
+	private Accuse(List<String> cartasVistas){
 		Personagem personagens[] = Personagem.values();		
 		Armas armas[] = Armas.values();		
 		Comodos comodos[] = Comodos.values();		
@@ -94,18 +104,31 @@ public class Accuse extends JFrame {
 		this.add(new Button("Confirmar", new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(per!=null && comodos!=null && arma!=null) 
+				if(per!=null && comodos!=null && arma!=null) {					
 					Observer.getObserver().callEvent(Events.confirmAccuse, new String[] {
 							per,arma,comodo
 					});
+					accuse.dispose();
+					accuse = null;
+				}
 			}
-		},600,1000));
+		},1000,600));
 		
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				accuse.dispose();
+				accuse = null;
+			}
+		});
 		this.setLayout(new BorderLayout());
 		this.pack();
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setSize(Canvas.SIZE);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
+		
 	}
+	
 	
 }

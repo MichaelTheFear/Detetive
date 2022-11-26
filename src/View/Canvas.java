@@ -146,11 +146,11 @@ public class Canvas extends JFrame {
 	}
 
 	public void showGuess() {
-		new Guess();
+		Guess.newGuess();
 	}
 
 	public void showAccuse(List<String> cartas) {
-		new Accuse(cartas);
+		Accuse.newAccuse(cartas);
 	}
 
 	public void setJogadasSobrando(int i) {

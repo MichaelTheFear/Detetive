@@ -63,7 +63,7 @@ public class SideBar extends JPanel {
 		this.add(palpite = new Button("Palpite", new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Guess();
+				Guess.newGuess();
 			}
 
 		}, where, ratio * 3));

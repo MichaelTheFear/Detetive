@@ -578,6 +578,7 @@ class Jogo {
 	void rolarDado() {
 		dados[0] = gerador.nextInt(6) + 1; // Gera-se nums de 0 a 5 e incrementa 1 para ser de 1 a 6
 		dados[1] = gerador.nextInt(6) + 1;
+		jogadores.get(vezDe).setRolouDado(true);
 	}
 
 	int[] getDados() {
@@ -586,6 +587,7 @@ class Jogo {
 
 	void setDados(int[] dados) {
 		this.dados = dados;
+		jogadores.get(vezDe).setRolouDado(true);
 	}
 
 	private int proxTurno(int turno) {
@@ -598,11 +600,16 @@ class Jogo {
 	}
 
 	void passaVez() {
+		jogadores.get(vezDe).setRolouDado(false);
 		vezDe = proxTurno(vezDe);
 		t.houseKeepingTabuleiro();
 	}
 
 	void mover(int[] posicao) throws ExceptionLugarNaoPermitido {
+		if (estaEmComodo(jogadores.get(vezDe).getPos())) {
+			ocupaComodo(jogadores.get(vezDe).getPos());
+		}
+
 		Posicao escolhida = t.getPosicaoAt(posicao[0], posicao[1]);
 		for (Posicao pos : jogadores.get(vezDe).getPos().getPosicoesProximas()) {
 			if (pos.equals(escolhida)) {
@@ -616,6 +623,7 @@ class Jogo {
 				jogadores.get(vezDe).getPos().setJogadorAqui(false);
 				pos.setJogadorAqui(true);
 				jogadores.get(vezDe).setPos(pos);
+				jogadores.get(vezDe).setPodeDarPalpite(estaEmComodo(pos));
 				return;
 			}
 		}
@@ -624,8 +632,9 @@ class Jogo {
 
 	boolean verificaPassagemSecreta() {
 		Posicao posJogador = jogadores.get(vezDe).getPos();
-		if (posCozinha.contains(posJogador) || posEscritorio.contains(posJogador) || posSalaEstar.contains(posJogador)
-				|| posJardimInverno.contains(posJogador)) {
+		if (!jogadores.get(vezDe).getRolouDado()
+				&& (posCozinha.contains(posJogador) || posEscritorio.contains(posJogador)
+						|| posSalaEstar.contains(posJogador) || posJardimInverno.contains(posJogador))) {
 			return true;
 		}
 		return false;
@@ -634,11 +643,14 @@ class Jogo {
 	void moverPassagemSecreta() {
 		Posicao posJogador = jogadores.get(vezDe).getPos();
 		posJogador.setJogadorAqui(false);
+		jogadores.get(vezDe).setPodeDarPalpite(true);
+
 		if (posCozinha.contains(posJogador)) {
 			for (Posicao posOutroComodo : posEscritorio) {
 				if (posOutroComodo.getJogadorAqui()) {
 					continue;
 				}
+				posOutroComodo.setJogadorAqui(true);
 				jogadores.get(vezDe).setPos(posOutroComodo);
 				return;
 			}
@@ -649,6 +661,7 @@ class Jogo {
 				if (posOutroComodo.getJogadorAqui()) {
 					continue;
 				}
+				posOutroComodo.setJogadorAqui(true);
 				jogadores.get(vezDe).setPos(posOutroComodo);
 				return;
 			}
@@ -659,6 +672,7 @@ class Jogo {
 				if (posOutroComodo.getJogadorAqui()) {
 					continue;
 				}
+				posOutroComodo.setJogadorAqui(true);
 				jogadores.get(vezDe).setPos(posOutroComodo);
 				return;
 			}
@@ -669,9 +683,85 @@ class Jogo {
 				if (posOutroComodo.getJogadorAqui()) {
 					continue;
 				}
+				posOutroComodo.setJogadorAqui(true);
 				jogadores.get(vezDe).setPos(posOutroComodo);
 				return;
 			}
+		}
+	}
+
+	private boolean estaEmComodo(Posicao posJogador) {
+		if (posCozinha.contains(posJogador) || posSalaJantar.contains(posJogador) || posSalaEstar.contains(posJogador)
+				|| posEntrada.contains(posJogador) || posEscritorio.contains(posJogador)
+				|| posSalaMusica.contains(posJogador) || posJardimInverno.contains(posJogador)
+				|| posSalaoJogos.contains(posJogador) || posBiblioteca.contains(posJogador)) {
+			return true;
+		}
+		return false;
+	}
+
+	private void ocupaComodo(Posicao pos) {
+		if (posCozinha.contains(pos)) {
+			for (Posicao posComodo : posCozinha) {
+				posComodo.setPassouAqui(true);
+			}
+			return;
+		}
+
+		if (posSalaJantar.contains(pos)) {
+			for (Posicao posComodo : posSalaJantar) {
+				posComodo.setPassouAqui(true);
+			}
+			return;
+		}
+
+		if (posSalaEstar.contains(pos)) {
+			for (Posicao posComodo : posSalaEstar) {
+				posComodo.setPassouAqui(true);
+			}
+			return;
+		}
+
+		if (posEntrada.contains(pos)) {
+			for (Posicao posComodo : posEntrada) {
+				posComodo.setPassouAqui(true);
+			}
+			return;
+		}
+
+		if (posEscritorio.contains(pos)) {
+			for (Posicao posComodo : posEscritorio) {
+				posComodo.setPassouAqui(true);
+			}
+			return;
+		}
+
+		if (posSalaMusica.contains(pos)) {
+			for (Posicao posComodo : posSalaMusica) {
+				posComodo.setPassouAqui(true);
+			}
+			return;
+		}
+
+		if (posJardimInverno.contains(pos)) {
+			for (Posicao posComodo : posJardimInverno) {
+				posComodo.setPassouAqui(true);
+			}
+			return;
+		}
+
+		if (posSalaoJogos.contains(pos)) {
+			for (Posicao posComodo : posSalaoJogos) {
+				posComodo.setPassouAqui(true);
+			}
+			return;
+		}
+
+		if (posBiblioteca.contains(pos)) {
+			for (Posicao posComodo : posBiblioteca) {
+				posComodo.setPassouAqui(true);
+			}
+			return;
 		}
 	}
 
@@ -692,6 +782,7 @@ class Jogo {
 
 	String darPalpite(String palpites[]) { // aqui so mudou o parametro, alterei a temCarta (em jogador) para funcionar
 		int proxJogador = proxTurno(vezDe);
+		jogadores.get(vezDe).setPodeDarPalpite(false);
 		while (proxJogador != vezDe) {
 			Carta c = jogadores.get(proxJogador).temCarta(palpites);
 			if (c != null) {
@@ -745,11 +836,32 @@ class Jogo {
 			if (!p.getJogadorAqui()) {
 				for (Jogador j : jogadores) {
 					if (j.getPersonagem().equals(Personagem.valueOf(per))) {
+						j.getPos().setJogadorAqui(false);
+						p.setJogadorAqui(true);
 						j.setPos(p);
+						j.setPodeDarPalpite(true);
+						break;
 					}
 				}
 			}
 		}
+	}
+
+	boolean getPodeDarPalpite() {
+		return jogadores.get(vezDe).getPodeDarPalpite();
+	}
+
+	boolean getErrouAcusao() {
+		return jogadores.get(vezDe).getErrouAcusacao();
+	}
+
+	boolean getErrouAcusaoAll() {
+		for (Jogador jog : jogadores) {
+			if (!jog.ehNpc() && !jog.getErrouAcusacao()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	ArrayList<String> cartasParaString(List<Carta> cartas) { // transforma array de cartas para array de strings

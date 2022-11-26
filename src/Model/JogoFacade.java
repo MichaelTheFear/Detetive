@@ -82,7 +82,7 @@ public class JogoFacade {
 	}
 	
 	public void mover(int[] pos) throws ExceptionLugarNaoPermitido {
-		jogo.mover(pos); 
+		jogo.mover(pos);
 	}
 	
 	public void darPalpite(String[] palpites) { // dar palpite para o middleware
@@ -103,5 +103,25 @@ public class JogoFacade {
 	
 	public void moverPalpite(String player, String place) {  // move o player 'acusado' qnd eh feito palpite
 		jogo.moveComPalpite(player, place);
+	}
+	
+	public boolean getPodeDarPalpite() {
+		return jogo.getPodeDarPalpite();
+	}
+	
+	public boolean getErrouAcusao() {
+		return jogo.getErrouAcusao();
+	}
+	
+	public boolean getErrouAcusaoAll() {
+		return jogo.getErrouAcusaoAll();
+	}
+	
+	public boolean verificaPassagemSecreta() {
+		return jogo.verificaPassagemSecreta();
+	}
+	
+	public void moverPassagemSecreta() {
+		jogo.moverPassagemSecreta();
 	}
 }

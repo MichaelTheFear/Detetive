@@ -15,6 +15,7 @@ class Jogador {
 	private Posicao pos;
 	private boolean jogando;
 	private boolean npc;
+	private boolean rolouDado;
 
 	Jogador(Personagem personagem, boolean ehNpc, Tabuleiro t) {
 		this.personagem = personagem;
@@ -52,6 +53,8 @@ class Jogador {
 		}
 		this.jogando = false;
 		this.npc = ehNpc;
+		this.podeDarPalpite = false;
+		this.rolouDado = false;
 	}
 
 	boolean ehNpc() {
@@ -140,6 +143,14 @@ class Jogador {
 			}
 		}
 		return null;
+	}
+	
+	void setRolouDado(boolean rolouDado) {
+		this.rolouDado = rolouDado;
+	}
+	
+	boolean getRolouDado() {
+		return this.rolouDado;
 	}
 	
 	public String toString() { // nome-cartas iniciais-pos-errou acusacao-pode dar palpite-npc-jogando

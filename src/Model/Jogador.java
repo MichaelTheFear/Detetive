@@ -78,6 +78,7 @@ class Jogador {
 	}
 
 	void setCartasIniciais(List<Carta> cartasIniciais) {
+		this.cartasVistas.addAll(cartasIniciais);
 		this.cartasIniciais = cartasIniciais;
 	}
 

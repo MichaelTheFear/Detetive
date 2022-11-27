@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
+import Controller.Observer;
 import Util.Armas;
 import Util.Comodos;
 import Util.Events;
@@ -46,7 +47,8 @@ public class Accuse extends JFrame {
 	private Accuse(List<String> cartasVistas){
 		Personagem personagens[] = Personagem.values();		
 		Armas armas[] = Armas.values();		
-		Comodos comodos[] = Comodos.values();		
+		Comodos comodos[] = Comodos.values();
+		System.out.println(cartasVistas.get(0));
 		for(int i = 0 ; i<personagens.length;i++) {
 			CheckBox b = new CheckBox(personagens[i],0,i*x);
 			if(cartasVistas.indexOf(personagens[i].name())!=-1) 

@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
+import Controller.Observer;
+
 import java.io.File;
 import Util.Events;
 import Util.ObserverCallback;
@@ -15,20 +17,20 @@ import Util.ObserverCallback;
 public class SideBar extends JPanel {
 
 	private static SideBar sideBar = null;
-
+	private Observer obs = Observer.getObserver();
 	int where = 700;
 	int ratio = 50;
 	String strDice1 = "1";
 	String strDice2 = "1";
 	ComboBox box1;
 	ComboBox box2;
-	Button prox;
-	Button mostraCartas;
-	Button notas;
-	Button palpite;
+	Button prox; //disable
+	Button mostraCartas; 
+	Button notas; 
+	Button palpite; //disable
 	Button acusar;
-	Button rolarDados;
-	Button usarDados;
+	Button rolarDados;  //disable
+	Button usarDados; //disable
 	String jogador;
 	int numJogadasSobrando = 10;
 	Text txtVezJogador;
@@ -41,6 +43,36 @@ public class SideBar extends JPanel {
 			sideBar = new SideBar();
 		return sideBar;
 	}
+	
+	private void changeButtonStates() {
+		
+		obs.susbcribe(Events.statusNext, new ObserverCallback () {
+			@Override
+			public void onCall(Object o) {
+				Boolean status = (Boolean) o;
+				prox.setEnabled(status);
+			}
+		});
+		
+		obs.susbcribe(Events.statusGuess, new ObserverCallback () {
+			@Override
+			public void onCall(Object o) {
+				Boolean status = (Boolean) o;
+				prox.setEnabled(status);
+			}
+		});
+		
+		obs.susbcribe(Events.statusDice, new ObserverCallback () {
+			@Override
+			public void onCall(Object o) {
+				Boolean status = (Boolean) o;
+				System.out.println("Status" + status);
+				usarDados.setEnabled(status);
+				rolarDados.setEnabled(status);
+			}
+		});
+		
+	}
 
 	private SideBar() {
 		this.setLayout(new BorderLayout());
@@ -49,14 +81,14 @@ public class SideBar extends JPanel {
 		this.add(mostraCartas = new Button("Mostra Cartas", new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Observer.getObserver().callEvent(Events.showCards, jogador);
+				obs.callEvent(Events.showCards, jogador);
 			}
 
 		}, where, ratio));
 		this.add(notas = new Button("Notas", new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Observer.getObserver().callEvent(Events.showNotes, jogador);
+				obs.callEvent(Events.showNotes, jogador);
 			}
 
 		}, where, ratio * 2));
@@ -70,7 +102,7 @@ public class SideBar extends JPanel {
 		this.add(acusar = new Button("Acusar", new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Observer.getObserver().callEvent(Events.showAccuse, null);
+				obs.callEvent(Events.showAccuse, null);
 			}
 		}, where, ratio * 4));
 		this.add(txtVezJogador = new Text(" - ", where + 80, ratio * 5));
@@ -78,7 +110,7 @@ public class SideBar extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Observer.getObserver().callEvent(Events.dice, null);
+				obs.callEvent(Events.dice, null);
 			}
 
 		}, where, ratio * 6));
@@ -88,7 +120,7 @@ public class SideBar extends JPanel {
 				Integer[] dices = new Integer[2];
 				dices[0] = Integer.valueOf(strDice1);
 				dices[1] = Integer.valueOf(strDice2);
-				Observer.getObserver().callEvent(Events.dice, dices);
+				obs.callEvent(Events.dice, dices);
 				setJogadas(dices[0] + dices[1]);
 				dicesImages.setDices(dices[0], dices[1]);
 			}
@@ -117,15 +149,14 @@ public class SideBar extends JPanel {
 				int i = filePicker.showSaveDialog(null);
 				File selectedFile = filePicker.getSelectedFile();
 				if (i == JFileChooser.APPROVE_OPTION) {
-					Observer.getObserver().callEvent(Events.saveGame, selectedFile.getAbsolutePath());
+					obs.callEvent(Events.saveGame, selectedFile.getAbsolutePath());
 				}
 			}
 
 		}, 900, 200));
 		this.add(jogadas = new Text("Jogadas Sobrando: ", 200, 900, 150));
-
+		this.changeButtonStates();
 		this.add(dicesImages = new Dices());
-
 		this.setBounds(where, where, 500, 700);
 	}
 

@@ -7,6 +7,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+
+import Controller.Observer;
 import Util.Armas;
 import Util.Comodos;
 import Util.Events;

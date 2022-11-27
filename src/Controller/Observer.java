@@ -1,4 +1,4 @@
-package View;
+package Controller;
 
 import Util.Events;
 import Util.ObserverCallback;
@@ -30,7 +30,3 @@ public class Observer {
 	}
 	
 }
-
-/*
- * functio
- */

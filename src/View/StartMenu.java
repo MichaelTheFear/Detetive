@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import Controller.Observer;
 import Util.Events;
 
 class StartMenu extends JPanel {

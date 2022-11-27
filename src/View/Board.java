@@ -13,7 +13,9 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import Controller.Observer;
 import Util.Events;
+import Util.ObserverCallback;
 
 class Board extends JpgImage implements MouseListener {
 
@@ -21,6 +23,7 @@ class Board extends JpgImage implements MouseListener {
 	int side = 24;
 	int sideB = 672;
 	static Board board = null;
+	boolean canWalk = false;
 	
 	static Board newBoard(){
 		if(board==null)
@@ -33,6 +36,13 @@ class Board extends JpgImage implements MouseListener {
 		images.add(readFile("Tabuleiros/Tabuleiro-Clue-A"));
 		addMouseListener(this);
 		this.setSize(sideB, sideB);
+		Observer.getObserver().susbcribe(Events.statusDice, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				Boolean status = (Boolean) o;
+				canWalk = !status;
+			}
+		});
 	}
 
 	public void paint(Graphics g) {
@@ -82,7 +92,8 @@ class Board extends JpgImage implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		Integer [] positions = new Integer[] { e.getX()/side , e.getY()/side};
 		SideBar.clearError();
-		Observer.getObserver().callEvent(Events.boardClick,positions);
+		if(canWalk)
+			Observer.getObserver().callEvent(Events.boardClick,positions);
 	}
 
 

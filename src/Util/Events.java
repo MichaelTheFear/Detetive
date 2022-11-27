@@ -9,5 +9,8 @@ public enum Events {
 	confirmGuess,
 	confirmAccuse,
 	saveGame,
-	loadGame
+	loadGame,
+	statusGuess,
+	statusDice,
+	statusNext,
 }

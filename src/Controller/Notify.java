@@ -1,4 +1,4 @@
-package View;
+package Controller;
 
 import Util.ObserverCallback;
 import java.util.ArrayList;

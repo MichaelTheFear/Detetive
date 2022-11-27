@@ -13,7 +13,6 @@ import Model.ExceptionLugarNaoPermitido;
 import Model.JogoFacade;
 import Util.*;
 import View.Canvas;
-import View.Observer;
 
 public class Middleware {
 	static JogoFacade model = JogoFacade.getJogoFacade();
@@ -21,8 +20,6 @@ public class Middleware {
 	static Observer obs = Observer.getObserver();
 
 	Middleware() {
-		// Canvas canvas = new Canvas();
-		// JogoFacade model = new JogoFacade();
 		initBoard();
 		initRolarDados();
 		initProx();
@@ -38,9 +35,6 @@ public class Middleware {
 		obs.susbcribe(Events.showAccuse, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
-				//List mock =  Arrays.asList(new String[] {Personagem.Green.name(),Armas.Cano.name()});
-				//view.showAccuse(mock);
-				
 				ArrayList<String> notas = model.getNotas(); // pega as cartas vistas para a showAccuse
 				System.out.println("Acusar len "+notas.size() );
 				for(String str: notas)
@@ -54,9 +48,7 @@ public class Middleware {
 			@Override
 			public void onCall(Object o) {
 				String[] cards = (String[]) o;
-				//faltando agr a parte do model
 				boolean acusacao = model.acusar(cards); // chama acusar do model com as cartas que o jogador marcou
-				
 			}
 			
 		} );
@@ -85,7 +77,7 @@ public class Middleware {
 				}catch(FileNotFoundException e) {
 					System.out.println(e); //talvez botar um popup no lugar 
 				}
-				
+				obs.callEvent(Events.statusNext, Boolean.valueOf(false));
 			}
 		});
 	}
@@ -101,6 +93,7 @@ public class Middleware {
 				model.setupJogadores(viewPlayers);
 				model.distribuiCartas();
 				view.setPlayerName(model.getJogadorVez());
+				obs.callEvent(Events.statusNext, Boolean.valueOf(false));
 			}
 
 		});
@@ -110,6 +103,7 @@ public class Middleware {
 	private void initMovement() {
 		
 		obs.susbcribe(Events.boardClick, new ObserverCallback() {
+			
 			@Override
 			public void onCall(Object o) {
 				Integer[] position = (Integer[]) o;
@@ -117,6 +111,9 @@ public class Middleware {
 				int jogadasSobrando;
 
 				jogadasSobrando = view.getJogadasSobrando();
+				System.out.println("Pode isso arnaldo?"+model.getPodeDarPalpite());
+				obs.callEvent(Events.statusNext, Boolean.valueOf(jogadasSobrando <= 1));
+					
 				System.out.println(jogadasSobrando);
 				if (jogadasSobrando != 0) {
 					try {
@@ -145,6 +142,8 @@ public class Middleware {
 				model.passaVez();
 				Personagem prox = model.getJogadorVez();
 				view.setNamePlayingNow(prox.toString());
+				obs.callEvent(Events.statusDice, Boolean.valueOf(true));
+				obs.callEvent(Events.statusNext, Boolean.valueOf(false));
 			}
 		});
 	}
@@ -179,8 +178,9 @@ public class Middleware {
 		obs.susbcribe(Events.dice, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
+				obs.callEvent(Events.statusDice, Boolean.valueOf(false));
 				if (o == null) {
-					System.out.println("Chamou canvas");
+
 					model.rolarDados();
 					view.setDados(model.getDados());
 				}

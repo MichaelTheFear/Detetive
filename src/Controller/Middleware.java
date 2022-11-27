@@ -37,10 +37,7 @@ public class Middleware {
 		obs.susbcribe(Events.showAccuse, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
-				ArrayList<String> notas = model.getNotas(); // pega as cartas vistas para a showAccuse
-				
-			
-					
+				ArrayList<String> notas = model.getNotas(); 
 				view.showAccuse(notas);
 			}
 			
@@ -50,18 +47,14 @@ public class Middleware {
 			@Override
 			public void onCall(Object o) {
 				String[] cards = (String[]) o;
-				boolean acusacao = model.acusar(cards); // chama acusar do model com as cartas que o jogador marcou
+				boolean acusacao = model.acusar(cards);
 				if(acusacao)
 					view.win(model.getNomeJogadorVez());
 				else
 					prox();
-			}
-			
-		} );
-		
-		
+			}	
+		});	
 	}
-	
 	private void initFile() {
 		obs.susbcribe(Events.saveGame, new ObserverCallback() {
 			@Override
@@ -84,7 +77,7 @@ public class Middleware {
 					view.showPanel("Board");
 					
 				}catch(FileNotFoundException e) {
-					
+					System.out.println("Arquivo não pode ser encontrado");
 				}
 
 			}
@@ -133,7 +126,7 @@ public class Middleware {
 					}
 				}
 				else {
-					view.showError("Nao pode");
+					view.showError("Não tem mais jogadas");
 				}
 
 			}

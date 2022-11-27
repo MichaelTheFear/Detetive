@@ -64,7 +64,7 @@ class Jogo {
 			Jogador j = new Jogador(Personagem.valueOf(s[0]), Boolean.valueOf(s[5]), t);
 			int coluna = Integer.parseInt(s[1]);
 			int linha = Integer.parseInt(s[2]);
-			j.setPos(new Posicao(linha, coluna));
+			j.setPos(t.getPosicaoAt(linha, coluna));
 			j.setErrouAcusacao(Boolean.valueOf(s[3]));
 			j.setPodeDarPalpite(Boolean.valueOf(s[4]));
 			j.setJogando(Boolean.valueOf(s[6]));
@@ -92,7 +92,7 @@ class Jogo {
 			jogadores.add(j);
 		}
 	}
-
+	
 	List<String> carregaStringsDoArquivo(File file) throws FileNotFoundException {
 		List<String> lines = new ArrayList<String>();
 		Scanner scan = new Scanner(file);

@@ -13,6 +13,7 @@ import Model.ExceptionLugarNaoPermitido;
 import Model.JogoFacade;
 import Util.*;
 import View.Canvas;
+import View.WinPage;
 
 public class Middleware {
 	static JogoFacade model = JogoFacade.getJogoFacade();
@@ -144,6 +145,9 @@ public class Middleware {
 			@Override
 			public void onCall(Object o) {
 				model.moverPassagemSecreta();
+				view.movePlayerTo(model.getNomeJogadorVez(), model.getLinhaJogadorVez(), model.getColunaJogadorVez());
+				obs.callEvent(Events.statusSecret, Boolean.valueOf(false));
+				obs.callEvent(Events.statusGuess, Boolean.valueOf(model.getPodeDarPalpite()));
 			}
 		});
 		
@@ -231,6 +235,7 @@ public class Middleware {
 
 	public static void main(String[] agrs) {
 		new Middleware();
+		new WinPage("Eu");
 	}
 
 }

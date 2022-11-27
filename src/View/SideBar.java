@@ -51,7 +51,7 @@ public class SideBar extends JPanel {
 			@Override
 			public void onCall(Object o) {
 				Boolean status = (Boolean) o;
-				prox.setEnabled(status);
+				secret.setEnabled(status);
 			}
 		});
 		
@@ -141,7 +141,7 @@ public class SideBar extends JPanel {
 				strDice2 = (String) box2.getSelectedItem();
 			}
 		}));
-		this.add(new Button("Secret", new ActionListener() {
+		this.add(secret = new Button("Secret", new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -260,6 +260,7 @@ class Jogo {
 	}
 
 	void moverPassagemSecreta() {
+		
 		Comodo posJogador = (Comodo) jogadores.get(vezDe).getPos();
 		posJogador.setJogadorAqui(false);
 		jogadores.get(vezDe).setPodeDarPalpite(true);

@@ -97,7 +97,7 @@ public class Middleware {
 				model.setupJogadores(viewPlayers);
 				model.distribuiCartas();
 				view.setPlayerName(model.getJogadorVez());
-
+				obs.callEvent(Events.statusSecret, Boolean.valueOf(false));
 				obs.callEvent(Events.statusGuess , Boolean.valueOf(false));
 			}
 
@@ -156,6 +156,7 @@ public class Middleware {
 				view.setNamePlayingNow(prox.toString());
 				obs.callEvent(Events.statusDice, Boolean.valueOf(true));
 				obs.callEvent(Events.statusGuess, Boolean.valueOf(false));
+				obs.callEvent(Events.statusSecret, Boolean.valueOf(model.verificaPassagemSecreta()));
 			}
 		});
 		

@@ -76,7 +76,8 @@ class Jogo {
 						break;
 					}
 				}
-			}			
+			}
+			j.setCartasIniciais(playerCards);
 		}
 	}
 

@@ -32,6 +32,7 @@ public class SideBar extends JPanel {
 	Button rolarDados;  //disable
 	Button usarDados; //disable
 	Button secret;
+	Button save;
 	String jogador;
 	int numJogadasSobrando = 10;
 	Text txtVezJogador;
@@ -47,11 +48,13 @@ public class SideBar extends JPanel {
 	
 	private void changeButtonStates() {
 		
+		
 		obs.susbcribe(Events.statusSecret, new ObserverCallback () {
 			@Override
 			public void onCall(Object o) {
 				Boolean status = (Boolean) o;
 				secret.setEnabled(status);
+				obs.callEvent(Events.statusSave, Boolean.valueOf(false));
 			}
 		});
 		
@@ -59,8 +62,8 @@ public class SideBar extends JPanel {
 			@Override
 			public void onCall(Object o) {
 				Boolean status = (Boolean) o;
-				
 				palpite.setEnabled(status);
+				obs.callEvent(Events.statusSave, Boolean.valueOf(false));
 			}
 		});
 		
@@ -68,10 +71,21 @@ public class SideBar extends JPanel {
 			@Override
 			public void onCall(Object o) { 
 				Boolean status = (Boolean) o;
-				usarDados.setEnabled(status);
+				//usarDados.setEnabled(status);
 				rolarDados.setEnabled(status);
+				obs.callEvent(Events.statusSave, Boolean.valueOf(false));
 			}
 		});
+		
+		obs.susbcribe(Events.statusSave, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				Boolean status = (Boolean) o;
+				save.setEnabled(status);
+			}
+		});
+		
+		
 		
 	}
 
@@ -149,7 +163,7 @@ public class SideBar extends JPanel {
 			}
 
 		}, 900, 300));
-		this.add(new Button("Salvar Jogo", new ActionListener() {
+		this.add(save = new Button("Salvar Jogo", new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -98,6 +98,7 @@ public class Middleware {
 				view.setPlayerName(model.getJogadorVez());
 				obs.callEvent(Events.statusSecret, Boolean.valueOf(false));
 				obs.callEvent(Events.statusGuess , Boolean.valueOf(false));
+				obs.callEvent(Events.statusSave, Boolean.valueOf(true));
 			}
 
 		});
@@ -113,13 +114,18 @@ public class Middleware {
 				Integer[] position = (Integer[]) o;
 				int[] posicoes = new int[] { position[1], position[0] }; //position[1] = linha e position[0] = coluna
 				int jogadasSobrando;
+				
+				
 				jogadasSobrando = view.getJogadasSobrando();
 				if (jogadasSobrando != 0) {
 					try {
 						model.mover(posicoes);
 						view.movePlayerTo(model.getNomeJogadorVez(), model.getLinhaJogadorVez(), model.getColunaJogadorVez());
 						obs.callEvent(Events.statusGuess, Boolean.valueOf(model.estaEmComodo()));
-						view.setJogadasSobrando(jogadasSobrando - 1);
+						if(model.estaEmComodo())
+							view.setJogadasSobrando(0);
+						else
+							view.setJogadasSobrando(jogadasSobrando - 1);
 					}
 					catch (ExceptionLugarNaoPermitido e) {
 						view.showError("NA permitido mover pra ca");
@@ -163,6 +169,8 @@ public class Middleware {
 		obs.callEvent(Events.statusDice, Boolean.valueOf(true));
 		obs.callEvent(Events.statusGuess, Boolean.valueOf(model.getPodeDarPalpite()));
 		obs.callEvent(Events.statusSecret, Boolean.valueOf(model.verificaPassagemSecreta()));
+		obs.callEvent(Events.statusSave, Boolean.valueOf(true));
+		view.setJogadasSobrando(0);
 	}
 
 	private void initNotes() {
@@ -219,6 +227,8 @@ public class Middleware {
 				//mover o player 
 				int p[] = model.moverPalpite(cartasPalpite[0], cartasPalpite[2]); // mover player 'acusado' para o comodo do palpite
 				view.movePlayerTo(cartasPalpite[0], p[0], p[1]);
+				obs.callEvent(Events.statusGuess, Boolean.valueOf(false));
+				obs.callEvent(Events.statusSecret, Boolean.valueOf(false));
 			}
 		});
 		

@@ -31,6 +31,7 @@ public class SideBar extends JPanel {
 	Button acusar;
 	Button rolarDados;  //disable
 	Button usarDados; //disable
+	Button passagemSecreta; 
 	String jogador;
 	int numJogadasSobrando = 10;
 	Text txtVezJogador;
@@ -50,7 +51,6 @@ public class SideBar extends JPanel {
 			@Override
 			public void onCall(Object o) {
 				Boolean status = (Boolean) o;
-				System.out.println("Status" + status);
 				palpite.setEnabled(status);
 			}
 		});
@@ -61,6 +61,15 @@ public class SideBar extends JPanel {
 				Boolean status = (Boolean) o;
 				usarDados.setEnabled(status);
 				rolarDados.setEnabled(status);
+			}
+		});
+		
+		obs.susbcribe(Events.statusSecret, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				Boolean status = (Boolean) o;
+				System.out.println("Lock??");
+				passagemSecreta.setEnabled(status);
 			}
 		});
 		
@@ -132,6 +141,13 @@ public class SideBar extends JPanel {
 				strDice2 = (String) box2.getSelectedItem();
 			}
 		}));
+		this.add(passagemSecreta = new Button("Passagem Secreta",new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				obs.callEvent(Events.onSecret, null);
+			}
+		},900,200));
+			
 		this.add(new Button("Salvar Jogo", new ActionListener() {
 
 			@Override
@@ -145,7 +161,7 @@ public class SideBar extends JPanel {
 				}
 			}
 
-		}, 900, 200));
+		}, 900, 400));
 		this.add(jogadas = new Text("Jogadas Sobrando: ", 200, 900, 150));
 		this.changeButtonStates();
 		this.add(dicesImages = new Dices());

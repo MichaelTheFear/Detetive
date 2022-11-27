@@ -95,6 +95,7 @@ public class Middleware {
 				model.distribuiCartas();
 				view.setPlayerName(model.getJogadorVez());
 				obs.callEvent(Events.statusGuess , Boolean.valueOf(false));
+				obs.callEvent(Events.statusSecret, Boolean.valueOf(false));
 			}
 
 		});
@@ -108,12 +109,9 @@ public class Middleware {
 			@Override
 			public void onCall(Object o) {
 				Integer[] position = (Integer[]) o;
-				int[] posicoes = new int[] { position[1], position[0] }; //position[1] = linha e position[0] = coluna
+				int[] posicoes = new int[] { position[1], position[0] };
 				int jogadasSobrando;
-
 				jogadasSobrando = view.getJogadasSobrando();
-				System.out.println("Pode isso arnaldo?"+model.getPodeDarPalpite());
-				
 				System.out.println(jogadasSobrando);
 				if (jogadasSobrando != 0) {
 					try {
@@ -134,6 +132,13 @@ public class Middleware {
 			}
 		});
 		
+		obs.susbcribe(Events.onSecret, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				model.moverPassagemSecreta();
+			}
+		});
+		
 	}
 
 	private void initProx() {
@@ -145,6 +150,7 @@ public class Middleware {
 				view.setNamePlayingNow(prox.toString());
 				obs.callEvent(Events.statusDice, Boolean.valueOf(true));
 				obs.callEvent(Events.statusGuess, Boolean.valueOf(false));
+				obs.callEvent(Events.statusSecret, Boolean.valueOf(model.verificaPassagemSecreta()));
 			}
 		});
 		
@@ -154,11 +160,8 @@ public class Middleware {
 		obs.susbcribe(Events.showNotes, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
-				//List mock =  Arrays.asList(new String[] {Personagem.Green.name(),Armas.Cano.name()});
-				//view.showNotes(mock);
-				//precisa pegar do model 
-				List<String> notas = model.getNotas();  // pega as cartas vistas 
-				view.showNotes(notas);   // mostra cartas vistas
+				List<String> notas = model.getNotas();
+				view.showNotes(notas);  
 			}
 
 		});
@@ -168,8 +171,6 @@ public class Middleware {
 		obs.susbcribe(Events.showCards, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
-				//List mock =  Arrays.asList(new String[] {Personagem.Green.name(),Armas.Cano.name()});
-				//view.showCards(mock);
 				ArrayList<String> playersCards = model.getCartasJogador(); // pega cartas do jogador da vez para a showCards
 				view.showCards(playersCards);
 			}
@@ -200,9 +201,8 @@ public class Middleware {
 			@Override
 			public void onCall(Object o) {
 				String[] cartasPalpite = (String[]) o;
-				model.darPalpite(cartasPalpite);    // darPalpite com as cartas q o jogador marcou
-				//mover o player 
-				model.moverPalpite(cartasPalpite[0], cartasPalpite[2]); // mover player 'acusado' para o comodo do palpite
+				model.darPalpite(cartasPalpite);
+				model.moverPalpite(cartasPalpite[0], cartasPalpite[2]);
 			}
 		});
 		

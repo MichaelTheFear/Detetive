@@ -54,8 +54,13 @@ class Jogo {
 		cartasAssassino[1] = new CartaLocal(infoStrings.get(2));
 		cartasAssassino[2] = new CartaSuspeito(infoStrings.get(3));
 		for (int i = 4; i < infoStrings.size(); i++) {
-			//nome-pos-errou acusacao-pode dar palpite-npc-jogando-cartas iniciais- cartas vistas
-			String[] s = infoStrings.get(i).split(",()");
+			// nome-pos-errou acusacao-pode dar palpite-npc-jogando-cartas iniciais- cartas
+			// vistas
+			String[] s = infoStrings.get(i).split("[,()]+");
+			System.out.println(s.length);
+			for (int j = 0; j < s.length; j++) {
+				System.out.println(s[j]);
+			}
 			Jogador j = new Jogador(Personagem.valueOf(s[0]), Boolean.valueOf(s[5]), t);
 			int coluna = Integer.parseInt(s[1]);
 			int linha = Integer.parseInt(s[2]);
@@ -63,21 +68,28 @@ class Jogo {
 			j.setErrouAcusacao(Boolean.valueOf(s[3]));
 			j.setPodeDarPalpite(Boolean.valueOf(s[4]));
 			j.setJogando(Boolean.valueOf(s[6]));
-			String[] cartasIni = s[7].split("_");
-			String[] cartasVistas = s[8].split("_");
-			ArrayList<Carta> playerCards = new ArrayList<Carta>();
-			for(int n=0; n<cartasVistas.length; n++) {
-				for(int m=0; m<todasCartas.length; m++) {
-					if(cartasIni[n].equals(todasCartas[m].getNome())) {
-						playerCards.add(todasCartas[m]);
-					}
-					if(cartasVistas[n].equals(todasCartas[m].getNome())) {
-						j.addCartasVista(todasCartas[m]);
-						break;
+			if (s.length > 7) {
+				String[] cartasIni = s[7].split("_");
+				String[] cartasVistas = s[8].split("_");
+
+				ArrayList<Carta> playerCards = new ArrayList<Carta>();
+				for (int n = 0; n < cartasVistas.length; n++) {
+					for (int m = 0; m < todasCartas.length; m++) {
+						if (n < cartasIni.length) {
+							if (cartasIni[n].equals(todasCartas[m].getNome())) {
+								playerCards.add(todasCartas[m]);
+							}
+						}
+						if (cartasVistas[n].equals(todasCartas[m].getNome())) {
+							j.addCartasVista(todasCartas[m]);
+							break;
+						}
 					}
 				}
+				j.setCartasIniciais(playerCards);
+
 			}
-			j.setCartasIniciais(playerCards);
+			jogadores.add(j);
 		}
 	}
 

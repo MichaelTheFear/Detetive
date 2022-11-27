@@ -89,6 +89,7 @@ class Jogo {
 				j.setCartasIniciais(playerCards);
 
 			}
+			jogadores.add(j);
 		}
 	}
 

@@ -138,6 +138,13 @@ public class Middleware {
 			}
 		});
 		
+		obs.susbcribe(Events.onSecret, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				model.moverPassagemSecreta();
+			}
+		});
+		
 	}
 
 	private void initProx() {

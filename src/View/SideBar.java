@@ -31,6 +31,7 @@ public class SideBar extends JPanel {
 	Button acusar;
 	Button rolarDados;  //disable
 	Button usarDados; //disable
+	Button secret;
 	String jogador;
 	int numJogadasSobrando = 10;
 	Text txtVezJogador;
@@ -46,7 +47,7 @@ public class SideBar extends JPanel {
 	
 	private void changeButtonStates() {
 		
-		obs.susbcribe(Events.statusNext, new ObserverCallback () {
+		obs.susbcribe(Events.statusSecret, new ObserverCallback () {
 			@Override
 			public void onCall(Object o) {
 				Boolean status = (Boolean) o;
@@ -140,6 +141,14 @@ public class SideBar extends JPanel {
 				strDice2 = (String) box2.getSelectedItem();
 			}
 		}));
+		this.add(new Button("Secret", new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				obs.callEvent(Events.onSecret, null);
+			}
+
+		}, 900, 300));
 		this.add(new Button("Salvar Jogo", new ActionListener() {
 
 			@Override

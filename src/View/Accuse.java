@@ -111,7 +111,6 @@ public class Accuse extends JFrame {
 							per,arma,comodo
 					});
 					accuse.dispose();
-					accuse = null;
 				}
 			}
 		},1000,600));

@@ -50,6 +50,8 @@ public class Middleware {
 			public void onCall(Object o) {
 				String[] cards = (String[]) o;
 				boolean acusacao = model.acusar(cards); // chama acusar do model com as cartas que o jogador marcou
+				if(acusacao)
+					view.win(model.getNomeJogadorVez());
 			}
 			
 		} );
@@ -80,7 +82,7 @@ public class Middleware {
 				}catch(FileNotFoundException e) {
 					System.out.println(e); //talvez botar um popup no lugar 
 				}
-				obs.callEvent(Events.statusNext, Boolean.valueOf(false));
+
 			}
 		});
 	}
@@ -97,7 +99,7 @@ public class Middleware {
 				model.setupJogadores(viewPlayers);
 				model.distribuiCartas();
 				view.setPlayerName(model.getJogadorVez());
-				obs.callEvent(Events.statusNext, Boolean.valueOf(false));
+				obs.callEvent(Events.statusSecret, Boolean.valueOf(false));
 				obs.callEvent(Events.statusGuess , Boolean.valueOf(false));
 			}
 
@@ -117,7 +119,6 @@ public class Middleware {
 
 				jogadasSobrando = view.getJogadasSobrando();
 				System.out.println("Pode isso arnaldo?"+model.getPodeDarPalpite());
-				obs.callEvent(Events.statusNext, Boolean.valueOf(jogadasSobrando <= 1));
 				
 				System.out.println(jogadasSobrando);
 				if (jogadasSobrando != 0) {
@@ -139,6 +140,13 @@ public class Middleware {
 			}
 		});
 		
+		obs.susbcribe(Events.onSecret, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				model.moverPassagemSecreta();
+			}
+		});
+		
 	}
 
 	private void initProx() {
@@ -149,8 +157,8 @@ public class Middleware {
 				Personagem prox = model.getJogadorVez();
 				view.setNamePlayingNow(prox.toString());
 				obs.callEvent(Events.statusDice, Boolean.valueOf(true));
-				obs.callEvent(Events.statusNext, Boolean.valueOf(false));
 				obs.callEvent(Events.statusGuess, Boolean.valueOf(false));
+				obs.callEvent(Events.statusSecret, Boolean.valueOf(model.verificaPassagemSecreta()));
 			}
 		});
 		

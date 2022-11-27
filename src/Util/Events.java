@@ -13,6 +13,6 @@ public enum Events {
 	loadGame,
 	statusGuess,
 	statusDice,
-	statusNext,
-	
+	statusSecret,
+	onSecret
 }

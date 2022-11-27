@@ -47,6 +47,8 @@ class Jogo {
 
 	Jogo(File file) throws FileNotFoundException {
 		List<String> infoStrings = carregaStringsDoArquivo(file);
+		this.t = new Tabuleiro();
+		t.setPosicoes(t.setupTabuleiro());
 		vezDe = Integer.parseInt(infoStrings.get(0));// le linha do vezDe
 		cartasAssassino[0] = new CartaArma(infoStrings.get(1));
 		cartasAssassino[1] = new CartaLocal(infoStrings.get(2));
@@ -117,6 +119,8 @@ class Jogo {
 																	// a 14 onde estão as Cartas de Local
 		cartasAssassino[2] = todasCartas[gerador.nextInt(6) + 15]; // Gera-se nums de 0 a 5 e incrementa 15 para ser de
 																	// 15 a 20 onde estão as Cartas de Suspeito
+		for(Carta c : cartasAssassino)
+			System.out.println("Ass "+c.getNome());
 	}
 
 	private ArrayList<Carta> getCartasEmJogo() {

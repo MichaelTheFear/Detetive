@@ -75,6 +75,9 @@ public class Middleware {
 				try {					
 					model.carregarJogo(f);
 					view.showPanel("Board");
+					for(int i=0; i<6; i++) {
+						view.movePlayerTo(model.getNomeJogador(i), model.getLinhaJogador(i), model.getColunaJogador(i));
+					}
 					
 				}catch(FileNotFoundException e) {
 					System.out.println("Arquivo não pode ser encontrado");

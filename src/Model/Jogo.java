@@ -31,16 +31,6 @@ class Jogo {
 			new CartaSuspeito(Personagem.White.toString()) };
 	Carta[] cartasAssassino = new Carta[3];
 	ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
-	ArrayList<Posicao> posCozinha = new ArrayList<Posicao>();
-	ArrayList<Posicao> posSalaJantar = new ArrayList<Posicao>();
-	ArrayList<Posicao> posSalaEstar = new ArrayList<Posicao>();
-	ArrayList<Posicao> posEntrada = new ArrayList<Posicao>();
-	ArrayList<Posicao> posEscritorio = new ArrayList<Posicao>();
-	ArrayList<Posicao> posSalaMusica = new ArrayList<Posicao>();
-	ArrayList<Posicao> posJardimInverno = new ArrayList<Posicao>();
-	ArrayList<Posicao> posSalaoJogos = new ArrayList<Posicao>();
-	ArrayList<Posicao> posBiblioteca = new ArrayList<Posicao>();
-	ArrayList<Posicao> posCorredor = new ArrayList<Posicao>();
 	int qtdEmJogo = 0;
 	int vezDe = 0;
 	int numTurno = 0;
@@ -219,8 +209,8 @@ class Jogo {
 	}
 
 	void mover(int[] posicao) throws ExceptionLugarNaoPermitido {
-		if (estaEmComodo(jogadores.get(vezDe).getPos())) {
-			ocupaComodo(jogadores.get(vezDe).getPos());
+		if (jogadorAtualEmComodo() != null) {
+			ocupaComodo((Comodo) jogadores.get(vezDe).getPos());
 		}
 
 		Posicao escolhida = t.getPosicaoAt(posicao[0], posicao[1]);
@@ -236,7 +226,7 @@ class Jogo {
 				jogadores.get(vezDe).getPos().setJogadorAqui(false);
 				pos.setJogadorAqui(true);
 				jogadores.get(vezDe).setPos(pos);
-				jogadores.get(vezDe).setPodeDarPalpite(estaEmComodo(pos));
+				jogadores.get(vezDe).setPodeDarPalpite((jogadorAtualEmComodo() != null));
 				return;
 			}
 		}
@@ -244,147 +234,137 @@ class Jogo {
 	}
 
 	boolean verificaPassagemSecreta() {
-		Posicao posJogador = jogadores.get(vezDe).getPos();
-		if (!jogadores.get(vezDe).getRolouDado()
-				&& (posCozinha.contains(posJogador) || posEscritorio.contains(posJogador)
-						|| posSalaEstar.contains(posJogador) || posJardimInverno.contains(posJogador))) {
-			return true;
+		if (!jogadores.get(vezDe).getRolouDado() && jogadorAtualEmComodo() != null) {
+			Comodo posJogador = (Comodo) jogadores.get(vezDe).getPos();
+			if (posJogador.getComodo() == Comodos.Cozinha.toString()
+					|| posJogador.getComodo() == Comodos.Escritorio.toString()
+					|| posJogador.getComodo() == Comodos.SalaDeEstar.toString()
+					|| posJogador.getComodo() == Comodos.JardimInverno.toString())
+				return true;
 		}
 		return false;
 	}
 
 	void moverPassagemSecreta() {
-		Posicao posJogador = jogadores.get(vezDe).getPos();
+		Comodo posJogador = (Comodo) jogadores.get(vezDe).getPos();
 		posJogador.setJogadorAqui(false);
 		jogadores.get(vezDe).setPodeDarPalpite(true);
-
-		if (posCozinha.contains(posJogador)) {
-			for (Posicao posOutroComodo : posEscritorio) {
-				Comodo c = (Comodo) posOutroComodo;
-				if (posOutroComodo.getJogadorAqui()) {
-					continue;
+		
+		switch(Comodos.valueOf(posJogador.getComodo())) {
+			case Cozinha:
+				for (Comodo posOutroComodo : t.posEscritorio) {
+					if (posOutroComodo.getJogadorAqui()) {
+						continue;
+					}
+					posOutroComodo.setJogadorAqui(true);
+					jogadores.get(vezDe).setPos(posOutroComodo);
+					return;
 				}
-				posOutroComodo.setJogadorAqui(true);
-				jogadores.get(vezDe).setPos(posOutroComodo);
-				return;
-			}
-		}
-
-		if (posEscritorio.contains(posJogador)) {
-			for (Posicao posOutroComodo : posCozinha) {
-				if (posOutroComodo.getJogadorAqui()) {
-					continue;
+				break;
+			
+			case Escritorio:
+				for (Comodo posOutroComodo : t.posCozinha) {
+					if (posOutroComodo.getJogadorAqui()) {
+						continue;
+					}
+					posOutroComodo.setJogadorAqui(true);
+					jogadores.get(vezDe).setPos(posOutroComodo);
+					return;
 				}
-				posOutroComodo.setJogadorAqui(true);
-				jogadores.get(vezDe).setPos(posOutroComodo);
-				return;
-			}
-		}
-
-		if (posSalaEstar.contains(posJogador)) {
-			for (Posicao posOutroComodo : posJardimInverno) {
-				if (posOutroComodo.getJogadorAqui()) {
-					continue;
+				break;
+				
+			case SalaDeEstar:
+				for (Comodo posOutroComodo : t.posJardimInverno) {
+					if (posOutroComodo.getJogadorAqui()) {
+						continue;
+					}
+					posOutroComodo.setJogadorAqui(true);
+					jogadores.get(vezDe).setPos(posOutroComodo);
+					return;
 				}
-				posOutroComodo.setJogadorAqui(true);
-				jogadores.get(vezDe).setPos(posOutroComodo);
-				return;
-			}
-		}
-
-		if (posJardimInverno.contains(posJogador)) {
-			for (Posicao posOutroComodo : posSalaEstar) {
-				if (posOutroComodo.getJogadorAqui()) {
-					continue;
+				break;
+					
+			case JardimInverno:
+				for (Comodo posOutroComodo : t.posSalaEstar) {
+					if (posOutroComodo.getJogadorAqui()) {
+						continue;
+					}
+					posOutroComodo.setJogadorAqui(true);
+					jogadores.get(vezDe).setPos(posOutroComodo);
+					return;
 				}
-				posOutroComodo.setJogadorAqui(true);
-				jogadores.get(vezDe).setPos(posOutroComodo);
-				return;
-			}
+				break;
+				
+			default:
+				System.out.println("Erro ao usar Passagem Secreta");
+				break;
 		}
 	}
 
-	private boolean estaEmComodo(Posicao posJogador) {
-		if (posCozinha.contains(posJogador) || posSalaJantar.contains(posJogador) || posSalaEstar.contains(posJogador)
-				|| posEntrada.contains(posJogador) || posEscritorio.contains(posJogador)
-				|| posSalaMusica.contains(posJogador) || posJardimInverno.contains(posJogador)
-				|| posSalaoJogos.contains(posJogador) || posBiblioteca.contains(posJogador)) {
-			return true;
-		}
-		return false;
-	}
-	
-	public String jogadoAtualEmComodo() {
+	public String jogadorAtualEmComodo() {
 		Posicao pos = jogadores.get(vezDe).getPos();
-		if(pos instanceof Comodo) {
+		if (pos instanceof Comodo) {
 			Comodo comodo = (Comodo) pos;
 			return comodo.getComodo();
 		}
 		return null;
 	}
 
-	private void ocupaComodo(Posicao pos) {
-		if (posCozinha.contains(pos)) {
-			for (Posicao posComodo : posCozinha) {
-				posComodo.setPassouAqui(true);
-			}
-			return;
-		}
-
-		if (posSalaJantar.contains(pos)) {
-			for (Posicao posComodo : posSalaJantar) {
-				posComodo.setPassouAqui(true);
-			}
-			return;
-		}
-
-		if (posSalaEstar.contains(pos)) {
-			for (Posicao posComodo : posSalaEstar) {
-				posComodo.setPassouAqui(true);
-			}
-			return;
-		}
-
-		if (posEntrada.contains(pos)) {
-			for (Posicao posComodo : posEntrada) {
-				posComodo.setPassouAqui(true);
-			}
-			return;
-		}
-
-		if (posEscritorio.contains(pos)) {
-			for (Posicao posComodo : posEscritorio) {
-				posComodo.setPassouAqui(true);
-			}
-			return;
-		}
-
-		if (posSalaMusica.contains(pos)) {
-			for (Posicao posComodo : posSalaMusica) {
-				posComodo.setPassouAqui(true);
-			}
-			return;
-		}
-
-		if (posJardimInverno.contains(pos)) {
-			for (Posicao posComodo : posJardimInverno) {
-				posComodo.setPassouAqui(true);
-			}
-			return;
-		}
-
-		if (posSalaoJogos.contains(pos)) {
-			for (Posicao posComodo : posSalaoJogos) {
-				posComodo.setPassouAqui(true);
-			}
-			return;
-		}
-
-		if (posBiblioteca.contains(pos)) {
-			for (Posicao posComodo : posBiblioteca) {
-				posComodo.setPassouAqui(true);
-			}
-			return;
+	private void ocupaComodo(Comodo pos) {
+		switch(Comodos.valueOf(pos.getComodo())) {
+			case Cozinha:
+				for (Comodo posComodo : t.posCozinha) {
+					posComodo.setPassouAqui(true);
+				}
+				break;
+			
+			case SalaDeJantar:
+				for (Comodo posComodo : t.posSalaJantar) {
+					posComodo.setPassouAqui(true);
+				}
+				break;
+				
+			case SalaDeEstar:
+				for (Comodo posComodo : t.posSalaEstar) {
+					posComodo.setPassouAqui(true);
+				}
+				break;
+				
+			case Entrada:
+				for (Comodo posComodo : t.posEntrada) {
+					posComodo.setPassouAqui(true);
+				}
+				break;
+				
+			case Escritorio:
+				for (Comodo posComodo : t.posEscritorio) {
+					posComodo.setPassouAqui(true);
+				}
+				break;
+				
+			case SalaDeMusica:
+				for (Comodo posComodo : t.posSalaMusica) {
+					posComodo.setPassouAqui(true);
+				}
+				break;
+				
+			case JardimInverno:
+				for (Comodo posComodo : t.posJardimInverno) {
+					posComodo.setPassouAqui(true);
+				}
+				break;
+				
+			case SalaoDeJogos:
+				for (Comodo posComodo : t.posSalaoJogos) {
+					posComodo.setPassouAqui(true);
+				}
+				break;
+				
+			case Biblioteca:
+				for (Comodo posComodo : t.posBiblioteca) {
+					posComodo.setPassouAqui(true);
+				}
+				break;
 		}
 	}
 
@@ -420,34 +400,34 @@ class Jogo {
 
 	void moveComPalpite(String per, String comodo) { // move jogador do palpite para comodo do palpite
 		Comodos c = Comodos.valueOf(comodo);
-		ArrayList<Posicao> posComodo;
+		ArrayList<Comodo> posComodo;
 		switch (c) {
 		case Biblioteca:
-			posComodo = posBiblioteca;
+			posComodo = t.posBiblioteca;
 			break;
 		case Cozinha:
-			posComodo = posCozinha;
+			posComodo = t.posCozinha;
 			break;
 		case Entrada:
-			posComodo = posEntrada;
+			posComodo = t.posEntrada;
 			break;
 		case Escritorio:
-			posComodo = posEscritorio;
+			posComodo = t.posEscritorio;
 			break;
 		case JardimInverno:
-			posComodo = posJardimInverno;
+			posComodo = t.posJardimInverno;
 			break;
 		case SalaDeEstar:
-			posComodo = posSalaEstar;
+			posComodo = t.posSalaEstar;
 			break;
 		case SalaDeJantar:
-			posComodo = posSalaJantar;
+			posComodo = t.posSalaJantar;
 			break;
 		case SalaDeMusica:
-			posComodo = posSalaMusica;
+			posComodo = t.posSalaMusica;
 			break;
 		case SalaoDeJogos:
-			posComodo = posSalaoJogos;
+			posComodo = t.posSalaoJogos;
 			break;
 		default: // gambiarra ; posComodo tinha q ser inicializada se nao da ruim (faco direito
 					// depois)

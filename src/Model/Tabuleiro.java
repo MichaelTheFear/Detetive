@@ -9,15 +9,15 @@ class Tabuleiro {
 	// aquele desgin pattern de unico la
 	private Posicao posicoes[][];
 	static int numPorLinha = 40;
-	ArrayList<Posicao> posCozinha = new ArrayList<Posicao>();
-	ArrayList<Posicao> posSalaJantar = new ArrayList<Posicao>();
-	ArrayList<Posicao> posSalaEstar = new ArrayList<Posicao>();
-	ArrayList<Posicao> posEntrada = new ArrayList<Posicao>();
-	ArrayList<Posicao> posEscritorio = new ArrayList<Posicao>();
-	ArrayList<Posicao> posSalaMusica = new ArrayList<Posicao>();
-	ArrayList<Posicao> posJardimInverno = new ArrayList<Posicao>();
-	ArrayList<Posicao> posSalaoJogos = new ArrayList<Posicao>();
-	ArrayList<Posicao> posBiblioteca = new ArrayList<Posicao>();
+	ArrayList<Comodo> posCozinha = new ArrayList<Comodo>();
+	ArrayList<Comodo> posSalaJantar = new ArrayList<Comodo>();
+	ArrayList<Comodo> posSalaEstar = new ArrayList<Comodo>();
+	ArrayList<Comodo> posEntrada = new ArrayList<Comodo>();
+	ArrayList<Comodo> posEscritorio = new ArrayList<Comodo>();
+	ArrayList<Comodo> posSalaMusica = new ArrayList<Comodo>();
+	ArrayList<Comodo> posJardimInverno = new ArrayList<Comodo>();
+	ArrayList<Comodo> posSalaoJogos = new ArrayList<Comodo>();
+	ArrayList<Comodo> posBiblioteca = new ArrayList<Comodo>();
 	ArrayList<Posicao> posCorredor = new ArrayList<Posicao>();
 
 	Tabuleiro() {}
@@ -52,91 +52,91 @@ class Tabuleiro {
 		for (int i = 2; i < 8; i++) {
 			for (int j = 2; j < 8; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.Cozinha);
-				posCozinha.add(posicoesTabuleiro[i][j]);
+				posCozinha.add((Comodo) posicoesTabuleiro[i][j]);
 			}
 		}
 		for (int j = 3; j < 8; j++) {
 			posicoesTabuleiro[8][j] = new Comodo(8, j,Comodos.Cozinha);
-			posCozinha.add(posicoesTabuleiro[8][j]);
+			posCozinha.add((Comodo) posicoesTabuleiro[8][j]);
 		}
 
 		System.out.println("Inicializando Posicoes Sala de Jantar");
 		for (int i = 12; i < 18; i++) {
 			for (int j = 2; j < 10; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.SalaDeJantar);
-				posSalaJantar.add(posicoesTabuleiro[i][j]);
+				posSalaJantar.add((Comodo) posicoesTabuleiro[i][j]);
 			}
 		}
 		for (int j = 3; j < 8; j++) {
 			posicoesTabuleiro[11][j] = new Comodo(11, j,Comodos.SalaDeJantar);
-			posSalaJantar.add(posicoesTabuleiro[11][j]);
+			posSalaJantar.add((Comodo) posicoesTabuleiro[11][j]);
 		}
 
 		System.out.println("Inicializando Posicoes Sala de Estar");
 		for (int i = 21; i < 26; i++) {
 			for (int j = 2; j < 9; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.SalaDeEstar);
-				posSalaEstar.add(posicoesTabuleiro[i][j]);
+				posSalaEstar.add((Comodo) posicoesTabuleiro[i][j]);
 			}
 		}
 		for (int j = 2; j < 8; j++) {
 			posicoesTabuleiro[26][j] = new Comodo(26, j,Comodos.SalaDeEstar);
-			posSalaEstar.add(posicoesTabuleiro[26][j]);
+			posSalaEstar.add((Comodo) posicoesTabuleiro[26][j]);
 		}
 
 		System.out.println("Inicializando Posicoes Entrada");
 		for (int i = 20; i < 26; i++) {
 			for (int j = 11; j < 17; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.Entrada);
-				posEntrada.add(posicoesTabuleiro[i][j]);
+				posEntrada.add((Comodo) posicoesTabuleiro[i][j]);
 			}
 		}
 		for (int j = 12; j < 16; j++) {
 			posicoesTabuleiro[26][j] = new Comodo(26, j,Comodos.Entrada);
-			posEntrada.add(posicoesTabuleiro[26][j]);
+			posEntrada.add((Comodo) posicoesTabuleiro[26][j]);
 		}
 
 		System.out.println("Inicializando Posicoes Escritorio");
 		for (int i = 23; i < 26; i++) {
 			for (int j = 19; j < 26; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.Escritorio);
-				posEscritorio.add(posicoesTabuleiro[i][j]);
+				posEscritorio.add((Comodo) posicoesTabuleiro[i][j]);
 			}
 		}
 		for (int j = 20; j < 26; j++) {
 			posicoesTabuleiro[26][j] = new Comodo(26, j,Comodos.Escritorio);
-			posEscritorio.add(posicoesTabuleiro[26][j]);
+			posEscritorio.add((Comodo) posicoesTabuleiro[26][j]);
 		}
 
 		System.out.println("Inicializando Posicoes Sala de Musica");
 		for (int i = 4; i < 10; i++) {
 			for (int j = 10; j < 18; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.SalaDeMusica);
-				posSalaMusica.add(posicoesTabuleiro[i][j]);
+				posSalaMusica.add((Comodo) posicoesTabuleiro[i][j]);
 			}
 		}
 		for (int j = 12; j < 16; j++) {
 			posicoesTabuleiro[3][j] = new Comodo(3, j,Comodos.SalaDeMusica);
-			posSalaMusica.add(posicoesTabuleiro[3][j]);
+			posSalaMusica.add((Comodo) posicoesTabuleiro[3][j]);
 		}
 
 		System.out.println("Inicializando Posicoes Jardim de Inverno");
 		for (int i = 3; i < 7; i++) {
 			for (int j = 20; j < 26; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.JardimInverno);
-				posJardimInverno.add(posicoesTabuleiro[i][j]);
+				posJardimInverno.add((Comodo) posicoesTabuleiro[i][j]);
 			}
 		}
 		for (int j = 21; j < 25; j++) {
 			posicoesTabuleiro[7][j] = new Comodo(7, j,Comodos.JardimInverno);
-			posJardimInverno.add(posicoesTabuleiro[7][j]);
+			posJardimInverno.add((Comodo) posicoesTabuleiro[7][j]);
 		}
 
 		System.out.println("Inicializando Posicoes Salao de Jogos");
 		for (int i = 10; i < 15; i++) {
 			for (int j = 20; j < 26; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.SalaoDeJogos);
-				posSalaoJogos.add(posicoesTabuleiro[i][j]);
+				posSalaoJogos.add((Comodo) posicoesTabuleiro[i][j]);
 			}
 		}
 
@@ -144,14 +144,14 @@ class Tabuleiro {
 		for (int i = 16; i < 21; i++) {
 			for (int j = 20; j < 25; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.Biblioteca);
-				posBiblioteca.add(posicoesTabuleiro[i][j]);
+				posBiblioteca.add((Comodo) posicoesTabuleiro[i][j]);
 			}
 		}
 		for (int i = 17; i < 20; i++) {
 			posicoesTabuleiro[i][19] = new Comodo(i, 19,Comodos.Biblioteca);
-			posBiblioteca.add(posicoesTabuleiro[i][19]);
+			posBiblioteca.add((Comodo) posicoesTabuleiro[i][19]);
 			posicoesTabuleiro[i][25] = new Comodo(i, 25,Comodos.Biblioteca);
-			posBiblioteca.add(posicoesTabuleiro[i][25]);
+			posBiblioteca.add((Comodo) posicoesTabuleiro[i][25]);
 		}
 
 		System.out.println("Inicializando Posicoes Corredor");
@@ -318,31 +318,31 @@ class Tabuleiro {
 		}
 		System.out.println("Corredor OK");
 
-		posicoesTabuleiro[9][6].addPosicoesProximas(posCozinha);
+		posicoesTabuleiro[9][6].addComodosProximos(posCozinha);
 
-		posicoesTabuleiro[7][9].addPosicoesProximas(posSalaMusica);
-		posicoesTabuleiro[7][18].addPosicoesProximas(posSalaMusica);
-		posicoesTabuleiro[10][11].addPosicoesProximas(posSalaMusica);
-		posicoesTabuleiro[10][16].addPosicoesProximas(posSalaMusica);
+		posicoesTabuleiro[7][9].addComodosProximos(posSalaMusica);
+		posicoesTabuleiro[7][18].addComodosProximos(posSalaMusica);
+		posicoesTabuleiro[10][11].addComodosProximos(posSalaMusica);
+		posicoesTabuleiro[10][16].addComodosProximos(posSalaMusica);
 
-		posicoesTabuleiro[7][20].addPosicoesProximas(posJardimInverno);
+		posicoesTabuleiro[7][20].addComodosProximos(posJardimInverno);
 
-		posicoesTabuleiro[14][10].addPosicoesProximas(posSalaJantar);
-		posicoesTabuleiro[18][8].addPosicoesProximas(posSalaJantar);
+		posicoesTabuleiro[14][10].addComodosProximos(posSalaJantar);
+		posicoesTabuleiro[18][8].addComodosProximos(posSalaJantar);
 
-		posicoesTabuleiro[11][19].addPosicoesProximas(posSalaoJogos);
-		posicoesTabuleiro[15][24].addPosicoesProximas(posSalaoJogos);
+		posicoesTabuleiro[11][19].addComodosProximos(posSalaoJogos);
+		posicoesTabuleiro[15][24].addComodosProximos(posSalaoJogos);
 
-		posicoesTabuleiro[18][18].addPosicoesProximas(posBiblioteca);
-		posicoesTabuleiro[15][22].addPosicoesProximas(posBiblioteca);
+		posicoesTabuleiro[18][18].addComodosProximos(posBiblioteca);
+		posicoesTabuleiro[15][22].addComodosProximos(posBiblioteca);
 
-		posicoesTabuleiro[20][8].addPosicoesProximas(posSalaEstar);
+		posicoesTabuleiro[20][8].addComodosProximos(posSalaEstar);
 
-		posicoesTabuleiro[19][13].addPosicoesProximas(posEntrada);
-		posicoesTabuleiro[19][14].addPosicoesProximas(posEntrada);
-		posicoesTabuleiro[22][17].addPosicoesProximas(posEntrada);
+		posicoesTabuleiro[19][13].addComodosProximos(posEntrada);
+		posicoesTabuleiro[19][14].addComodosProximos(posEntrada);
+		posicoesTabuleiro[22][17].addComodosProximos(posEntrada);
 
-		posicoesTabuleiro[22][19].addPosicoesProximas(posEscritorio);
+		posicoesTabuleiro[22][19].addComodosProximos(posEscritorio);
 		System.out.println("Portas OK");
 
 		for (int i = 0; i < posCozinha.size(); i++) {

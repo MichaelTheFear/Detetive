@@ -30,6 +30,12 @@ class Posicao {
 	void addPosicoesProximas(ArrayList<Posicao> posicoesAdjacentes) {
 		this.posicoesProximas.addAll(posicoesAdjacentes);
 	}
+	
+	void addComodosProximos(ArrayList<Comodo> posicoesAdjacentes) {
+		for(Posicao pos : posicoesAdjacentes) {
+			this.posicoesProximas.add(pos);
+		}
+	}
 
 	ArrayList<Posicao> getPosicoesProximas() {
 		return this.posicoesProximas;

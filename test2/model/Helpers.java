@@ -16,7 +16,13 @@ public class Helpers {
 		cartas.add(new CartaSuspeito("Coronel Mustarda"));
 		return cartas;
 	}
-
+	
+	static Jogador jogadorGenericoHelper() {
+		Tabuleiro t = new Tabuleiro();
+		t.setPosicoes(t.setupTabuleiro());
+		return new Jogador(Personagem.Scarlet, true, t);
+	}
+	
 	static Posicao[][] posicoesArrayHelper() {
 		Posicao pos[][] = new Posicao[Tabuleiro.numPorLinha][Tabuleiro.numPorLinha];
 		for (int i = 0, j; i < Tabuleiro.numPorLinha; i++) {
@@ -35,16 +41,10 @@ public class Helpers {
 	}
 
 
-	static void posicaoHelper(int x, int y, String msg, Jogador j) {
+	protected static void posicaoHelper(int x, int y, String msg, Jogador j) {
 		Posicao p = j.getPos();
 		Posicao esperado = new Porta(x, y);
 		assertTrue(msg, esperado.equals(p));
-	}
-	
-	static Tabuleiro tabHelper() {
-		Tabuleiro t = new Tabuleiro();
-		t.setPosicoes(t.setupTabuleiro());
-		return t;
 	}
 
 

@@ -116,8 +116,8 @@ public class Canvas extends JFrame {
 
 	public void setNamePlayingNow(String name) {
 		board.setPlayerName(name);
-		System.out.println("Passando Turno para:");
-		System.out.println(name);
+		
+		
 	}
 
 	public void onProximoTurno(ActionListener listener) {
@@ -138,11 +138,11 @@ public class Canvas extends JFrame {
 
 	public void showNotes(List<String> cards) {
 		new Notes(cards);
-		System.out.println("Hmmm");
+		
 	}
 
 	public void setDados(int[] dados) {
-		System.out.println("Chamou canvas");
+		
 		board.setDices(dados);
 	}
 

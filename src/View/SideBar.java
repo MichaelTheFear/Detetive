@@ -59,7 +59,7 @@ public class SideBar extends JPanel {
 			@Override
 			public void onCall(Object o) {
 				Boolean status = (Boolean) o;
-				System.out.println("Status" + status);
+				
 				palpite.setEnabled(status);
 			}
 		});
@@ -179,7 +179,7 @@ public class SideBar extends JPanel {
 	}
 
 	void setDados(int[] dados) {
-		System.out.println("Chamou set dados");
+		
 		setJogadas(dados[0] + dados[1]);
 		this.dicesImages.setDices(dados[0], dados[1]);
 	}

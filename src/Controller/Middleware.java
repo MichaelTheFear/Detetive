@@ -21,7 +21,7 @@ public class Middleware {
 	static Observer obs = Observer.getObserver();
 
 	Middleware() {
-		System.out.println("\n\n\nInit Board!\n\n\n");
+		
 		initBoard();
 		initRolarDados();
 		initProx();
@@ -38,9 +38,9 @@ public class Middleware {
 			@Override
 			public void onCall(Object o) {
 				ArrayList<String> notas = model.getNotas(); // pega as cartas vistas para a showAccuse
-				System.out.println("Acusar len "+notas.size() );
-				for(String str: notas)
-					System.out.println("acusar: "+str);
+				
+			
+					
 				view.showAccuse(notas);
 			}
 			
@@ -83,7 +83,7 @@ public class Middleware {
 					model.carregarJogo(f);
 					view.showPanel("Board");
 				}catch(FileNotFoundException e) {
-					System.out.println(e); //talvez botar um popup no lugar 
+					
 				}
 
 			}
@@ -162,6 +162,8 @@ public class Middleware {
 	
 	private void prox() {
 		model.passaVez();
+		if(model.getErrouAcusaoAll())
+			view.win("Nenhum");
 		Personagem prox = model.getJogadorVez();
 		view.setNamePlayingNow(prox.toString());
 		obs.callEvent(Events.statusDice, Boolean.valueOf(true));
@@ -236,7 +238,6 @@ public class Middleware {
 
 	public static void main(String[] agrs) {
 		new Middleware();
-		new WinPage("Eu");
 	}
 
 }

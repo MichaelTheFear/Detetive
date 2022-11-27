@@ -39,7 +39,7 @@ public class Accuse extends JFrame {
 	}
 	
 	static Accuse newAccuse(List<String> cartas) {
-		System.out.println("Acusar tela: "+accuse==null);
+		
 		if(accuse == null)
 			accuse = new Accuse(cartas);
 		return accuse;
@@ -49,7 +49,7 @@ public class Accuse extends JFrame {
 		Personagem personagens[] = Personagem.values();		
 		Armas armas[] = Armas.values();		
 		Comodos comodos[] = Comodos.values();
-		System.out.println(cartasVistas.get(0));
+		
 		for(int i = 0 ; i<personagens.length;i++) {
 			CheckBox b = new CheckBox(personagens[i],0,i*x);
 			if(cartasVistas.indexOf(personagens[i].name())!=-1) 

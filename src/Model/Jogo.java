@@ -104,7 +104,7 @@ class Jogo {
 	}
 
 	void setupJogadores(ArrayList<Personagem> players) {
-		System.out.println("Aqui");
+		
 		for (Personagem susPersonagem : Personagem.values()) {
 			for (Personagem p : players) {
 				if (susPersonagem == p) {
@@ -134,8 +134,7 @@ class Jogo {
 																	// a 14 onde estão as Cartas de Local
 		cartasAssassino[2] = todasCartas[gerador.nextInt(6) + 15]; // Gera-se nums de 0 a 5 e incrementa 15 para ser de
 																	// 15 a 20 onde estão as Cartas de Suspeito
-		for(Carta c : cartasAssassino)
-			System.out.println("Ass "+c.getNome());
+			
 	}
 
 	private ArrayList<Carta> getCartasEmJogo() {
@@ -220,7 +219,9 @@ class Jogo {
 		jogadores.get(vezDe).setRolouDado(false);
 		do {
 			vezDe = proxTurno(vezDe);
+			
 		} while (jogadores.get(vezDe).getErrouAcusacao() && !this.getErrouAcusaoAll());
+		
 		t.houseKeepingTabuleiro();
 	}
 
@@ -313,7 +314,7 @@ class Jogo {
 				break;
 				
 			default:
-				System.out.println("Erro ao usar Passagem Secreta");
+				
 				break;
 		}
 	}

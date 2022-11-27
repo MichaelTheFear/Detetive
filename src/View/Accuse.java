@@ -39,6 +39,7 @@ public class Accuse extends JFrame {
 	}
 	
 	static Accuse newAccuse(List<String> cartas) {
+		System.out.println("Acusar tela: "+accuse==null);
 		if(accuse == null)
 			accuse = new Accuse(cartas);
 		return accuse;
@@ -110,7 +111,7 @@ public class Accuse extends JFrame {
 					Observer.getObserver().callEvent(Events.confirmAccuse, new String[] {
 							per,arma,comodo
 					});
-					accuse.dispose();
+					accuse.dispatchEvent(new WindowEvent(accuse,WindowEvent.WINDOW_CLOSING));
 				}
 			}
 		},1000,600));

@@ -218,7 +218,9 @@ class Jogo {
 
 	void passaVez() {
 		jogadores.get(vezDe).setRolouDado(false);
-		vezDe = proxTurno(vezDe);
+		do {
+			vezDe = proxTurno(vezDe);
+		} while (jogadores.get(vezDe).getErrouAcusacao() && !this.getErrouAcusaoAll());
 		t.houseKeepingTabuleiro();
 	}
 
@@ -390,6 +392,7 @@ class Jogo {
 					&& !cartasAcusacao[1].equals(cartasAssassino[i].getNome())
 					&& !cartasAcusacao[2].equals(cartasAssassino[i].getNome())) {
 				jogadores.get(vezDe).setErrouAcusacao(true); // o acusador errou
+				passaVez();
 				return false;
 			}
 

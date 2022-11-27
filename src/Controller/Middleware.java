@@ -53,6 +53,8 @@ public class Middleware {
 				boolean acusacao = model.acusar(cards); // chama acusar do model com as cartas que o jogador marcou
 				if(acusacao)
 					view.win(model.getNomeJogadorVez());
+				else
+					prox();
 			}
 			
 		} );
@@ -117,11 +119,7 @@ public class Middleware {
 				Integer[] position = (Integer[]) o;
 				int[] posicoes = new int[] { position[1], position[0] }; //position[1] = linha e position[0] = coluna
 				int jogadasSobrando;
-
 				jogadasSobrando = view.getJogadasSobrando();
-				System.out.println("Pode isso arnaldo?"+model.getPodeDarPalpite());
-				
-				System.out.println(jogadasSobrando);
 				if (jogadasSobrando != 0) {
 					try {
 						model.mover(posicoes);
@@ -130,12 +128,11 @@ public class Middleware {
 						view.setJogadasSobrando(jogadasSobrando - 1);
 					}
 					catch (ExceptionLugarNaoPermitido e) {
-						view.showError("NÃ£o Ã© permitido mover pra ca");
-						System.out.println("Lugar nao permitido");
+						view.showError("NA permitido mover pra ca");
 					}
 				}
 				else {
-					view.showError("NÃ£o Ã© permitido mover pra ca");
+					view.showError("Nao pode");
 				}
 
 			}
@@ -157,15 +154,19 @@ public class Middleware {
 		view.onProximoTurno(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				model.passaVez();
-				Personagem prox = model.getJogadorVez();
-				view.setNamePlayingNow(prox.toString());
-				obs.callEvent(Events.statusDice, Boolean.valueOf(true));
-				obs.callEvent(Events.statusGuess, Boolean.valueOf(false));
-				obs.callEvent(Events.statusSecret, Boolean.valueOf(model.verificaPassagemSecreta()));
+				prox();
 			}
 		});
 		
+	}
+	
+	private void prox() {
+		model.passaVez();
+		Personagem prox = model.getJogadorVez();
+		view.setNamePlayingNow(prox.toString());
+		obs.callEvent(Events.statusDice, Boolean.valueOf(true));
+		obs.callEvent(Events.statusGuess, Boolean.valueOf(model.getPodeDarPalpite()));
+		obs.callEvent(Events.statusSecret, Boolean.valueOf(model.verificaPassagemSecreta()));
 	}
 
 	private void initNotes() {

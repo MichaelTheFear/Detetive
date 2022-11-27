@@ -67,70 +67,70 @@ public class JogoFacade {
 	public void setDados(Integer[] dices) {
 		jogo.setDados(new int[] { dices[0], dices[1] });
 	}
-	
+
 	public void salvaJogo(String filePath) throws IOException {
 		jogo.guardaPartida(filePath);
 	}
-	
+
 	public void carregarJogo(File file) throws FileNotFoundException {
-		//jogo.carregaStringsDoArquivo(filePath);
+		// jogo.carregaStringsDoArquivo(filePath);
 		jogo = new Jogo(file);
 	}
 
 	public void novoJogo() {
 		jogo = new Jogo();
 	}
-	
+
 	public void mover(int[] pos) throws ExceptionLugarNaoPermitido {
 		jogo.mover(pos);
 	}
-	
+
 	public void darPalpite(String[] palpites) { // dar palpite para o middleware
 		jogo.darPalpite(palpites);
 	}
-	
-	public ArrayList<String> getNotas() {  // pega as cartas vistas pelo jogador para o middleware
+
+	public ArrayList<String> getNotas() { // pega as cartas vistas pelo jogador para o middleware
 		return jogo.cartasParaString(jogo.jogadores.get(jogo.vezDe).getCartasVistas());
 	}
-	
-	public ArrayList<String> getCartasJogador() {		  // pega as cartas do jogador para mostrar no middleware
+
+	public ArrayList<String> getCartasJogador() { // pega as cartas do jogador para mostrar no middleware
 		return jogo.cartasParaString(jogo.jogadores.get(jogo.vezDe).getCartasIniciais());
 	}
-	
-	public boolean acusar(String[] cards) {  // acusar para o middleware
+
+	public boolean acusar(String[] cards) { // acusar para o middleware
 		return jogo.acusar(cards);
 	}
-	
-	public void moverPalpite(String player, String place) {  // move o player 'acusado' qnd eh feito palpite
+
+	public void moverPalpite(String player, String place) { // move o player 'acusado' qnd eh feito palpite
 		jogo.moveComPalpite(player, place);
 	}
-	
+
 	public boolean getPodeDarPalpite() {
 		return jogo.getPodeDarPalpite();
 	}
-	
+
 	public boolean getErrouAcusao() {
 		return jogo.getErrouAcusao();
 	}
-	
+
 	public boolean getErrouAcusaoAll() {
 		return jogo.getErrouAcusaoAll();
 	}
-	
+
 	public boolean verificaPassagemSecreta() {
 		return jogo.verificaPassagemSecreta();
 	}
-	
+
 	public void moverPassagemSecreta() {
 		jogo.moverPassagemSecreta();
 	}
-	
+
 	public boolean estaEmComodo() {
-		return jogo.jogadoAtualEmComodo()!=null;
+		return jogo.jogadorAtualEmComodo() != null;
 	}
-	
+
 	public String qualComodo() {
-		return jogo.jogadoAtualEmComodo();
+		return jogo.jogadorAtualEmComodo();
 	}
-	
+
 }

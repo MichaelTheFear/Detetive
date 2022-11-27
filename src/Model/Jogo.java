@@ -312,6 +312,15 @@ class Jogo {
 		}
 		return false;
 	}
+	
+	public String jogadoAtualEmComodo() {
+		Posicao pos = jogadores.get(vezDe).getPos();
+		if(pos instanceof Comodo) {
+			Comodo comodo = (Comodo) pos;
+			return comodo.getComodo();
+		}
+		return null;
+	}
 
 	private void ocupaComodo(Posicao pos) {
 		if (posCozinha.contains(pos)) {

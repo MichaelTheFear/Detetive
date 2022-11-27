@@ -124,4 +124,13 @@ public class JogoFacade {
 	public void moverPassagemSecreta() {
 		jogo.moverPassagemSecreta();
 	}
+	
+	public boolean estaEmComodo() {
+		return jogo.jogadoAtualEmComodo()!=null;
+	}
+	
+	public String qualComodo() {
+		return jogo.jogadoAtualEmComodo();
+	}
+	
 }

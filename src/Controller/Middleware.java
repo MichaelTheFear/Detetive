@@ -52,6 +52,8 @@ public class Middleware {
 			}
 			
 		} );
+		
+		
 	}
 	
 	private void initFile() {
@@ -94,6 +96,7 @@ public class Middleware {
 				model.distribuiCartas();
 				view.setPlayerName(model.getJogadorVez());
 				obs.callEvent(Events.statusNext, Boolean.valueOf(false));
+				obs.callEvent(Events.statusGuess , Boolean.valueOf(false));
 			}
 
 		});
@@ -113,12 +116,13 @@ public class Middleware {
 				jogadasSobrando = view.getJogadasSobrando();
 				System.out.println("Pode isso arnaldo?"+model.getPodeDarPalpite());
 				obs.callEvent(Events.statusNext, Boolean.valueOf(jogadasSobrando <= 1));
-					
+				
 				System.out.println(jogadasSobrando);
 				if (jogadasSobrando != 0) {
 					try {
 						model.mover(posicoes);
 						view.movePlayerTo(model.getNomeJogadorVez(), model.getLinhaJogadorVez(), model.getColunaJogadorVez());
+						obs.callEvent(Events.statusGuess, Boolean.valueOf(model.estaEmComodo()));
 						view.setJogadasSobrando(jogadasSobrando - 1);
 					}
 					catch (ExceptionLugarNaoPermitido e) {
@@ -144,8 +148,10 @@ public class Middleware {
 				view.setNamePlayingNow(prox.toString());
 				obs.callEvent(Events.statusDice, Boolean.valueOf(true));
 				obs.callEvent(Events.statusNext, Boolean.valueOf(false));
+				obs.callEvent(Events.statusGuess, Boolean.valueOf(false));
 			}
 		});
+		
 	}
 
 	private void initNotes() {
@@ -201,6 +207,13 @@ public class Middleware {
 				model.darPalpite(cartasPalpite);    // darPalpite com as cartas q o jogador marcou
 				//mover o player 
 				model.moverPalpite(cartasPalpite[0], cartasPalpite[2]); // mover player 'acusado' para o comodo do palpite
+			}
+		});
+		
+		obs.susbcribe(Events.showGuess, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				view.showGuess(model.qualComodo());
 			}
 		});
 	}

@@ -24,7 +24,6 @@ class Guess extends JFrame {
 
 	String per = null;
 	String arma = null;
-	String comodo = null;
 
 	int x = 50;
 
@@ -36,13 +35,13 @@ class Guess extends JFrame {
 		return -1;
 	}
 
-	static public Guess newGuess() {
+	static public Guess newGuess(String comodo) {
 		if (guess == null)
-			guess = new Guess();
+			guess = new Guess(comodo);
 		return guess;
 	}
 
-	private Guess() {
+	private Guess(String comodo) {
 
 		Personagem personagens[] = Personagem.values();
 		Armas armas[] = Armas.values();
@@ -78,24 +77,12 @@ class Guess extends JFrame {
 			this.add(b);
 		}
 
-		for (int i = 0; i < comodos.length; i++) {
-			CheckBox b = new CheckBox(comodos[i], 600, i * x);
-			b.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					if (comodo != null) {
-						places.get(indexOf(comodo, places)).setSelected(false);
-					}
-					comodo = b.getText();
-				}
-			});
-			places.add(b);
-			this.add(b);
-		}
+		this.add(new CheckBox(comodo, 600, true));
+		
 		this.add(new Button("Confirmar", new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (per != null && comodos != null && arma != null) {
+				if (per != null && arma != null) {
 					Observer.getObserver().callEvent(Events.confirmGuess, new String[] { per, arma, comodo });
 					guess = null;
 					// guess.dispose();

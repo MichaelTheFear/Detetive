@@ -127,10 +127,6 @@ public class Canvas extends JFrame {
 		board.setActionAcusar(listener);
 	}
 
-	public void onPalpiteConfirmed(ActionListener listener) {
-
-	}
-
 	public void showCards(List<String> cards) {
 		new CardsInGame(cards);
 	}
@@ -145,8 +141,8 @@ public class Canvas extends JFrame {
 		board.setDices(dados);
 	}
 
-	public void showGuess() {
-		Guess.newGuess();
+	public void showGuess(String comodo) {
+		Guess.newGuess(comodo);
 	}
 
 	public void showAccuse(List<String> cartas) {

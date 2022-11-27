@@ -58,7 +58,8 @@ public class SideBar extends JPanel {
 			@Override
 			public void onCall(Object o) {
 				Boolean status = (Boolean) o;
-				prox.setEnabled(status);
+				System.out.println("Status" + status);
+				palpite.setEnabled(status);
 			}
 		});
 		
@@ -66,7 +67,6 @@ public class SideBar extends JPanel {
 			@Override
 			public void onCall(Object o) {
 				Boolean status = (Boolean) o;
-				System.out.println("Status" + status);
 				usarDados.setEnabled(status);
 				rolarDados.setEnabled(status);
 			}
@@ -95,7 +95,7 @@ public class SideBar extends JPanel {
 		this.add(palpite = new Button("Palpite", new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Guess.newGuess();
+				obs.callEvent(Events.showGuess, null);
 			}
 
 		}, where, ratio * 3));
@@ -166,7 +166,6 @@ public class SideBar extends JPanel {
 
 	void setJogadas(int numJogadas) {
 		numJogadasSobrando = numJogadas;
-		this.jogadas.setBackground(Color.gray);
 		this.jogadas.setText("Jogadas Sobrando: " + numJogadasSobrando);
 	}
 

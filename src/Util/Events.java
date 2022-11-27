@@ -6,6 +6,7 @@ public enum Events {
 	showCards,
 	showNotes,
 	showAccuse,
+	showGuess,
 	confirmGuess,
 	confirmAccuse,
 	saveGame,
@@ -13,4 +14,5 @@ public enum Events {
 	statusGuess,
 	statusDice,
 	statusNext,
+	
 }

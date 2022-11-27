@@ -19,7 +19,6 @@ class Game extends JFrame {
 		this.add(board);
 		this.add(sideBar);
 		this.pack();
-		this.setBackground(Color.GRAY);
 		this.setSize(Canvas.SIZE);
 		this.setVisible(false);
 		this.setLocationRelativeTo(null);

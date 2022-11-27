@@ -2,13 +2,15 @@ package Model;
 
 import java.util.Objects;
 
+import Util.Comodos;
+
 class Comodo extends Posicao {
 
 	private String comodo;
 
-	Comodo(int i, int j, String string) {
+	Comodo(int i, int j, Comodos comodo) {
 		super(i, j);
-		comodo = string;
+		this.comodo = comodo.name();
 	}
 
 	String getComodo() {

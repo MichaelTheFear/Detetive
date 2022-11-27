@@ -23,7 +23,6 @@ public class Helpers {
 			for (j = 0; j < Tabuleiro.numPorLinha; j++) {
 				pos[i][j] = new Porta(i, j);
 			}
-
 		}
 		return pos;
 	}
@@ -34,9 +33,6 @@ public class Helpers {
 			res += b;
 		return res;
 	}
-
-	
-
 
 
 	protected static void posicaoHelper(int x, int y, String msg, Jogador j) {

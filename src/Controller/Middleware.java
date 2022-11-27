@@ -82,6 +82,7 @@ public class Middleware {
 				try {					
 					model.carregarJogo(f);
 					view.showPanel("Board");
+					
 				}catch(FileNotFoundException e) {
 					
 				}

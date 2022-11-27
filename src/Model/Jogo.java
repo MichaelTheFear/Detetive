@@ -47,6 +47,8 @@ class Jogo {
 
 	Jogo(File file) throws FileNotFoundException {
 		List<String> infoStrings = carregaStringsDoArquivo(file);
+		this.t = new Tabuleiro();
+		t.setPosicoes(t.setupTabuleiro());
 		vezDe = Integer.parseInt(infoStrings.get(0));// le linha do vezDe
 		cartasAssassino[0] = new CartaArma(infoStrings.get(1));
 		cartasAssassino[1] = new CartaLocal(infoStrings.get(2));

@@ -50,6 +50,8 @@ public class Middleware {
 			public void onCall(Object o) {
 				String[] cards = (String[]) o;
 				boolean acusacao = model.acusar(cards); // chama acusar do model com as cartas que o jogador marcou
+				if(acusacao)
+					view.win(model.getNomeJogadorVez());
 			}
 			
 		} );

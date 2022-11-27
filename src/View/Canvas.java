@@ -67,6 +67,11 @@ public class Canvas extends JFrame {
 		}
 		return canvas;
 	}
+	
+	public void win(String name) {
+		new WinPage(name);
+		board.dispose();
+	}
 
 	public void movePlayerTo(String player, int x, int y) {
 		board.movePlayerTo(player, x, y);

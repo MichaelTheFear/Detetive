@@ -35,10 +35,16 @@ public class Helpers {
 	}
 
 
-	protected static void posicaoHelper(int x, int y, String msg, Jogador j) {
+	static void posicaoHelper(int x, int y, String msg, Jogador j) {
 		Posicao p = j.getPos();
 		Posicao esperado = new Porta(x, y);
 		assertTrue(msg, esperado.equals(p));
+	}
+	
+	static Tabuleiro tabHelper() {
+		Tabuleiro t = new Tabuleiro();
+		t.setPosicoes(t.setupTabuleiro());
+		return t;
 	}
 
 

@@ -102,7 +102,7 @@ class Jogo {
 
 	
 
-	void setupJogadores(ArrayList<Personagem> players) {
+	void setupJogadores(List<Personagem> players) {
 		for (Personagem susPersonagem : Personagem.values()) {
 			for (Personagem p : players) {
 				if (susPersonagem == p) {
@@ -260,6 +260,7 @@ class Jogo {
 
 		if (posCozinha.contains(posJogador)) {
 			for (Posicao posOutroComodo : posEscritorio) {
+				Comodo c = (Comodo) posOutroComodo;
 				if (posOutroComodo.getJogadorAqui()) {
 					continue;
 				}

@@ -79,7 +79,6 @@ public class Middleware {
 				}catch(FileNotFoundException e) {
 					System.out.println(e); //talvez botar um popup no lugar 
 				}
-				obs.callEvent(Events.statusNext, Boolean.valueOf(false));
 			}
 		});
 	}
@@ -95,7 +94,6 @@ public class Middleware {
 				model.setupJogadores(viewPlayers);
 				model.distribuiCartas();
 				view.setPlayerName(model.getJogadorVez());
-				obs.callEvent(Events.statusNext, Boolean.valueOf(false));
 				obs.callEvent(Events.statusGuess , Boolean.valueOf(false));
 			}
 
@@ -115,7 +113,6 @@ public class Middleware {
 
 				jogadasSobrando = view.getJogadasSobrando();
 				System.out.println("Pode isso arnaldo?"+model.getPodeDarPalpite());
-				obs.callEvent(Events.statusNext, Boolean.valueOf(jogadasSobrando <= 1));
 				
 				System.out.println(jogadasSobrando);
 				if (jogadasSobrando != 0) {
@@ -147,7 +144,6 @@ public class Middleware {
 				Personagem prox = model.getJogadorVez();
 				view.setNamePlayingNow(prox.toString());
 				obs.callEvent(Events.statusDice, Boolean.valueOf(true));
-				obs.callEvent(Events.statusNext, Boolean.valueOf(false));
 				obs.callEvent(Events.statusGuess, Boolean.valueOf(false));
 			}
 		});

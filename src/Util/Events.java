@@ -12,7 +12,5 @@ public enum Events {
 	saveGame,
 	loadGame,
 	statusGuess,
-	statusDice,
-	statusNext,
-	
+	statusDice
 }

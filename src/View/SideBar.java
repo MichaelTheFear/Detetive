@@ -46,14 +46,6 @@ public class SideBar extends JPanel {
 	
 	private void changeButtonStates() {
 		
-		obs.susbcribe(Events.statusNext, new ObserverCallback () {
-			@Override
-			public void onCall(Object o) {
-				Boolean status = (Boolean) o;
-				prox.setEnabled(status);
-			}
-		});
-		
 		obs.susbcribe(Events.statusGuess, new ObserverCallback () {
 			@Override
 			public void onCall(Object o) {

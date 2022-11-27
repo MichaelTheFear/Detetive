@@ -102,7 +102,8 @@ public class TesteJogador {
 		List<Carta> c = Helpers.cartasGenericasHelper();
 		j.setCartasIniciais(c);
 		j.addCartasVista(new CartaArma("Cano"));
-		String esperado = "Scarlet,(9,26),false,false,true,false,Corda_Cozinha_Coronel Mustarda_,Corda_Cozinha_Coronel Mustarda_Cano_";
+		String esperado = "Green,(16,2),false,false,false,false,Corda_Cozinha_Coronel Mustarda_,Corda_Cozinha_Coronel Mustarda_Cano_";
+		System.out.println(j.toString());
 		assertEquals("Testando toString jogador", j.toString(), esperado);
 	}
 }

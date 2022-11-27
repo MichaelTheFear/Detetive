@@ -84,8 +84,8 @@ class Guess extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (per != null && arma != null) {
 					Observer.getObserver().callEvent(Events.confirmGuess, new String[] { per, arma, comodo });
-					guess = null;
-					// guess.dispose();
+					
+					guess.dispose();
 				}
 			}
 		}, 1000, 600));

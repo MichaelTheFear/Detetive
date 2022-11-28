@@ -105,7 +105,7 @@ public class Middleware {
 				obs.callEvent(Events.statusSecret, Boolean.valueOf(false));
 				obs.callEvent(Events.statusGuess , Boolean.valueOf(false));
 				obs.callEvent(Events.statusSave, Boolean.valueOf(true));
-			}
+			} 
 
 		});
 	}

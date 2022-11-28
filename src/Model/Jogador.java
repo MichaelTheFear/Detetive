@@ -52,7 +52,7 @@ class Jogador {
 
 		}
 		this.jogando = false;
-		this.npc = ehNpc;
+		this.npc = ehNpc; 
 		this.podeDarPalpite = false;
 		this.rolouDado = false;
 	}

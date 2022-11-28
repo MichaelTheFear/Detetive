@@ -44,7 +44,7 @@ public class Canvas extends JFrame {
 		} catch (IndexOutOfBoundsException e) {
 			lookIndex = -1;
 			loadLook();
-		}catch (Exception e) {
+		}catch (Exception e) { 
 			lookIndex++;
 			loadLook();
 		}

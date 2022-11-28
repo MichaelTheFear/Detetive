@@ -10,7 +10,7 @@ import Controller.Observer;
 import Util.Events;
 
 class StartMenu extends JPanel {
-	
+	 
 	StartMenu() {
 		JLabel j = new JLabel("Detetive");
 		j.setBounds(0, 0, 100, 50);

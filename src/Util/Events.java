@@ -11,8 +11,9 @@ public enum Events {
 	confirmAccuse,
 	saveGame,
 	loadGame,
+	onSecret,
 	statusGuess,
 	statusDice,
 	statusSecret,
-	onSecret
+	statusSave
 }

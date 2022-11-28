@@ -32,6 +32,7 @@ public class SideBar extends JPanel {
 	Button rolarDados;  //disable
 	Button usarDados; //disable
 	Button secret;
+	Button save;
 	String jogador;
 	int numJogadasSobrando = 10;
 	Text txtVezJogador;
@@ -47,11 +48,13 @@ public class SideBar extends JPanel {
 	
 	private void changeButtonStates() {
 		
+		
 		obs.susbcribe(Events.statusSecret, new ObserverCallback () {
 			@Override
 			public void onCall(Object o) {
 				Boolean status = (Boolean) o;
-				prox.setEnabled(status);
+				secret.setEnabled(status);
+				obs.callEvent(Events.statusSave, Boolean.valueOf(false));
 			}
 		});
 		
@@ -59,8 +62,8 @@ public class SideBar extends JPanel {
 			@Override
 			public void onCall(Object o) {
 				Boolean status = (Boolean) o;
-				System.out.println("Status" + status);
 				palpite.setEnabled(status);
+				obs.callEvent(Events.statusSave, Boolean.valueOf(false));
 			}
 		});
 		
@@ -68,10 +71,21 @@ public class SideBar extends JPanel {
 			@Override
 			public void onCall(Object o) { 
 				Boolean status = (Boolean) o;
-				usarDados.setEnabled(status);
+				//usarDados.setEnabled(status);
 				rolarDados.setEnabled(status);
+				obs.callEvent(Events.statusSave, Boolean.valueOf(false));
 			}
 		});
+		
+		obs.susbcribe(Events.statusSave, new ObserverCallback() {
+			@Override
+			public void onCall(Object o) {
+				Boolean status = (Boolean) o;
+				save.setEnabled(status);
+			}
+		});
+		
+		
 		
 	}
 
@@ -141,7 +155,7 @@ public class SideBar extends JPanel {
 				strDice2 = (String) box2.getSelectedItem();
 			}
 		}));
-		this.add(new Button("Secret", new ActionListener() {
+		this.add(secret = new Button("Secret", new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -149,7 +163,7 @@ public class SideBar extends JPanel {
 			}
 
 		}, 900, 300));
-		this.add(new Button("Salvar Jogo", new ActionListener() {
+		this.add(save = new Button("Salvar Jogo", new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -179,7 +193,7 @@ public class SideBar extends JPanel {
 	}
 
 	void setDados(int[] dados) {
-		System.out.println("Chamou set dados");
+		
 		setJogadas(dados[0] + dados[1]);
 		this.dicesImages.setDices(dados[0], dados[1]);
 	}

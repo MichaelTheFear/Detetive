@@ -54,18 +54,45 @@ class Jogo {
 		cartasAssassino[1] = new CartaLocal(infoStrings.get(2));
 		cartasAssassino[2] = new CartaSuspeito(infoStrings.get(3));
 		for (int i = 4; i < infoStrings.size(); i++) {
-			String[] s = infoStrings.get(i).split(",()");
-			Jogador j = new Jogador(Personagem.valueOf(s[0]), Boolean.valueOf(s[1]), t);
-			int coluna = Integer.parseInt(s[2]);
-			int linha = Integer.parseInt(s[3]);
-			j.setPos(new Posicao(linha, coluna));
-			j.setErrouAcusacao(Boolean.valueOf(s[4]));
-			j.setPodeDarPalpite(Boolean.valueOf(s[5]));
+			// nome-pos-errou acusacao-pode dar palpite-npc-jogando-cartas iniciais- cartas
+			// vistas
+			String[] s = infoStrings.get(i).split("[,()]+");
+			System.out.println(s.length);
+			for (int j = 0; j < s.length; j++) {
+				System.out.println(s[j]);
+			}
+			Jogador j = new Jogador(Personagem.valueOf(s[0]), Boolean.valueOf(s[5]), t);
+			int coluna = Integer.parseInt(s[1]);
+			int linha = Integer.parseInt(s[2]);
+			j.setPos(t.getPosicaoAt(linha, coluna));
+			j.setErrouAcusacao(Boolean.valueOf(s[3]));
+			j.setPodeDarPalpite(Boolean.valueOf(s[4]));
 			j.setJogando(Boolean.valueOf(s[6]));
+			if (s.length > 7) {
+				String[] cartasIni = s[7].split("_");
+				String[] cartasVistas = s[8].split("_");
 
+				ArrayList<Carta> playerCards = new ArrayList<Carta>();
+				for (int n = 0; n < cartasVistas.length; n++) {
+					for (int m = 0; m < todasCartas.length; m++) {
+						if (n < cartasIni.length) {
+							if (cartasIni[n].equals(todasCartas[m].getNome())) {
+								playerCards.add(todasCartas[m]);
+							}
+						}
+						if (cartasVistas[n].equals(todasCartas[m].getNome())) {
+							j.addCartasVista(todasCartas[m]);
+							break;
+						}
+					}
+				}
+				j.setCartasIniciais(playerCards);
+
+			}
+			jogadores.add(j);
 		}
 	}
-
+	
 	List<String> carregaStringsDoArquivo(File file) throws FileNotFoundException {
 		List<String> lines = new ArrayList<String>();
 		Scanner scan = new Scanner(file);
@@ -89,7 +116,7 @@ class Jogo {
 	}
 
 	void setupJogadores(ArrayList<Personagem> players) {
-		System.out.println("Aqui");
+		
 		for (Personagem susPersonagem : Personagem.values()) {
 			for (Personagem p : players) {
 				if (susPersonagem == p) {
@@ -119,8 +146,7 @@ class Jogo {
 																	// a 14 onde estão as Cartas de Local
 		cartasAssassino[2] = todasCartas[gerador.nextInt(6) + 15]; // Gera-se nums de 0 a 5 e incrementa 15 para ser de
 																	// 15 a 20 onde estão as Cartas de Suspeito
-		for(Carta c : cartasAssassino)
-			System.out.println("Ass "+c.getNome());
+			
 	}
 
 	private ArrayList<Carta> getCartasEmJogo() {
@@ -203,7 +229,11 @@ class Jogo {
 
 	void passaVez() {
 		jogadores.get(vezDe).setRolouDado(false);
-		vezDe = proxTurno(vezDe);
+		do {
+			vezDe = proxTurno(vezDe);
+			
+		} while (jogadores.get(vezDe).getErrouAcusacao() && !this.getErrouAcusaoAll());
+		
 		t.houseKeepingTabuleiro();
 	}
 
@@ -245,6 +275,7 @@ class Jogo {
 	}
 
 	void moverPassagemSecreta() {
+		
 		Comodo posJogador = (Comodo) jogadores.get(vezDe).getPos();
 		posJogador.setJogadorAqui(false);
 		jogadores.get(vezDe).setPodeDarPalpite(true);
@@ -295,7 +326,7 @@ class Jogo {
 				break;
 				
 			default:
-				System.out.println("Erro ao usar Passagem Secreta");
+				
 				break;
 		}
 	}
@@ -374,6 +405,7 @@ class Jogo {
 					&& !cartasAcusacao[1].equals(cartasAssassino[i].getNome())
 					&& !cartasAcusacao[2].equals(cartasAssassino[i].getNome())) {
 				jogadores.get(vezDe).setErrouAcusacao(true); // o acusador errou
+				passaVez();
 				return false;
 			}
 

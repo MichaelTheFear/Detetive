@@ -13,6 +13,7 @@ import Model.ExceptionLugarNaoPermitido;
 import Model.JogoFacade;
 import Util.*;
 import View.Canvas;
+import View.WinPage;
 
 public class Middleware {
 	static JogoFacade model = JogoFacade.getJogoFacade();
@@ -20,7 +21,7 @@ public class Middleware {
 	static Observer obs = Observer.getObserver();
 
 	Middleware() {
-		System.out.println("\n\n\nInit Board!\n\n\n");
+		
 		initBoard();
 		initRolarDados();
 		initProx();
@@ -36,10 +37,7 @@ public class Middleware {
 		obs.susbcribe(Events.showAccuse, new ObserverCallback() {
 			@Override
 			public void onCall(Object o) {
-				ArrayList<String> notas = model.getNotas(); // pega as cartas vistas para a showAccuse
-				System.out.println("Acusar len "+notas.size() );
-				for(String str: notas)
-					System.out.println("acusar: "+str);
+				ArrayList<String> notas = model.getNotas(); 
 				view.showAccuse(notas);
 			}
 			
@@ -49,16 +47,14 @@ public class Middleware {
 			@Override
 			public void onCall(Object o) {
 				String[] cards = (String[]) o;
-				boolean acusacao = model.acusar(cards); // chama acusar do model com as cartas que o jogador marcou
+				boolean acusacao = model.acusar(cards);
 				if(acusacao)
 					view.win(model.getNomeJogadorVez());
-			}
-			
-		} );
-		
-		
+				else
+					prox();
+			}	
+		});	
 	}
-	
 	private void initFile() {
 		obs.susbcribe(Events.saveGame, new ObserverCallback() {
 			@Override
@@ -79,8 +75,15 @@ public class Middleware {
 				try {					
 					model.carregarJogo(f);
 					view.showPanel("Board");
+					view.setPlayerName(model.getJogadorVez());
+					for(int i=0; i<6; i++) {
+						view.movePlayerTo(model.getNomeJogador(i), model.getLinhaJogador(i), model.getColunaJogador(i));
+					}
+					obs.callEvent(Events.statusSecret, Boolean.valueOf(false));
+					obs.callEvent(Events.statusGuess , Boolean.valueOf(false));
+					
 				}catch(FileNotFoundException e) {
-					System.out.println(e); //talvez botar um popup no lugar 
+					System.out.println("Arquivo não pode ser encontrado");
 				}
 
 			}
@@ -101,7 +104,8 @@ public class Middleware {
 				view.setPlayerName(model.getJogadorVez());
 				obs.callEvent(Events.statusSecret, Boolean.valueOf(false));
 				obs.callEvent(Events.statusGuess , Boolean.valueOf(false));
-			}
+				obs.callEvent(Events.statusSave, Boolean.valueOf(true));
+			} 
 
 		});
 	}
@@ -116,25 +120,25 @@ public class Middleware {
 				Integer[] position = (Integer[]) o;
 				int[] posicoes = new int[] { position[1], position[0] }; //position[1] = linha e position[0] = coluna
 				int jogadasSobrando;
-
-				jogadasSobrando = view.getJogadasSobrando();
-				System.out.println("Pode isso arnaldo?"+model.getPodeDarPalpite());
 				
-				System.out.println(jogadasSobrando);
+				
+				jogadasSobrando = view.getJogadasSobrando();
 				if (jogadasSobrando != 0) {
 					try {
 						model.mover(posicoes);
 						view.movePlayerTo(model.getNomeJogadorVez(), model.getLinhaJogadorVez(), model.getColunaJogadorVez());
 						obs.callEvent(Events.statusGuess, Boolean.valueOf(model.estaEmComodo()));
-						view.setJogadasSobrando(jogadasSobrando - 1);
+						if(model.estaEmComodo())
+							view.setJogadasSobrando(0);
+						else
+							view.setJogadasSobrando(jogadasSobrando - 1);
 					}
 					catch (ExceptionLugarNaoPermitido e) {
-						view.showError("NÃ£o Ã© permitido mover pra ca");
-						System.out.println("Lugar nao permitido");
+						view.showError("NA permitido mover pra ca");
 					}
 				}
 				else {
-					view.showError("NÃ£o Ã© permitido mover pra ca");
+					view.showError("Não tem mais jogadas");
 				}
 
 			}
@@ -144,6 +148,9 @@ public class Middleware {
 			@Override
 			public void onCall(Object o) {
 				model.moverPassagemSecreta();
+				view.movePlayerTo(model.getNomeJogadorVez(), model.getLinhaJogadorVez(), model.getColunaJogadorVez());
+				obs.callEvent(Events.statusSecret, Boolean.valueOf(false));
+				obs.callEvent(Events.statusGuess, Boolean.valueOf(model.getPodeDarPalpite()));
 			}
 		});
 		
@@ -153,15 +160,23 @@ public class Middleware {
 		view.onProximoTurno(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				model.passaVez();
-				Personagem prox = model.getJogadorVez();
-				view.setNamePlayingNow(prox.toString());
-				obs.callEvent(Events.statusDice, Boolean.valueOf(true));
-				obs.callEvent(Events.statusGuess, Boolean.valueOf(false));
-				obs.callEvent(Events.statusSecret, Boolean.valueOf(model.verificaPassagemSecreta()));
+				prox();
 			}
 		});
 		
+	}
+	
+	private void prox() {
+		model.passaVez();
+		if(model.getErrouAcusaoAll())
+			view.win("Nenhum");
+		Personagem prox = model.getJogadorVez();
+		view.setNamePlayingNow(prox.toString());
+		obs.callEvent(Events.statusDice, Boolean.valueOf(true));
+		obs.callEvent(Events.statusGuess, Boolean.valueOf(model.getPodeDarPalpite()));
+		obs.callEvent(Events.statusSecret, Boolean.valueOf(model.verificaPassagemSecreta()));
+		obs.callEvent(Events.statusSave, Boolean.valueOf(true));
+		view.setJogadasSobrando(0);
 	}
 
 	private void initNotes() {
@@ -218,6 +233,8 @@ public class Middleware {
 				//mover o player 
 				int p[] = model.moverPalpite(cartasPalpite[0], cartasPalpite[2]); // mover player 'acusado' para o comodo do palpite
 				view.movePlayerTo(cartasPalpite[0], p[0], p[1]);
+				obs.callEvent(Events.statusGuess, Boolean.valueOf(false));
+				obs.callEvent(Events.statusSecret, Boolean.valueOf(false));
 			}
 		});
 		

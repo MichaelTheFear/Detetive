@@ -48,7 +48,7 @@ class Tabuleiro {
 	 Posicao[][] setupTabuleiro() {
 		Posicao[][] posicoesTabuleiro = new Posicao[28][28]; // Tamanho do tabuleiro 28 x 28 quadrados
 
-		System.out.println("Inicializando Posicoes Cozinha");
+		
 		for (int i = 2; i < 8; i++) {
 			for (int j = 2; j < 8; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.Cozinha);
@@ -60,7 +60,7 @@ class Tabuleiro {
 			posCozinha.add((Comodo) posicoesTabuleiro[8][j]);
 		}
 
-		System.out.println("Inicializando Posicoes Sala de Jantar");
+		
 		for (int i = 12; i < 18; i++) {
 			for (int j = 2; j < 10; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.SalaDeJantar);
@@ -72,7 +72,7 @@ class Tabuleiro {
 			posSalaJantar.add((Comodo) posicoesTabuleiro[11][j]);
 		}
 
-		System.out.println("Inicializando Posicoes Sala de Estar");
+		
 		for (int i = 21; i < 26; i++) {
 			for (int j = 2; j < 9; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.SalaDeEstar);
@@ -84,7 +84,7 @@ class Tabuleiro {
 			posSalaEstar.add((Comodo) posicoesTabuleiro[26][j]);
 		}
 
-		System.out.println("Inicializando Posicoes Entrada");
+		
 		for (int i = 20; i < 26; i++) {
 			for (int j = 11; j < 17; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.Entrada);
@@ -96,7 +96,7 @@ class Tabuleiro {
 			posEntrada.add((Comodo) posicoesTabuleiro[26][j]);
 		}
 
-		System.out.println("Inicializando Posicoes Escritorio");
+		
 		for (int i = 23; i < 26; i++) {
 			for (int j = 19; j < 26; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.Escritorio);
@@ -108,7 +108,7 @@ class Tabuleiro {
 			posEscritorio.add((Comodo) posicoesTabuleiro[26][j]);
 		}
 
-		System.out.println("Inicializando Posicoes Sala de Musica");
+		
 		for (int i = 4; i < 10; i++) {
 			for (int j = 10; j < 18; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.SalaDeMusica);
@@ -120,7 +120,7 @@ class Tabuleiro {
 			posSalaMusica.add((Comodo) posicoesTabuleiro[3][j]);
 		}
 
-		System.out.println("Inicializando Posicoes Jardim de Inverno");
+		
 		for (int i = 3; i < 7; i++) {
 			for (int j = 20; j < 26; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.JardimInverno);
@@ -132,7 +132,7 @@ class Tabuleiro {
 			posJardimInverno.add((Comodo) posicoesTabuleiro[7][j]);
 		}
 
-		System.out.println("Inicializando Posicoes Salao de Jogos");
+		
 		for (int i = 10; i < 15; i++) {
 			for (int j = 20; j < 26; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.SalaoDeJogos);
@@ -140,7 +140,7 @@ class Tabuleiro {
 			}
 		}
 
-		System.out.println("Inicializando Posicoes Biblioteca");
+		
 		for (int i = 16; i < 21; i++) {
 			for (int j = 20; j < 25; j++) {
 				posicoesTabuleiro[i][j] = new Comodo(i, j,Comodos.Biblioteca);
@@ -154,7 +154,7 @@ class Tabuleiro {
 			posBiblioteca.add((Comodo) posicoesTabuleiro[i][25]);
 		}
 
-		System.out.println("Inicializando Posicoes Corredor");
+		
 		posicoesTabuleiro[3][9] = new Posicao(3, 9);
 		posCorredor.add(posicoesTabuleiro[3][9]);
 		posicoesTabuleiro[3][10] = new Posicao(3, 10);
@@ -267,7 +267,7 @@ class Tabuleiro {
 		}
 		posicoesTabuleiro[26][18] = new Posicao(26, 18);
 		posCorredor.add(posicoesTabuleiro[26][18]);
-		System.out.println("Inicializando Posicoes Jogadores");
+		
 		// Scarlet
 		posicoesTabuleiro[26][9] = new Posicao(26, 9);
 		posCorredor.add(posicoesTabuleiro[26][9]);
@@ -292,7 +292,7 @@ class Tabuleiro {
 	}
 	
 	private void setupPosicoesProximas(Posicao[][] posicoesTabuleiro) {
-		System.out.println("Inicializando Posicoes Proximas...");
+		
 		for (int i = 0; i < posCorredor.size(); i++) {
 			Posicao p = posCorredor.get(i);
 
@@ -316,7 +316,7 @@ class Tabuleiro {
 				p.setPosicoesProximas(posProx);
 			}
 		}
-		System.out.println("Corredor OK");
+		
 
 		posicoesTabuleiro[9][6].addComodosProximos(posCozinha);
 
@@ -343,7 +343,7 @@ class Tabuleiro {
 		posicoesTabuleiro[22][17].addComodosProximos(posEntrada);
 
 		posicoesTabuleiro[22][19].addComodosProximos(posEscritorio);
-		System.out.println("Portas OK");
+		
 
 		for (int i = 0; i < posCozinha.size(); i++) {
 			Posicao p = posCozinha.get(i);
@@ -352,7 +352,7 @@ class Tabuleiro {
 
 			p.setPosicoesProximas(posProx);
 		}
-		System.out.println("Cozinha OK");
+		
 
 		for (int i = 0; i < posSalaMusica.size(); i++) {
 			Posicao p = posSalaMusica.get(i);
@@ -364,7 +364,7 @@ class Tabuleiro {
 
 			p.setPosicoesProximas(posProx);
 		}
-		System.out.println("Sala de Musica OK");
+		
 
 		for (int i = 0; i < posJardimInverno.size(); i++) {
 			Posicao p = posJardimInverno.get(i);
@@ -373,7 +373,7 @@ class Tabuleiro {
 
 			p.setPosicoesProximas(posProx);
 		}
-		System.out.println("Jardim de Inverno OK");
+		
 
 		for (int i = 0; i < posSalaJantar.size(); i++) {
 			Posicao p = posSalaJantar.get(i);
@@ -383,7 +383,7 @@ class Tabuleiro {
 
 			p.setPosicoesProximas(posProx);
 		}
-		System.out.println("Sala de Jantar OK");
+		
 
 		for (int i = 0; i < posSalaoJogos.size(); i++) {
 			Posicao p = posSalaoJogos.get(i);
@@ -393,7 +393,7 @@ class Tabuleiro {
 
 			p.setPosicoesProximas(posProx);
 		}
-		System.out.println("Salao de Jogos OK");
+		
 
 		for (int i = 0; i < posBiblioteca.size(); i++) {
 			Posicao p = posBiblioteca.get(i);
@@ -403,7 +403,7 @@ class Tabuleiro {
 
 			p.setPosicoesProximas(posProx);
 		}
-		System.out.println("Biblioteca OK");
+		
 
 		for (int i = 0; i < posSalaEstar.size(); i++) {
 			Posicao p = posSalaEstar.get(i);
@@ -412,7 +412,7 @@ class Tabuleiro {
 
 			p.setPosicoesProximas(posProx);
 		}
-		System.out.println("Sala de Estar OK");
+		
 
 		for (int i = 0; i < posEntrada.size(); i++) {
 			Posicao p = posEntrada.get(i);
@@ -423,7 +423,7 @@ class Tabuleiro {
 
 			p.setPosicoesProximas(posProx);
 		}
-		System.out.println("Entrada OK");
+		
 
 		for (int i = 0; i < posEscritorio.size(); i++) {
 			Posicao p = posEscritorio.get(i);
@@ -432,6 +432,6 @@ class Tabuleiro {
 
 			p.setPosicoesProximas(posProx);
 		}
-		System.out.println("Escritorio OK");
+		
 	}
 }

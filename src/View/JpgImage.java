@@ -23,7 +23,6 @@ public class JpgImage extends JPanel{
 		Image res;
 		try {
 			res = ImageIO.read(new File("images/" + path + ".jpg"));
-			System.out.println("File Ok!");
 		}catch(IOException e) {
 			res = null;
 			System.out.println("Não foi possivel achar o arquivo "+path);

@@ -12,9 +12,6 @@ import Util.Personagem;
 class CardsInGame extends JFrame {
 
 	CardsInGame(List<String> cards) { 
-		for(String s: cards) {
-			System.out.println("?"+s);
-		}
 		
 		Armas arm[] = Armas.values();
 		Comodos com[] = Comodos.values();

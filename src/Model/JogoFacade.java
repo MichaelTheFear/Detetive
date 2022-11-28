@@ -23,10 +23,10 @@ public class JogoFacade {
 	public void setupJogadores(ArrayList<Personagem> players) {
 		jogo.setupJogadores(players);
 
-		System.out.println("Personagens em Jogo:");
+		
 		for (Jogador j : jogo.jogadores) {
 			if (!j.ehNpc()) {
-				System.out.println(j.getPersonagem().name());
+				
 			}
 		}
 	}
@@ -62,6 +62,18 @@ public class JogoFacade {
 
 	public int getColunaJogadorVez() {
 		return jogo.jogadores.get(jogo.vezDe).getPos().getColuna();
+	}
+	
+	public String getNomeJogador(int i) {
+		return jogo.jogadores.get(i).getPersonagem().toString();
+	}
+
+	public int getLinhaJogador(int i) {
+		return jogo.jogadores.get(i).getPos().getLinha();
+	}
+
+	public int getColunaJogador(int i) {
+		return jogo.jogadores.get(i).getPos().getColuna();
 	}
 
 	public void setDados(Integer[] dices) {
